@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Petz</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chewy&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <header>
+      <div class="title title_small">
+        <h1>
+          Petz
+        </h1>
+      </div>
+      <div class="menu">
+        <ul>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Agendamento</a>
+                <div class="dropdown-content">
+                  <a href="#">Banho/Tosa</a>
+                  <a href="#">Consulta</a>
+                </div>
+              </li>
+            <li><a href="#">Produtos</a></li>
+            <li><a href="#">Compre/Adote pets</a></li>
+            <li><a href="#">Meu perfil</a></li>
+            <li><a href="#">Meu carrinho</a></li>
+          </ul>
+    </div>
+    </header>
+    <main>
+        <div class="formAgendarHolder">
+            <div class="formAgendar">
+                <h1>Banho/Tosa</h1>
+                <input type="text" placeholder="Nome e sobrenome" class="nameInput">
+                <input type="text" placeholder="Nome do animal" class="nameInput">
+                <div style="width: 100%; text-align: left;">
+                    <input type="date" class="timeInput">
+                    <input type="time" class="timeInput">
+                </div>
+                <div style="width: 100%; text-align: left;">
+                    <select>
+                        <option>Serviço</option>
+                        <option>Só banho</option>
+                        <option>Só tosa</option>
+                        <option>Banho e tosa</option>
+                    </select>
+                </div>
+                <button type="submit">Agendar</button>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
