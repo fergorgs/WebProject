@@ -7,6 +7,7 @@
 body {
   background-image: url('bg.svg');
   background-repeat: repeat;
+  overflow-x: hidden;
 }
 
 .title {
@@ -76,7 +77,6 @@ footer {
   vertical-align: middle; */
 }
 
-
 /*HEADER COM MENU PRINCIPAL------------------------------------*/
 /*-------------------------------------------------------------*/
 .menu {
@@ -100,7 +100,8 @@ footer {
   width: 20%;
   background-color: rgba(203, 155, 140, 1);
 }
-.menu a, .dropbtn {
+.menu a,
+.dropbtn {
   display: inline-block;
   color: black;
   text-align: center;
@@ -109,8 +110,9 @@ footer {
   width: 100%;
   padding: 0.5em 0em;
 }
-.menu a:hover, .dropdown:hover .dropbtn {
-  background-color: #6A4F4B;
+.menu a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #6a4f4b;
   border-radius: 10px;
 }
 
@@ -133,17 +135,78 @@ li.dropdown {
   text-align: center;
 }
 
-.dropdown-content a:hover {background-color: rgba(106,79,75,1);}
+.dropdown-content a:hover {
+  background-color: rgba(106, 79, 75, 1);
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-
 /*LISTAGEM DE PRODUTOS--------------------------------------*/
 /*pag cliente_produtos--------------------------------------*/
-.productSliderHolder {
 
+.container {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.rightArrow {
+  cursor: pointer;
+  position: sticky;
+  left: 100%;
+  z-index: 100;
+}
+
+.leftArrow {
+  transform: rotate(180deg);
+  cursor: pointer;
+  position: sticky;
+  left: 0px;
+  z-index: 100;
+}
+
+.leftArrow:not(:hover) + .rightArrow:hover ~ .productSlider {
+  animation: slide-right 10s forwards;
+  -webkit-animation: slide-right 10s forwards;
+}
+
+.leftArrow:hover + .rightArrow:not(:hover) ~ .productSlider {
+  animation: slide-left 10s forwards;
+  -webkit-animation: slide-left 10s forwards;
+}
+
+.leftArrow:not(:hover) + .rightArrow:not(:hover) ~ .productSlider {
+  animation: slide-left 10s forwards paused;
+  -webkit-animation: slide-left 10s forwards paused;
+  animation: slide-left 10s forwards paused;
+  -webkit-animation: slide-left 10s forwards paused;
+}
+
+@keyframes slide-left {
+  100% {
+    transform: translateX(-42em);
+  }
+}
+@-webkit-keyframes slide-left {
+  100% {
+    transform: translateX(-42em);
+  }
+}
+
+@keyframes slide-right {
+  100% {
+    transform: translateX(42em);
+  }
+}
+@-webkit-keyframes slide-right {
+  100% {
+    transform: translateX(42em);
+  }
+}
+
+.productSliderHolder {
   font-weight: normal;
   background-color: white;
   padding: 1em;
@@ -151,37 +214,47 @@ li.dropdown {
   margin: 3em 0em 3em;
 }
 
-.productSlider{
-
+.productSlider {
   display: flex;
+  align-items: center;
+  animation: slide-right 10s forwards paused;
+  -webkit-animation: slide-right 10s forwards paused;
+  animation: slide-left 10s forwards paused;
+  -webkit-animation: slide-left 10s forwards paused;
+}
+/*
+.lefter {
+  animation: slide-left 10s forwards paused;
+  -webkit-animation: slide-left 10s forwards paused;
 }
 
-.productItemHolder{
+.righter {
+  animation: slide-right 10s forwards paused;
+  -webkit-animation: slide-right 10s forwards paused;
+}*/
 
+.productItemHolder {
   width: 13em;
   height: 13em;
   padding: 1em 0.3em 1em;
-  
   transition: all 0.2s;
-
 }
-.productItem{
-
+.productItem {
   align-content: center;
   text-align: center;
   color: gray;
 }
-.productItem img{
+.productItem img {
   width: 10em;
   height: 10em;
 }
-.productItemHolder:hover{
+.productItemHolder:hover {
   width: 14em;
   height: 14em;
-  
+
   border-right: 0.05em solid lightgray;
   border-left: 0.05em solid lightgray;
-  
+
   box-shadow: 0 16px 12px -12px gray;
 
   padding: 2em 0.3em 1.5em;
@@ -195,12 +268,10 @@ li.dropdown {
   margin-top: 10em;
 }
 
-
-
 /*AGENDAMENTO BANHO/TOSA------------------------------------*/
 /*pag cliente_agendamento-----------------------------------*/
 
-.formAgendarHolder{
+.formAgendarHolder {
   text-align: center;
   display: flex;
   align-items: center;
@@ -209,8 +280,7 @@ li.dropdown {
   margin-top: 3em;
 }
 
-.formAgendar{
-
+.formAgendar {
   /* margin: 2em; */
   background-color: white;
   width: 30em;
@@ -218,7 +288,7 @@ li.dropdown {
   text-align: center;
   position: relative;
 }
-.formAgendar select{
+.formAgendar select {
   /* height: 3em; */
   margin: 1em 2em 1em;
   padding: 0.3em;
@@ -229,7 +299,7 @@ li.dropdown {
   border-bottom: 0.1em solid rgba(203, 155, 140, 1);
   color: gray;
 }
-.formAgendar button{
+.formAgendar button {
   margin: 1em 2em 1em;
   padding: 0.7em 1.5em 0.7em;
   margin-top: 1em;
@@ -239,11 +309,11 @@ li.dropdown {
   border-radius: 10px;
   color: black;
 }
-.formAgendar button:hover{
-  background-color: rgba(106,79,75,1);
+.formAgendar button:hover {
+  background-color: rgba(106, 79, 75, 1);
 }
 
-.nameInput{
+.nameInput {
   width: 80%;
   height: 1em;
   padding: 0.5em;
@@ -253,7 +323,7 @@ li.dropdown {
   border-bottom: 0.1em solid rgba(203, 155, 140, 1);
 }
 
-.timeInput{
+.timeInput {
   height: 1em;
   margin-top: 1.3em;
   margin-left: 2em;
