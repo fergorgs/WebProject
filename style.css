@@ -445,3 +445,70 @@ li.dropdown {
   color: gray;
   /* width: 100% */
 }
+
+
+
+
+/*INFORMAÇÕE DE VENDA/ADOÇÃO--------------------------------*/
+/*pag cliente_adocao----------------------------------------*/
+
+#displayPanelHolder{
+
+  background-color: white;
+  width: 92%;
+  padding: 1.5em 2em 1.5em;
+  /* font-size: 1.2em; */
+  margin: 2em;
+  color: gray;
+}
+#displayPanelHolder h2{
+
+  border: 0;
+  border-bottom: 0.1em solid rgba(203, 155, 140, 1);
+}
+
+#filtros{
+  display: flex;
+  font-size: 1.1em;
+  padding-top: 1em;
+  vertical-align: middle;
+}
+#filtros input{
+  margin-top: 0.4em;
+  margin-left: 1em;
+  margin-right: 0.5em;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.displayPanel{
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+
+  margin-top: 1.5em;
+}
+
+.displayCard{
+  margin: 1em 0.5em 1em;
+}
+.displayCard img{
+  width: 100%;
+  border-radius: 5%;
+}
+
+.displayName{
+  font-size: 1.5em;
+  color: rgba(203, 155, 140, 1);
+  margin: 0.2em 0 0.3em;
+}
+
+.raceAndAge{
+  display: grid;
+  grid-template-columns: 20% 33% 22% 25%;
+}
+.raceLabel{
+  color: rgba(203, 155, 140, 1);
+}
+.ageLabel{
+  color: rgba(203, 155, 140, 1);
+}
