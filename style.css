@@ -592,3 +592,24 @@ li.dropdown {
   font-size: 1.3em;
   border: 0em;
 }
+
+.edit{
+  width: 25px;
+  height: 25px;
+  margin-inline-start: 90%;
+}
+
+.estoque button{
+  padding: 0.25em 1em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  font-size: 0.75em;
+  border-radius: 10px;
+  color: black;
+  margin-bottom: 0.25em;
+}
+
+.estoque{
+  margin-inline-start: 70%;
+}
+  

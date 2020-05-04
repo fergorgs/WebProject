@@ -24,10 +24,10 @@
           <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">Registrar</a>
             <div class="dropdown-content admin">
-                <a href="#">Clientes</a>
-                <a href="#">Administradores</a>
-                <a href="#">Produtos</a>
-                <a href="admin_registrar_servico.html">Serviços</a>
+              <a href="admin_registrar_clientes.html">Clientes</a>
+              <a href="admin_registrar_admin.html">Administradores</a>
+              <a href="admin_registrar_produtos.html">Produtos</a>
+              <a href="admin_registrar_servico.html">Serviços</a>
             </div>
           </li>
           <li><a href="admin_servicos.html">Administração de serviços</a></li>
@@ -37,8 +37,16 @@
     </header>
     <main>
         <div id="displayPanelHolder">
-          <h2>Estoques</h2>
-          <div id="filtros">
+          <h2>
+            Estoques
+            <span class="estoque">        
+              <button type="submit">Editar</button>
+              <button type="submit">Remover</button>
+              <button type="submit">Adicionar</button>
+            </span>
+          </h2>
+            
+          <span id="filtros">
             <p>Filtrar:</p>
             <input type="checkbox" id="gatos" name="Gatos" checked />
             <label>Ração de Gato</label>
@@ -48,7 +56,7 @@
             <label>Areia de gato</label>
             <input type="checkbox" id="venda" name="Venda" checked />
             <label>Petiscos</label>
-          </div>
+          </span>
           <div class="displayPanel">
             <div class="displayCard">
               <img src="../images/drnks-12.jpg"/>
