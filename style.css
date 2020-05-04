@@ -354,6 +354,11 @@ li.dropdown {
 /*INFORMAÇÕE DE PERFIL--------------------------------------*/
 /*pag cliente_perfil----------------------------------------*/
 
+#profileHolder{
+  display: flex;
+  align-self: center;
+}
+
 .perfilHolder {
   display: flex;
 }
@@ -363,7 +368,7 @@ li.dropdown {
   padding: 0.75em 0.5em 1em 1.5em;
   text-align: center;
   font-size: 1.2em;
-  margin: 4em 2em 2em 16em;
+  margin: 50px 20px 60px;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -408,21 +413,24 @@ li.dropdown {
   color: gray;
 }
 
-#perfilPets {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  width: fit-content;
-  text-align: center;
-  font-size: 1.2em;
-}
-
 #petBox {
-  margin: 4em 0em 2em 4em;
+  margin-top: 50px;
+  margin-left: 10px;
   background-color: white;
   padding: 1em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
+
+#perfilPets {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width:47em;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 1em;
+}
+
 .petCard {
   display: flex;
   padding: 0.5em;
@@ -458,13 +466,17 @@ li.dropdown {
 /*pag cliente_perfil----------------------------------------*/
 
 #boxCart {
-  margin: 4em 0em 2em 28em;
+  margin:4em 0em;
   background-color: white;
   padding: 1em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   width: 60em;
   text-align: center;
+}
+#center{
+  display:flex;
+  align-self: center;
 }
 
 #displayCart {
@@ -600,7 +612,7 @@ span {
   padding: 2em;
   height: 18em;
   width: 21em;
-  margin: 5em 0 1em 5em;
+  margin: 5em 2em;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -639,13 +651,14 @@ span {
 
 #mainAdmin {
   display: flex;
+  align-self: center;
 }
 
 .agenda {
   padding: 1em;
   height: 40em;
-  width: 75em;
-  margin: 5em 0 1em 5em;
+  width: 50em;
+  margin: 5em 2em;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
