@@ -3,11 +3,15 @@
   padding: 0;
   font-family: 'Oxygen', sans-serif;
 }
-
+html, body{
+  height: 100%;
+}
 body {
   background-image: url('bg.svg');
   background-repeat: repeat;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -61,7 +65,12 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+main{
+  flex:1 0 auto;
+}
+
 footer {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,14 +79,13 @@ footer {
   text-align: center;
   font-size: 1em;
   padding: 1em;
+  height: 5em;
   background-color: #ffccbc;
   width: 100%;
-  height: auto;
-  margin-top: 2.5em;
-  bottom: 0;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   letter-spacing: 0.05em;
 }
+
 
 /*HEADER COM MENU PRINCIPAL------------------------------------*/
 /*-------------------------------------------------------------*/
@@ -88,7 +96,7 @@ footer {
 }
 .menu.menuClient ul {
   display: grid;
-  grid-template-columns: repeat(5, auto) ;
+  grid-template-columns: repeat(5, auto);
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -97,9 +105,9 @@ footer {
   width: 100%;
 }
 
-.menu.menuAdmin ul{
+.menu.menuAdmin ul {
   display: grid;
-  grid-template-columns: repeat(3, auto) ;
+  grid-template-columns: repeat(3, auto);
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -143,7 +151,7 @@ li.dropdown {
   border-radius: 0 0 10px 10px;
 }
 
-.dropdown-content.admin{
+.dropdown-content.admin {
   width: 26.75%;
 }
 
@@ -343,19 +351,13 @@ li.dropdown {
   border-bottom: 0.1em solid rgba(203, 155, 140, 1);
 }
 
-
-
-
 /*INFORMAÇÕE DE PERFIL--------------------------------------*/
 /*pag cliente_perfil----------------------------------------*/
 
-.perfilHolder{
-
+.perfilHolder {
   display: flex;
-  
 }
-.perfilInfoBox{
-
+.perfilInfoBox {
   background-color: white;
   width: 20em;
   padding: 0.75em 0.5em 1em 1.5em;
@@ -363,25 +365,22 @@ li.dropdown {
   font-size: 1.2em;
   margin: 4em 2em 2em 16em;
   border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-  
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.image{
+.image {
   height: 5em;
   width: 5em;
   border-radius: 2.5em;
 }
 
-#photoAndName{
-
+#photoAndName {
   vertical-align: middle;
   margin: 2em 0.5em 0;
   display: flex;
 }
 
-#photoAndName p{
-
+#photoAndName p {
   margin-left: 1.2em;
   vertical-align: middle;
   text-align: center;
@@ -389,68 +388,67 @@ li.dropdown {
   color: rgba(203, 155, 140, 1);
 }
 
-#perfilInfo{
+#perfilInfo {
   padding-top: 0.8em;
   display: flex;
 }
-#perfilInfo p{
+#perfilInfo p {
   margin-top: 0.9em;
 }
 
-#perfilInfoLabels{
-
+#perfilInfoLabels {
   width: 30%;
   text-align: right;
   color: rgba(203, 155, 140, 1);
   margin-right: 1em;
 }
 
-#perfilInfoContent{
+#perfilInfoContent {
   text-align: left;
-  color: gray
+  color: gray;
 }
 
-#perfilPets{
+#perfilPets {
   display: grid;
   grid-template-columns: 50% 50%;
   width: fit-content;
   text-align: center;
-  font-size: 1.2em; 
+  font-size: 1.2em;
 }
 
-#petBox{
+#petBox {
   margin: 4em 0em 2em 4em;
   background-color: white;
   padding: 1em;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);  
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
-.petCard{
+.petCard {
   display: flex;
   padding: 0.5em;
 }
 
-.petName{
+.petName {
   color: rgba(203, 155, 140, 1);
   text-align: left;
   padding-left: 2em;
 }
 
-.petInfoHolder{
+.petInfoHolder {
   display: grid;
   grid-template-columns: 60% 40%;
   font-size: 0.8em;
   padding: 1em;
 }
 
-.petInfoLabels{
+.petInfoLabels {
   width: 30%;
   text-align: right;
   color: rgba(203, 155, 140, 1);
   margin-right: 1em;
 }
 
-.petInfoContent{
+.petInfoContent {
   text-align: left;
   color: gray;
   /* width: 100% */
@@ -459,66 +457,73 @@ li.dropdown {
 /*INFORMAÇÕE DE PERFIL--------------------------------------*/
 /*pag cliente_perfil----------------------------------------*/
 
-#boxCart{
+#boxCart {
   margin: 4em 0em 2em 28em;
   background-color: white;
   padding: 1em;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);  
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  width:60em;
+  width: 60em;
   text-align: center;
 }
 
-#displayCart{
+#displayCart {
   display: grid;
   grid-template-columns: 50% 50%;
   width: fit-content;
   text-align: center;
-  font-size: 1.2em; 
+  font-size: 1.2em;
   padding-top: 2em;
 }
 
-.cardCart{
+.cardCart {
   display: flex;
   padding: 0.5em;
 }
 
-.cardCart img{
+.cardCart img {
   width: 160px;
   height: 175px;
   border-radius: 10px;
 }
 
-.cardCart h3{
+.cardCart h3 {
   margin-top: 1em;
-  color:rgba(203, 155, 140, 1);
+  color: rgba(203, 155, 140, 1);
 }
 
-.cardCart input{
+.cardCart input {
   height: 5px;
   width: 35px;
 }
 
-.infos{
+.infos {
   display: block;
   text-align: left;
   margin-left: 2em;
 }
 
-.infos p,span{
+.infos p,
+span {
   font-size: 0.85em;
 }
 
-#totalCart{
+.infos input {
+  height: 2em;
+  width: 2.3em;
+  font-size: 0.8em;
+}
+
+#totalCart {
   padding: 1em;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);  
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  width:180px;
+  width: 180px;
   height: 100px;
   margin-left: 50%;
 }
 
-#totalCart button{
+#totalCart button {
   padding: 0.7em 1.5em 0.7em;
   margin-top: 1em;
   font-size: 1em;
@@ -528,12 +533,10 @@ li.dropdown {
   color: black;
 }
 
-
 /*INFORMAÇÕE DE VENDA/ADOÇÃO--------------------------------*/
 /*pag cliente_adocao----------------------------------------*/
 
-#displayPanelHolder{
-
+#displayPanelHolder {
   background-color: white;
   width: 92%;
   padding: 1.5em 2em 1.5em;
@@ -541,19 +544,18 @@ li.dropdown {
   margin: 2em;
   color: gray;
 }
-#displayPanelHolder h2{
-
+#displayPanelHolder h2 {
   border: 0;
   border-bottom: 0.1em solid rgba(203, 155, 140, 1);
 }
 
-#filtros{
+#filtros {
   display: flex;
   font-size: 1.1em;
   padding-top: 1em;
   vertical-align: middle;
 }
-#filtros input{
+#filtros input {
   margin-top: 0.4em;
   margin-left: 1em;
   margin-right: 0.5em;
@@ -561,101 +563,100 @@ li.dropdown {
   height: 1.2em;
 }
 
-.displayPanel{
+.displayPanel {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
 
   margin-top: 1.5em;
 }
 
-.displayCard{
+.displayCard {
   margin: 1em 0.5em 1em;
 }
-.displayCard img{
+.displayCard img {
   width: 100%;
   border-radius: 5%;
 }
 
-.displayName{
+.displayName {
   font-size: 1.5em;
   color: rgba(203, 155, 140, 1);
   margin: 0.2em 0 0.3em;
 }
 
-.raceAndAge{
+.raceAndAge {
   display: grid;
   grid-template-columns: 20% 33% 22% 25%;
 }
-.raceLabel{
+.raceLabel {
   color: rgba(203, 155, 140, 1);
 }
-.ageLabel{
+.ageLabel {
   color: rgba(203, 155, 140, 1);
 }
 
 /*-----------ADMIN------------------------------*/
-.calendar{
+.calendar {
   padding: 2em;
   height: 18em;
   width: 21em;
-  margin:5em 0 1em 5em;
+  margin: 5em 0 1em 5em;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
 }
-#head{
+#head {
   display: flex;
   justify-content: center;
   justify-items: center;
   margin-bottom: 1em;
 }
 
-.row ul{
+.row ul {
   display: grid;
   row-gap: 2em;
   text-align: center;
-  
+
   grid-template-columns: repeat(7, 1fr);
 }
 
-.row li{
-  margin-bottom:1.7em;
+.row li {
+  margin-bottom: 1.7em;
   list-style-type: none;
 }
 
-#days{
-  color:rgba(0, 0, 0, 0.543337);
+#days {
+  color: rgba(0, 0, 0, 0.543337);
 }
 
-.row li:not(#days):hover{
+.row li:not(#days):hover {
   width: 1.5em;
   height: 1.5em;
   display: block;
-  border-radius: 50%; 
-  background-color:#FFCCBC ;
+  border-radius: 50%;
+  background-color: #ffccbc;
 }
 
-#mainAdmin{
-  display:flex;
+#mainAdmin {
+  display: flex;
 }
 
-.agenda{
+.agenda {
   padding: 1em;
   height: 40em;
   width: 75em;
-  margin:5em 0 1em 5em;
+  margin: 5em 0 1em 5em;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.shadow{
+.shadow {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
 
-.fileInput{
+.fileInput {
   width: 80%;
   height: 1em;
   padding: 0.5em;
@@ -664,13 +665,13 @@ li.dropdown {
   border: 0em;
 }
 
-.edit{
+.edit {
   width: 25px;
   height: 25px;
   margin-inline-start: 90%;
 }
 
-.estoque button{
+.estoque button {
   padding: 0.25em 1em;
   background-color: rgba(203, 155, 140, 1);
   border: 0;
@@ -680,7 +681,6 @@ li.dropdown {
   margin-bottom: 0.25em;
 }
 
-.estoque{
+.estoque {
   margin-inline-start: 70%;
 }
-  
