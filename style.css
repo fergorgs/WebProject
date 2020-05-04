@@ -358,7 +358,7 @@ li.dropdown {
 
   background-color: white;
   width: 20em;
-  padding: 1.5em 1em 1.5em;
+  padding: 0.75em 0.5em 1em 1.5em;
   text-align: center;
   font-size: 1.2em;
   margin: 4em 2em 2em 16em;
@@ -367,7 +367,7 @@ li.dropdown {
   
 }
 
-.perfilInfoBox img{
+.image{
   height: 5em;
   width: 5em;
   border-radius: 2.5em;
@@ -410,27 +410,24 @@ li.dropdown {
   color: gray
 }
 
-#perfilPetsBox{
+#perfilPets{
   display: grid;
   grid-template-columns: 50% 50%;
-  background-color: white;
-  width: 40em;
-  padding: 1.5em 1em 1.5em;
+  width: fit-content;
   text-align: center;
-  font-size: 1.2em;
-  margin: 4em 0em 2em 4em;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+  font-size: 1.2em; 
 }
 
+#petBox{
+  margin: 4em 0em 2em 4em;
+  background-color: white;
+  padding: 1em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);  
+  border-radius: 10px;
+}
 .petCard{
   display: flex;
   padding: 0.5em;
-}
-.petCard img{
-  height: 5em;
-  width: 5em;
-  border-radius: 2.5em;
 }
 
 .petName{
