@@ -21,9 +21,17 @@
       </div>
       <div class="menu menuAdmin">
         <ul>
-          <li><a href="#">Registrar</a></li>
-          <li><a href="admin_servicos.html">Administração de serviços</a></li>
-          <li><a href="#">Administração de estoques</a></li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Registrar</a>
+            <div class="dropdown-content admin">
+                <a href="admin_registrar_clientes.html">Clientes</a>
+                <a href="admin_registrar_admin.html">Administradores</a>
+                <a href="admin_registrar_produtos.html">Produtos</a>
+                <a href="admin_registrar_servico.html">Serviços</a>
+            </div>
+          </li>
+          <li><a href="#">Administração de serviços</a></li>
+          <li><a href="admin_estoques.html">Administração de estoques</a></li>
         </ul>
       </div>
     </header>
@@ -94,6 +102,16 @@
       </div>
       <table class="agenda">
         <tr>
+          <td width="200px">
+            <h3> 09 de Abril de 2017</h3>
+          </td>
+          <td></td>
+          <td></td>
+          <td>
+            <img src="../images/mode_edit.png" class="edit">
+          </td>
+        </tr>
+        <tr>
           <td> Horas </td>
           <td> Serviço </td>
           <td> Cliente </td>
@@ -160,6 +178,7 @@
           <td> gato </td>
         </tr>
       </table>
+      
     </main>
     <footer>
       Petz inc
