@@ -213,23 +213,23 @@ li.dropdown {
 
 @keyframes slide-left {
   100% {
-    transform: translateX(-42em);
+    transform: translateX(42em);
   }
 }
 @-webkit-keyframes slide-left {
   100% {
-    transform: translateX(-42em);
+    transform: translateX(42em);
   }
 }
 
 @keyframes slide-right {
   100% {
-    transform: translateX(42em);
+    transform: translateX(-42em);
   }
 }
 @-webkit-keyframes slide-right {
   100% {
-    transform: translateX(42em);
+    transform: translateX(-42em);
   }
 }
 
