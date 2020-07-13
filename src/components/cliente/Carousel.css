@@ -1,0 +1,44 @@
+div.wrapper {
+    /* display: flex; */
+    margin-top: 5em;
+    /* margin-bottom: 4em; */
+    align-items: center;
+    background-color: white;
+    height: 320px;
+}
+
+div.sliderHolder{
+    display: flex;
+    /* align-items: center;
+    background-color: white; */
+}
+
+div.sliderMiddlePage {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+div.sliderLastPage {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.leftPointer {
+    transform: rotate(180deg);
+    cursor: pointer;
+    margin-top: 300%;
+    margin-left: 50%;
+}
+
+.rightPointer {
+    cursor: pointer;
+    padding-top: 150%;
+    padding-right: 50%;
+}
+
+div.wrapper h1{
+    padding-left: 0.5em;
+}
