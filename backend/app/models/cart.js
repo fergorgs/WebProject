@@ -20,3 +20,6 @@ const CartSchema = new mongoose.Schema({
         default:0.0
     }
 })
+
+const Cart = mongoose.model('Cart', CartSchema)
+module.exports = Cart
