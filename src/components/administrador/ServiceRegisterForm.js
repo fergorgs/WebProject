@@ -11,7 +11,7 @@ class ServiceRegisterForm extends React.Component {
                         date: null,
                         time: null,
                         animalName: '',
-                        ownerName: '',
+                        cpf: '',
                       })
     }
 
@@ -27,8 +27,8 @@ class ServiceRegisterForm extends React.Component {
     animalNameHandler = (event) => {
         this.setState({animalName: event.target.value})
     }
-    ownerNameHandler = (event) => {
-        this.setState({ownerName: event.target.value})
+    cpfHandler = (event) => {
+        this.setState({cpf: event.target.value})
     }
     submitHandler = () => {
         //send to server
@@ -69,12 +69,10 @@ class ServiceRegisterForm extends React.Component {
                             />
                         <input 
                             type="text" 
-                            placeholder="Nome do cliente"
+                            placeholder="CPF"
                             class="nameInput"
-                            onChange={this.ownerNameHandler} 
+                            onChange={this.cpfHandler} 
                             />
-                        
-                        
                         <button type="submit" onClick={this.submitHandler}>Confirmar</button>
                     </div>
                 </div>    

@@ -15,7 +15,7 @@ class ShowerBookingScreen extends React.Component {
     componentWillMount(){
 
         this.setState({
-                        nameAndSurname: '',
+                        cpf: '',
                         animalName: '',
                         date: '',
                         hour: '',
@@ -24,8 +24,8 @@ class ShowerBookingScreen extends React.Component {
                     })
     }
 
-    nameAndSurnameHandler = (event) => {
-        this.setState({nameAndSurname: event.target.value})
+    cpfHandler = (event) => {
+        this.setState({cpf: event.target.value})
     }
     animalNameHandler = (event) => {
         this.setState({animalName: event.target.value})
@@ -62,10 +62,10 @@ class ShowerBookingScreen extends React.Component {
                         <h1>Banho/Tosa</h1>
                         <input 
                             type="text" 
-                            placeholder="Nome e sobrenome" 
+                            placeholder="CPF" 
                             class="nameInput"
-                            value={this.state.nameAndSurname}
-                            onChange={this.nameAndSurnameHandler}
+                            value={this.state.cpf}
+                            onChange={this.cpf}
                         />
                         <input 
                             type="text" 

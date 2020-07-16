@@ -5,7 +5,8 @@ import {
   Route,
   Link,
   useParams,
-  useRouteMatch
+  useRouteMatch,
+  Redirect
 } from "react-router-dom";
 import MainPage from "./components/MainPage";
 import ClientScreen from "./components/ClientScreen";
@@ -22,9 +23,12 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route exact path="/">
+            <Redirect to={"/login"}/>
+          </Route>
           <Route path="/admin" component={AdminScreen}/>
           <Route path="/client" component={ClientScreen}/>
-          <Route path="/" component={MainPage}/>
+          <Route path="/login" component={MainPage}/>
         </Switch>
       </div>
     </BrowserRouter>

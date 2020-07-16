@@ -15,15 +15,15 @@ class AppointmentBookingScreen extends React.Component {
     componentWillMount(){
 
         this.setState({
-                        nameAndSurname: '',
+                        cpf: '',
                         animalName: '',
                         date: '',
                         hour: '',
                     })
     }
 
-    nameAndSurnameHandler = (event) => {
-        this.setState({nameAndSurname: event.target.value})
+    cpfHandler = (event) => {
+        this.setState({cpf: event.target.value})
     }
     animalNameHandler = (event) => {
         this.setState({animalName: event.target.value})
@@ -48,10 +48,10 @@ class AppointmentBookingScreen extends React.Component {
                         <h1>Consulta</h1>
                         <input 
                             type="text" 
-                            placeholder="Nome e sobrenome" 
+                            placeholder="CPF" 
                             class="nameInput"
-                            value={this.state.nameAndSurname}
-                            onChange={this.nameAndSurnameHandler}
+                            value={this.state.cpf}
+                            onChange={this.cpfHandler}
                         />
                         <input 
                             type="text" 
