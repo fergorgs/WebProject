@@ -5,19 +5,19 @@ const ClientSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Preencha o nome!'],
   },
-  senha: {
+  password: {
     type: String,
     required: [true, 'Preencha a senha!'],
     select: false,
   },
-  passwordResetToken: {
+  /*passwordResetToken: {
     type: String,
     select: false,
   },
   passwordResetExpires: {
     type: Date,
     select: false,
-  },
+  },*/
   cpf: {
     type: String,
     required: [true, 'Preencha o cpf!'],
@@ -33,13 +33,14 @@ const ClientSchema = new mongoose.Schema({
       required:[true, 'Preencha o email!'],
       lowercase:true
   },
-  telefone:{
+  phone:{
       type:String,
       required:[true, 'Preeccha o telefone!']
   },
-  imgPath:{
+  photo:{
       type:String,
-      select:false
+      select:false,
+      default:''
   },
   pets:[{
       type:mongoose.Schema.Types.ObjectId,
