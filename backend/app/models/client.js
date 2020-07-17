@@ -39,7 +39,6 @@ const ClientSchema = new mongoose.Schema({
   },
   photo:{
       type:String,
-      select:false,
       default:''
   },
   pets:[{

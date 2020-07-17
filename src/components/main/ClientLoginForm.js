@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 
 class ClientLoginForm extends React.Component {
   componentWillMount() {
-    this.setState({ cpf: '', password: '', logedin: false })
+    this.setState({ cpf: '', password: '', logedin: false, redirect:'/login/client' })
   }
 
   cpfHandler = (event) => {
@@ -14,24 +14,31 @@ class ClientLoginForm extends React.Component {
     this.setState({ password: event.target.value })
   }
   submitHandler = () => {
+    const data = {cpf:this.state.cpf, password:this.state.password}
     fetch('http://localhost:5000/auth/authenticate', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(data),
     }).then(async res=>{
-        const { token } = await res.json()
+        if(res.ok){
+          const client = await res.json()
+          localStorage.setItem('client', JSON.stringify(client))
+          window.location.replace('http://localhost:3000/client')
+        }else{
+          alert('Usuário ou senha incorretos!')
+        }
         
     })
 
-    this.setState({ logedin: true })
   }
 
   render() {
     return (
       <main>
+        <Redirect to={this.state.redirect} />
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Login Cliente </h1>
@@ -50,11 +57,9 @@ class ClientLoginForm extends React.Component {
               onChange={this.passwordHandler}
             />
 
-            <Link to='/client'>
               <button type='submit' onClick={this.submitHandler}>
                 Confirmar
               </button>
-            </Link>
           </div>
         </div>
 

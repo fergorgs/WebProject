@@ -17,8 +17,9 @@ const ClientPetSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Preencha a idade!'],
   },
-  imgPath: {
+  photo: {
     type: String,
+    default:''
   },
   gender: {
     type: String,

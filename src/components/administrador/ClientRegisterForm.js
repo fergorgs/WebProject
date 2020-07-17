@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css'
-import { Router } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 class ClientRegisterForm extends React.Component {
   constructor(...args) {
@@ -14,6 +14,7 @@ class ClientRegisterForm extends React.Component {
       phone: '',
       photo: null,
       newId: '',
+      redirect: '/login/create',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleImgUpload = this.handleImgUpload.bind(this)
@@ -36,7 +37,6 @@ class ClientRegisterForm extends React.Component {
     const fd = new FormData()
     fd.set('id', this.state.newId)
     fd.append('image', this.state.photo)
-    for (let val in fd.values()) console.log(val)
     axios
       .post('http://localhost:5000/upload/client', fd, {
         headers: {
@@ -44,14 +44,24 @@ class ClientRegisterForm extends React.Component {
         },
       })
       .then((res) => {
-        alert('Cliente registrado com sucesso!')
+        if (res.status === 200) {
+          alert('Cliente registrado com sucesso!')
+          this.setState({redirect:'/login/client'})
+        } else {
+          alert('Falha no upload de foto!')
+        }
       })
   }
 
   submitHandler = () => {
-    let data = this.state
-    delete data.photoName
-    delete data.newId
+    let data = {
+      name: this.state.name,
+      cpf: this.state.cpf,
+      password: this.state.password,
+      address: this.state.address,
+      email: this.state.email,
+      phone: this.state.phone,
+    }
     console.log(JSON.stringify(data))
     fetch('http://localhost:5000/auth/registerClient', {
       method: 'POST',
@@ -66,8 +76,6 @@ class ClientRegisterForm extends React.Component {
         this.setState({ newId: id.id }, () => {
           this.uploadImage()
         })
-
-        
       } else {
         const err = await res.json()
         alert(err.error)
@@ -78,6 +86,7 @@ class ClientRegisterForm extends React.Component {
   render() {
     return (
       <main>
+        <Redirect to={this.state.redirect} />
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Novo Cliente </h1>

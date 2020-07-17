@@ -2,13 +2,7 @@ const express = require('express')
 const Client = require('../models/client')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 const multer = require('multer')
-const upload = multer({
-  dest: './resources/static/assets/profilePics',
-})
-//const crypto = require('crypto')
-const authConfig = require('../../config/auth.json')
 //const mailer = require('../../modules/mailer')
 
 function validarCPF(cpf) {

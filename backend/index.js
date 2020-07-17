@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-
+const path = require('path')
 const app = express()
 
 app.use((req, res, next) => {
@@ -17,6 +17,9 @@ app.use((req, res, next) => {
 })
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+const dir = path.join(__dirname, '/resources/static/assets/profilePics')
+app.use(express.static(dir))
+
 
 require('./app/controllers/index')(app)
 
