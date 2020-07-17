@@ -6,7 +6,7 @@ class PetCard extends React.Component {
   renderRemoveButton = () => {
     if (this.props.removeMode)
       return (
-        <div onClick={() => this.props.removePetHandler(this.props.id)}>
+        <div onClick={() => this.props.removePetHandler(this.props.id, this.props.imgSrc)}>
           <h2
             style={{
               textAlign: 'right',

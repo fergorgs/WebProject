@@ -8,35 +8,37 @@ import petPlaceHolder from './images/dog2.jpeg'
 import PetCard from './PetCard'
 
 class AdoptionScreen extends React.Component {
-  constructor(args) {
-    super(args)
+  constructor(props) {
+    super(props)
     this.state = {
-      id: '',
-      name: '',
-      address: '',
-      phone: '',
-      email: '',
-      cpf: '',
+      rerender: 0,
     }
   }
 
-
-  fetchPetsInfo() {
-    //fetch fetch fetch
-
-    return [
-      {
-        imgSrc: petPlaceHolder,
-        name: 'Gilberto',
-        race: 'Beagle',
-        age: '6',
-        id: '155364',
+  removePetHandler = (id, photo) => {
+    const ownerId = JSON.parse(localStorage.getItem('client')).client._id
+    const data = { ownerId, petId: id, photo }
+    fetch('http://localhost:5000/pet/remove', {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-    ]
-  }
-
-  removePetHandler = (id) => {
-    alert('removed pet id: ' + id)
+      body: JSON.stringify(data),
+    }).then(async (res) => {
+      if (res.ok) {
+        res.json().then((result) => {
+          localStorage.setItem('client', JSON.stringify({ client: result }))
+          let num = this.state.rerender + 1
+          this.setState({ rerender: num })
+          alert('Pet removido com sucesso!')
+        }).catch(jsonErr=>{
+          console.log(jsonErr)
+        })
+      } else {
+        console.log(await res.json())
+      }
+    })
     this.setState({})
   }
 
@@ -49,7 +51,7 @@ class AdoptionScreen extends React.Component {
         >
           <ProfileCard />
           <OwnedPetsPanel
-            itemsData={this.fetchPetsInfo(this.state.id)}
+            key={this.state.rerender}
             removePetHandler={this.removePetHandler}
             match={this.props.match}
           />

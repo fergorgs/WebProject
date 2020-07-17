@@ -1,6 +1,7 @@
 import React from 'react'
 import '../style.css'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 class AddPetScreen extends React.Component {
   componentWillMount() {
     this.setState({
@@ -10,6 +11,7 @@ class AddPetScreen extends React.Component {
       petAge: '',
       petImage: null,
       newId: '',
+      redirect:'/client/perfil/novo_pet'
     })
   }
 
@@ -44,6 +46,7 @@ class AddPetScreen extends React.Component {
           alert('Pet registrado com sucesso!')
           const client = {client : res.data}
           localStorage.setItem('client', JSON.stringify(client))
+          this.setState({redirect:'/client/perfil'})
           //window.location.replace('https://localhost:3000/client/perfil')
         } else {
           alert('Falha no upload de foto!')
@@ -83,6 +86,7 @@ class AddPetScreen extends React.Component {
   render() {
     return (
       <main>
+        <Redirect to={this.state.redirect}/>
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Novo Pet </h1>

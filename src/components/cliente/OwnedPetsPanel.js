@@ -11,7 +11,8 @@ class OwnedPetsPanel extends React.Component {
       race: '',
       age: '',
       id: '',
-      pets:[]
+      pets: [],
+      message: '',
     }
   }
   componentDidMount() {
@@ -22,12 +23,16 @@ class OwnedPetsPanel extends React.Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({petsId:pets}),
-    }).then(async res=>{
-      pets = await res.json() 
-      this.setState({pets:pets})
-    })    
-    
+      body: JSON.stringify({ petsId: pets }),
+    }).then(async (res) => {
+      if (res.ok) {
+        pets = await res.json()
+        if (Array.isArray(pets)) this.setState({ pets: pets })
+      } else {
+        const err = await res.json()
+        this.setState({ message: err.error })
+      }
+    })
   }
   componentWillMount() {
     this.setState({ remove: false })
@@ -67,7 +72,9 @@ class OwnedPetsPanel extends React.Component {
               <button type='submit'>Adicionar</button>
             </Link>
           </div>
-          <div id='perfilPets'>{pets}</div>
+          <div id='perfilPets'>
+            {this.state.message !== '' ? this.state.message : pets}
+          </div>
         </div>
       </div>
     )
