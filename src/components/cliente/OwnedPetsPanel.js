@@ -16,8 +16,18 @@ class OwnedPetsPanel extends React.Component {
   }
   componentDidMount() {
     let pets = JSON.parse(localStorage.getItem('client')).client.pets
-    console.log(pets)
-    this.setState({pets:pets})
+    fetch('http://localhost:5000/pet/getClientPets', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({petsId:pets}),
+    }).then(async res=>{
+      pets = await res.json() 
+      this.setState({pets:pets})
+    })    
+    
   }
   componentWillMount() {
     this.setState({ remove: false })
@@ -31,11 +41,12 @@ class OwnedPetsPanel extends React.Component {
     const pets = this.state.pets.map((pet) => {
       return (
         <PetCard
-          imgSrc={pet.imgSrc}
+          imgSrc={pet.photo}
           name={pet.name}
-          race={pet.race}
+          race={pet.breed}
           age={pet.age}
-          id={pet.id}
+          id={pet._id}
+          sex={pet.gender}
           removeMode={this.state.remove}
           removePetHandler={this.props.removePetHandler}
         />
