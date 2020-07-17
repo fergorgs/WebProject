@@ -11,24 +11,20 @@ class AddPetScreen extends React.Component {
       petAge: '',
       petImage: null,
       newId: '',
-      redirect:'/client/perfil/novo_pet'
+      redirect: '/client/perfil/novo_pet',
     })
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  nameHandler = (event) => {
-    this.setState({ petName: event.target.value })
-  }
-  sexHandler = (event) => {
-    this.setState({ petSex: event.target.value })
-  }
-  raceHandler = (event) => {
-    this.setState({ petRace: event.target.value })
-  }
-  ageHandler = (event) => {
-    this.setState({ petAge: event.target.value })
-  }
   imageHandler = (event) => {
     this.setState({ petImage: event.target.files[0] })
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value,
+    })
   }
 
   uploadImage() {
@@ -44,10 +40,9 @@ class AddPetScreen extends React.Component {
       .then((res) => {
         if (res.status === 200) {
           alert('Pet registrado com sucesso!')
-          const client = {client : res.data}
+          const client = { client: res.data }
           localStorage.setItem('client', JSON.stringify(client))
-          this.setState({redirect:'/client/perfil'})
-          //window.location.replace('https://localhost:3000/client/perfil')
+          this.setState({ redirect: '/client/perfil' })
         } else {
           alert('Falha no upload de foto!')
         }
@@ -72,7 +67,6 @@ class AddPetScreen extends React.Component {
     }).then(async (res) => {
       if (res.ok) {
         const id = await res.json()
-        console.log(id)
         this.setState({ newId: id._id }, () => {
           this.uploadImage()
         })
@@ -86,37 +80,41 @@ class AddPetScreen extends React.Component {
   render() {
     return (
       <main>
-        <Redirect to={this.state.redirect}/>
+        <Redirect to={this.state.redirect} />
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Novo Pet </h1>
             <input
               type='text'
+              name='petName'
               placeholder='Nome do do Pet'
               class='nameInput'
               value={this.state.petName}
-              onChange={this.nameHandler}
+              onChange={this.handleChange}
             />
             <input
               type='text'
+              name='petSex'
               placeholder='Sex'
               class='nameInput'
               value={this.state.petSex}
-              onChange={this.sexHandler}
+              onChange={this.handleChange}
             />
             <input
               type='text'
               placeholder='Raça'
+              name='petRace'
               class='nameInput'
               value={this.state.petRace}
-              onChange={this.raceHandler}
+              onChange={this.handleChange}
             />
             <input
               type='text'
               placeholder='Idade'
               class='nameInput'
+              name='petAge'
               value={this.state.petAge}
-              onChange={this.ageHandler}
+              onChange={this.handleChange}
             />
             <input
               type='file'

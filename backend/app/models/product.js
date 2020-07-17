@@ -16,7 +16,11 @@ const ProductSchema = new mongoose.Schema({
         type:Number,
         required:[true, 'Preencha a quantidade inicial!']
     },
-    imgPath:{
+    type:{
+        type:String,
+        required:[true, 'Preencha o tipo!']
+    },
+    photo:{
         type:String
     }
 })

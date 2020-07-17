@@ -1,6 +1,5 @@
 import React from 'react'
 import '../style.css'
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
 import profilePlaceHolder from './images/coffinGuy.jpg'
 
 class ProfileCard extends React.Component {

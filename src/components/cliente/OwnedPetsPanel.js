@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css'
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PetCard from './PetCard'
 
 class OwnedPetsPanel extends React.Component {
@@ -38,7 +38,7 @@ class OwnedPetsPanel extends React.Component {
     this.setState({ remove: false })
   }
 
-  removeButtonHandler = (event) => {
+  removeButtonHandler = () => {
     this.setState({ remove: !this.state.remove })
   }
 

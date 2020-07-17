@@ -1,13 +1,11 @@
 const mongoose = require('../../database')
 const ServiceSchema = new mongoose.Schema({
-  clientId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Client',
+  clientCpf: {
+    type: String,
     required: true,
   },
-  clientPetId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'ClientPet',
+  clientPetName: {
+    type: String,
     required: true,
   },
   date:{

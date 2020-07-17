@@ -4,17 +4,24 @@ import { Link, Redirect } from 'react-router-dom'
 
 class ClientLoginForm extends React.Component {
   componentWillMount() {
-    this.setState({ cpf: '', password: '', logedin: false, redirect:'/login/client' })
+    this.setState({
+      email: '',
+      password: '',
+      logedin: false,
+      redirect: '/login/client',
+    })
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  cpfHandler = (event) => {
-    this.setState({ cpf: event.target.value })
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value,
+    })
   }
-  passwordHandler = (event) => {
-    this.setState({ password: event.target.value })
-  }
+
   submitHandler = () => {
-    const data = {cpf:this.state.cpf, password:this.state.password}
+    const data = { email: this.state.email, password: this.state.password }
     fetch('http://localhost:5000/auth/authenticate', {
       method: 'POST',
       headers: {
@@ -22,17 +29,15 @@ class ClientLoginForm extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    }).then(async res=>{
-        if(res.ok){
-          const client = await res.json()
-          localStorage.setItem('client', JSON.stringify(client))
-          window.location.replace('http://localhost:3000/client')
-        }else{
-          alert('Usuário ou senha incorretos!')
-        }
-        
+    }).then(async (res) => {
+      if (res.ok) {
+        const client = await res.json()
+        localStorage.setItem('client', JSON.stringify(client))
+        window.location.replace('http://localhost:3000/client')
+      } else {
+        alert('Usuário ou senha incorretos!')
+      }
     })
-
   }
 
   render() {
@@ -43,23 +48,25 @@ class ClientLoginForm extends React.Component {
           <div class='formAgendar  shadow'>
             <h1>Login Cliente </h1>
             <input
-              type='text'
-              placeholder='CPF'
+              type='email'
+              name='email'
+              placeholder='Email'
               class='nameInput'
-              value={this.state.cpf}
-              onChange={this.cpfHandler}
+              value={this.state.email}
+              onChange={this.handleChange}
             />
             <input
               type='password'
+              name='password'
               placeholder='Senha'
               class='nameInput'
               value={this.state.password}
-              onChange={this.passwordHandler}
+              onChange={this.handleChange}
             />
 
-              <button type='submit' onClick={this.submitHandler}>
-                Confirmar
-              </button>
+            <button type='submit' onClick={this.submitHandler}>
+              Confirmar
+            </button>
           </div>
         </div>
 

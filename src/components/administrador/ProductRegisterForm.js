@@ -1,122 +1,152 @@
-import React from 'react';
+import React from 'react'
 import '../style.css'
-
-
-
+import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 class ProductRegisterForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      description: '',
+      price: null,
+      quantity: null,
+      photo: null,
+      type: 'Ração Gato',
+      newId: '',
+      redirect: '/admin/registro/produtos',
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
 
-    componentWillMount(){
-        this.setState({ name: '',
-                        id: '',
-                        description: '',
-                        price: null,
-                        quantity: null,
-                        photo: null,
-                        type: null,
-                      })
-    }
+  photoHandler = (event) => {
+    this.setState({ photo: event.target.files[0] })
+  }
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value,
+    })
+  }
 
-    nameHandler = (event) => {
-        this.setState({name: event.target.value})
-    }
-    idHandler = (event) => {
-        this.setState({id: event.target.value})
-    }
-    descriptionHandler = (event) => {
-        this.setState({description: event.target.value})
-    }
-    priceHandler = (event) => {
-        this.setState({price: event.target.value})
-    }
-    quantityHandler = (event) => {
-        this.setState({quantity: event.target.value})
-    }
-    photoHandler = (event) => {
-        this.setState({photo: event.target.value})
-    }
-    typeHandler = (event) => {
-        //type 1 = racaoGato
-        //type 2 = racaoCao 
-        //type 3 = areiaGato
-        //type 4 = petiscos
-        if(event.target.value == 'Ração Gato')
-            this.setState({type: 1})
-        if(event.target.value == 'Ração Cão')
-            this.setState({type: 2})
-        if(event.target.value == 'Areia Gato')
-            this.setState({type: 3})
-        if(event.target.value == 'Petiscos')
-            this.setState({type: 4})
-    }
-    submitHandler = () => {
-        //send to server
-        alert("Produto registrado")
-    }
+  uploadImage(){
+      const fd = new FormData()
+      fd.set('id', this.state.newId)
+      fd.append('image', this.state.photo)
+      axios
+        .post('http://localhost:5000/upload/product', fd, {
+          headers: {
+            'Content-Type': `multipart/form-data; boundary=${fd._boundary}`,
+          },
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            alert('Produto registrado com sucesso!')
+            
+            this.setState({ redirect: '/admin' })
+          } else {
+            alert('Falha no upload de foto!')
+          }
+        })
+  }
 
-    render() {
-
-        return (
-            <main>
-                <div class="formAgendarHolder">
-                    <div class="formAgendar  shadow">
-                        <h1>Novo Produto </h1>
-                        <input 
-                            type="text" 
-                            placeholder="Nome do produto" 
-                            class="nameInput"
-                            value={this.state.name}
-                            onChange={this.nameHandler}
-                        />
-                        <input 
-                            type="text" 
-                            placeholder="ID" 
-                            class="nameInput"
-                            value={this.state.id}
-                            onChange={this.idHandler}
-                        />
-                        <input 
-                            type="text" 
-                            placeholder="Descrição" 
-                            class="nameInput"
-                            value={this.state.description}
-                            onChange={this.descriptionHandler}
-                        />
-                        <input 
-                            type="number" 
-                            placeholder="Preço" 
-                            class="nameInput"
-                            value={this.state.price}
-                            onChange={this.priceHandler}
-                        />
-                        <input 
-                            type="number" 
-                            placeholder="Quantidade" 
-                            class="nameInput"
-                            value={this.state.quantity}
-                            onChange={this.quantityHandler}
-                        />
-                        <div style={{display: 'flex'}}>
-                            <select onChange={this.typeHandler}>
-                                <option>Tipo</option>
-                                <option>Ração Gato</option>
-                                <option>Ração Cão</option>
-                                <option>Areia Gato</option>
-                                <option>Petiscos</option>
-                            </select>
-                        </div>
-                        <input 
-                            type="file" 
-                            class="fileInput"
-                            value={this.state.photo}
-                            onChange={this.photoHandler}
-                        />
-                        
-                        <button type="submit" onClick={this.submitHandler}>Confirmar</button>
-                    </div>
-                </div>    
-            </main>
-        );
+  submitHandler() {
+    const data = {
+      name: this.state.name,
+      price: this.state.price,
+      description: this.state.description,
+      quantity: this.state.quantity,
+      type: this.state.type,
     }
+    fetch('http://localhost:5000/product/add', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(async (res) => {
+      if (res.ok) {
+        const id = await res.json()
+        this.setState({ newId: id._id }, () => {
+          this.uploadImage()
+        })
+      } else {
+        const err = await res.json()
+        alert(err.error)
+      }
+    })
+  }
+
+  render() {
+    return (
+      <main>
+          <Redirect to={this.state.redirect}/>
+        <div class='formAgendarHolder'>
+          <div class='formAgendar  shadow'>
+            <h1>Novo Produto </h1>
+            <input
+              type='text'
+              name='name'
+              placeholder='Nome do produto'
+              class='nameInput'
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+
+            <input
+              type='text'
+              name='description'
+              placeholder='Descrição'
+              class='nameInput'
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+            <input
+              type='number'
+              name='price'
+              placeholder='Preço'
+              class='nameInput'
+              value={this.state.price}
+              onChange={this.handleChange}
+            />
+            <input
+              type='number'
+              name='quantity'
+              placeholder='Quantidade'
+              class='nameInput'
+              value={this.state.quantity}
+              onChange={this.handleChange}
+            />
+            <div style={{ display: 'flex' }}>
+              <select
+                onChange={this.handleChange}
+                name='type'
+                value={this.state.type}
+              >
+                <option defaultValue={true} disabled={true}>
+                  Tipo
+                </option>
+                <option>Ração Gato</option>
+                <option>Ração Cão</option>
+                <option>Areia Gato</option>
+                <option>Petiscos</option>
+              </select>
+            </div>
+            <input
+              type='file'
+              accept='image/*'
+              class='fileInput'
+              onChange={this.photoHandler}
+            />
+
+            <button type='submit' onClick={this.submitHandler.bind(this)}>
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </main>
+    )
+  }
 }
 
-export default ProductRegisterForm;
+export default ProductRegisterForm

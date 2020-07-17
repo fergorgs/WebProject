@@ -97,9 +97,9 @@ router.post('/registerClient', async (req, res) => {
 })
 
 router.post('/authenticate', async (req, res) => {
-  const { cpf, password } = req.body
+  const { email, password } = req.body
 
-  const client = await Client.findOne({ cpf }).select('+password')
+  const client = await Client.findOne({ email }).select('+password')
 
   if (!client) return res.status(400).send({ error: 'Client not found!' })
 

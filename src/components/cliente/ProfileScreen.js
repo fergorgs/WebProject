@@ -1,11 +1,7 @@
 import React from 'react'
 import '../style.css'
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
 import ProfileCard from './ProfileCard'
 import OwnedPetsPanel from './OwnedPetsPanel'
-import profilePlaceHolder from './images/coffinGuy.jpg'
-import petPlaceHolder from './images/dog2.jpeg'
-import PetCard from './PetCard'
 
 class AdoptionScreen extends React.Component {
   constructor(props) {

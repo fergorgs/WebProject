@@ -2,6 +2,8 @@ import React from 'react'
 import '../style.css'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import InputMask from 'react-input-mask'
+
 class ClientRegisterForm extends React.Component {
   constructor(...args) {
     super(...args)
@@ -98,7 +100,8 @@ class ClientRegisterForm extends React.Component {
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <input
+            <InputMask
+              mask="999.999.999-99"
               name='cpf'
               type='text'
               placeholder='CPF'
