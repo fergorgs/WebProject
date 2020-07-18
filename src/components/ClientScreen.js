@@ -40,8 +40,7 @@ class ClientScreen extends React.Component {
                   <Route path={`${this.props.match.path}/perfil/novo_pet`} component={AddPetScreen}/>
                   <Route path={`${this.props.match.path}/perfil`} component={ProfileScreen}/>
                   <Route path={`${this.props.match.path}/carrinho`} component={ShopCartScreen}/>
-                  <Route path={`${this.props.match.path}/banho`} component={ShowerBookingScreen}/>
-                  <Route path={`${this.props.match.path}/consulta`} component={AppointmentBookingScreen}/>
+                  <Route path={`${this.props.match.path}/agendamentos`} component={ShowerBookingScreen}/>
                 </Switch>
                 <Footer/>
             </div>

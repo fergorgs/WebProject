@@ -5,8 +5,7 @@ const Product = require('../models/product')
 const express = require('express')
 const router = express.Router()
 const uploadImage = require('../middleware/imageUpload')
-const authMiddleware = require('../middleware/auth')
-router.use(authMiddleware)
+
 
 router.post('/client', uploadImage.single('image'), async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style.css'
-
+import InputMask from 'react-input-mask'
 
 
 class AdminRegisterForm extends React.Component {
@@ -48,7 +48,8 @@ class AdminRegisterForm extends React.Component {
                             value={this.state.name}
                             onChange={this.nameHandler}
                         />
-                        <input 
+                        <InputMask 
+                            mask='999.999.999-99'
                             type="text" 
                             placeholder="CPF" 
                             class="nameInput"

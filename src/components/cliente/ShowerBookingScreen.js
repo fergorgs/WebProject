@@ -13,7 +13,7 @@ class ShowerBookingScreen extends React.Component {
       service: '',
       cost: '0,00',
       pets: [<option>Selecione um animal</option>],
-      redirect:'/client/banho'
+      redirect:'/client/agendamentos'
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -52,6 +52,7 @@ class ShowerBookingScreen extends React.Component {
       [name]: value,
     })
   }
+  
   serviceHandler = (event) => {
     let val = event.target.value
     this.setState({service:val})
@@ -59,6 +60,7 @@ class ShowerBookingScreen extends React.Component {
     else if (val == 'Só banho') this.setState({ cost: '20,00' })
     else if (val == 'Só tosa') this.setState({ cost: '35,00' })
     else if (val == 'Banho e tosa') this.setState({ cost: '55,00' })
+    else if (val == 'Consulta') this.setState({ cost: '45,00' })
   }
   agendarHandler = (event) => {
     const date = new Date(`${this.state.date}:${this.state.hour}`)
@@ -96,7 +98,7 @@ class ShowerBookingScreen extends React.Component {
         <Redirect to={this.state.redirect} />
         <div class='formAgendarHolder'>
           <div class='formAgendar'>
-            <h1>Banho/Tosa</h1>
+            <h1>Agendamento de Serviços</h1>
             <select
               style={{ width: '22em' }}
               name='animalName'
@@ -125,6 +127,7 @@ class ShowerBookingScreen extends React.Component {
                 <option>Só banho</option>
                 <option>Só tosa</option>
                 <option>Banho e tosa</option>
+                <option>Consulta</option>
               </select>
             </div>
             <br />

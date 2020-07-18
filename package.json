@@ -1,9 +1,10 @@
 {
   "name": "petshop",
-  "proxy":"http://localhost:5000",
+  "proxy": "http://localhost:5000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@react-navigation/native": "^5.6.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -11,6 +12,7 @@
     "axios": "^0.19.2",
     "create-react-app": "^3.4.1",
     "fs": "0.0.1-security",
+    "material-table": "^1.65.0",
     "react": "^16.13.1",
     "react-calendar": "^3.1.0",
     "react-dom": "^16.13.1",
@@ -18,7 +20,8 @@
     "react-items-carousel": "^2.8.0",
     "react-responsive-carousel": "^3.2.9",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-sticky-footer": "0.1.0-rc3"
   },
   "scripts": {
     "start": "react-scripts start",

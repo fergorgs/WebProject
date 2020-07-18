@@ -9,7 +9,12 @@ router.use(authMiddleware)
 router.post('/add', async (req, res) => {
   try {
     const { clientCpf, clientPetName, date, serviceType } = req.body
-    if (date === null || serviceType === '' || clientCpf==='' || clientPetName === '')
+    if (
+      date === null ||
+      serviceType === '' ||
+      clientCpf === '' ||
+      clientPetName === ''
+    )
       return res.status(400).send({ error: 'Preencha todos os campos!' })
 
     const service = await Service.create(req.body)
@@ -42,6 +47,45 @@ router.post('/clientPet', async (req, res) => {
     return res
       .status(400)
       .send({ error: 'Erro ao procurar pets do cliente! ' + err })
+  }
+})
+
+router.post('/getByDate', async (req, res) => {
+  try {
+    let { date } = req.body
+    date = new Date(date)
+    let dateEnd = new Date(date)
+    dateEnd.setHours(23, 59, 59)
+    const service = await Service.find({ date: { $gte: date, $lt: dateEnd } })
+    return res.send(service)
+  } catch (err) {
+    return res.send(400).send({ error: 'Erro ao carregar serviços: ' + err })
+  }
+})
+
+router.delete('/remove', async (req, res) => {
+  try {
+    const { id } = req.body
+    await Service.findByIdAndDelete(id)
+    return res.sendStatus(200)
+  } catch (err) {
+    return res.status(400).send({ error: 'Erro ao deletar serviço: ' + err })
+  }
+})
+
+router.post('/update', async (req, res) => {
+  try {
+    const { id, serviceType, clientCpf, clientPetName } = req.body
+    const service = await Service.findByIdAndUpdate(id, {
+      serviceType,
+      clientCpf,
+      clientPetName,
+    })
+    if (!service)
+      return res.status(400).send({ error: 'Serviço não encontrado!' })
+    return res.sendStatus(200)
+  } catch (err) {
+    return res.status(400).send({ error: 'Erro ao atualizar serviço: ' + err })
   }
 })
 
