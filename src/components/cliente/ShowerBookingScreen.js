@@ -19,7 +19,7 @@ class ShowerBookingScreen extends React.Component {
   }
 
   componentDidMount() {
-    const cpf = JSON.parse(localStorage.getItem('client')).client.cpf
+    const cpf = JSON.parse(sessionStorage.getItem('client')).client.cpf
     this.setState({ cpf })
     fetch('/service/clientPet', {
       method: 'POST',

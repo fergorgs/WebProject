@@ -3,7 +3,7 @@ import StickyFooter from 'react-sticky-footer'
 
 function Footer() {
   return (
-    <StickyFooter >
+    <StickyFooter className='footer'>
       <footer className='footer'>
         Petz inc
         <br />

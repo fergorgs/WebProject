@@ -2,6 +2,7 @@ const fs = require('fs')
 const Client = require('../models/client')
 const ClientPet = require('../models/clientPet')
 const Product = require('../models/product')
+const Admin = require('../models/admin')
 const express = require('express')
 const router = express.Router()
 const uploadImage = require('../middleware/imageUpload')
@@ -17,6 +18,24 @@ router.post('/client', uploadImage.single('image'), async (req, res) => {
     })
     if (!client)
       return res.status(400).send({ error: 'Cliente não encontrado!' })
+
+    return res.sendStatus(200)
+  } catch (err) {
+    return res.status(400).send({ error: `Error uploading file ${err}` })
+  }
+})
+
+
+router.post('/admin', uploadImage.single('image'), async (req, res) => {
+  try {
+    if (req.file === undefined) {
+      return res.status(400).send({ error: 'Selecione uma imagem!' })
+    }
+    const admin = await Admin.findOneAndUpdate(req.body.id, {
+      photo: req.file.filename,
+    })
+    if (!admin)
+      return res.status(400).send({ error: 'Administrador não encontrado!' })
 
     return res.sendStatus(200)
   } catch (err) {

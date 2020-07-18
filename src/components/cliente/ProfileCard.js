@@ -18,7 +18,7 @@ class ProfileCard extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount() {
-    const client = JSON.parse(localStorage.getItem('client')).client
+    const client = JSON.parse(sessionStorage.getItem('client')).client
     this.setState({
       id: client._id,
       name: client.name,

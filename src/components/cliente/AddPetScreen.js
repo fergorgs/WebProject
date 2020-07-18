@@ -41,7 +41,7 @@ class AddPetScreen extends React.Component {
         if (res.status === 200) {
           alert('Pet registrado com sucesso!')
           const client = { client: res.data }
-          localStorage.setItem('client', JSON.stringify(client))
+          sessionStorage.setItem('client', JSON.stringify(client))
           this.setState({ redirect: '/client/perfil' })
         } else {
           alert('Falha no upload de foto!')
@@ -55,7 +55,7 @@ class AddPetScreen extends React.Component {
       sex: this.state.petSex,
       breed: this.state.petRace,
       age: this.state.petAge,
-      ownerId: JSON.parse(localStorage.getItem('client')).client._id,
+      ownerId: JSON.parse(sessionStorage.getItem('client')).client._id,
     }
     fetch('/pet/add', {
       method: 'POST',

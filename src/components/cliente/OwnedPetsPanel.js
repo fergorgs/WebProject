@@ -16,7 +16,7 @@ class OwnedPetsPanel extends React.Component {
     }
   }
   componentDidMount() {
-    let pets = JSON.parse(localStorage.getItem('client')).client.pets
+    let pets = JSON.parse(sessionStorage.getItem('client')).client.pets
     fetch('/pet/getClientPets', {
       method: 'POST',
       headers: {

@@ -58,6 +58,30 @@ export default function ServiceTable(props) {
         title={props.formattedDate}
         columns={state.columns}
         data={state.data}
+        localization={{
+          pagination: {
+            labelDisplayedRows: '{from}-{to} de {count}',
+            firstTooltip: 'Primeira Página',
+            lastAriaLabel: 'Última Página',
+            nextTooltip: 'Próxima Página',
+            previousTooltip: 'Página Anterior',
+            labelRowsSelect: 'linhas',
+            lastTooltip: 'Última Página',
+          },
+          header: {
+            actions: 'Ações',
+          },
+          toolbar: {
+            nRowsSelected: '{0} linhas selecionadas',
+            searchTooltip: 'Pesquisar',
+            searchPlaceholder: 'Pesquisar',
+          },
+          body: {
+            emptyDataSourceMessage: 'Não há serviços neste dia',
+            editTooltip: 'Editar',
+            deleteTooltip: 'Remover',
+          },
+        }}
         editable={{
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {
@@ -69,8 +93,7 @@ export default function ServiceTable(props) {
                 },
                 body: JSON.stringify(newData),
               }).then(async (res) => {
-                if(res.ok){
-
+                if (res.ok) {
                   setTimeout(() => {
                     resolve()
                     if (oldData) {
@@ -81,7 +104,7 @@ export default function ServiceTable(props) {
                       })
                     }
                   }, 600)
-                }else{
+                } else {
                   const err = await res.json()
                   alert(err.error)
                 }

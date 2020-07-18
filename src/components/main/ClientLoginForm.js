@@ -32,7 +32,7 @@ class ClientLoginForm extends React.Component {
     }).then(async (res) => {
       if (res.ok) {
         const response = await res.json()
-        localStorage.setItem('client', JSON.stringify({client:response.client}))
+        sessionStorage.setItem('client', JSON.stringify({client:response.client}))
         this.setState({redirect:'/client/perfil'})
         //window.location.replace('http://localhost:3000/client')
       } else {

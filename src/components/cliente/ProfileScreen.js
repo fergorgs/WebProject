@@ -12,7 +12,7 @@ class AdoptionScreen extends React.Component {
   }
 
   removePetHandler = (id, photo) => {
-    const ownerId = JSON.parse(localStorage.getItem('client')).client._id
+    const ownerId = JSON.parse(sessionStorage.getItem('client')).client._id
     const data = { ownerId, petId: id, photo }
     fetch('/pet/remove', {
       method: 'DELETE',
@@ -24,7 +24,7 @@ class AdoptionScreen extends React.Component {
     }).then(async (res) => {
       if (res.ok) {
         res.json().then((result) => {
-          localStorage.setItem('client', JSON.stringify({ client: result }))
+          sessionStorage.setItem('client', JSON.stringify({ client: result }))
           let num = this.state.rerender + 1
           this.setState({ rerender: num })
           alert('Pet removido com sucesso!')

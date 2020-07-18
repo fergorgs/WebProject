@@ -5,7 +5,7 @@ const AdminSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Preencha o nome!'],
   },
-  senha: {
+  password: {
     type: String,
     required: [true, 'Preencha a senha!'],
     select: false,
@@ -29,13 +29,12 @@ const AdminSchema = new mongoose.Schema({
     required: [true, 'Preencha o email!'],
     lowercase: true,
   },
-  telefone: {
+  phone: {
     type: String,
     required: [true, 'Preeccha o telefone!'],
   },
-  imgPath: {
+  photo: {
     type: String,
-    select: false,
   }
 })
 
