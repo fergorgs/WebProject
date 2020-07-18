@@ -3,11 +3,13 @@ const Service = require('../models/service')
 const Client = require('../models/client')
 const ClientPet = require('../models/clientPet')
 const router = express.Router()
+const authMiddleware = require('../middleware/auth')
+router.use(authMiddleware)
 
 router.post('/add', async (req, res) => {
   try {
     const { clientCpf, clientPetName, date, serviceType } = req.body
-    if (date === null || serviceType === null || clientCpf===null || clientPetName === null)
+    if (date === null || serviceType === '' || clientCpf==='' || clientPetName === '')
       return res.status(400).send({ error: 'Preencha todos os campos!' })
 
     const service = await Service.create(req.body)

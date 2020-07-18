@@ -57,7 +57,7 @@ class ProductRegisterForm extends React.Component {
       quantity: this.state.quantity,
       type: this.state.type,
     }
-    fetch('http://localhost:5000/product/add', {
+    fetch('/product/add', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

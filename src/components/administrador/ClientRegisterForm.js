@@ -65,7 +65,7 @@ class ClientRegisterForm extends React.Component {
       phone: this.state.phone,
     }
     console.log(JSON.stringify(data))
-    fetch('http://localhost:5000/auth/registerClient', {
+    fetch('/auth/registerClient', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -57,7 +57,7 @@ class AddPetScreen extends React.Component {
       age: this.state.petAge,
       ownerId: JSON.parse(localStorage.getItem('client')).client._id,
     }
-    fetch('http://localhost:5000/pet/add', {
+    fetch('/pet/add', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

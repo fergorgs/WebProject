@@ -22,7 +22,7 @@ class ClientLoginForm extends React.Component {
 
   submitHandler = () => {
     const data = { email: this.state.email, password: this.state.password }
-    fetch('http://localhost:5000/auth/authenticate', {
+    fetch('/auth/authenticate', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -31,9 +31,10 @@ class ClientLoginForm extends React.Component {
       body: JSON.stringify(data),
     }).then(async (res) => {
       if (res.ok) {
-        const client = await res.json()
-        localStorage.setItem('client', JSON.stringify(client))
-        window.location.replace('http://localhost:3000/client')
+        const response = await res.json()
+        localStorage.setItem('client', JSON.stringify({client:response.client}))
+        this.setState({redirect:'/client/perfil'})
+        //window.location.replace('http://localhost:3000/client')
       } else {
         alert('Usuário ou senha incorretos!')
       }

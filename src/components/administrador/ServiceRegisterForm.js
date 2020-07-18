@@ -1,6 +1,7 @@
 import React from 'react'
 import InputMask from 'react-input-mask'
 import '../style.css'
+import { Redirect } from 'react-router-dom'
 
 class ServiceRegisterForm extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class ServiceRegisterForm extends React.Component {
       cpf: '',
       pets: [<option>Digite o CPF do cliente</option>],
       petsDisabled: true,
+      redirect:'/admin/registro/servicos'
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -26,7 +28,7 @@ class ServiceRegisterForm extends React.Component {
         clientCpf: this.state.cpf,
         clientPetName: this.state.animalName,
       }
-      fetch('http://localhost:5000/service/add', {
+      fetch('/service/add', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -36,6 +38,7 @@ class ServiceRegisterForm extends React.Component {
       }).then(async (res) => {
         if (res.ok) {
           alert('Serviço registrado com sucesso!')
+          this.setState({ redirect: '/admin/servicos' })
         } else {
           const error = await res.json()
           alert(error.error)
@@ -57,11 +60,12 @@ class ServiceRegisterForm extends React.Component {
     const cpf = event.target.value
     //Regex teste cpf
     if (/(^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$)/g.test(cpf)) {
-      fetch('http://localhost:5000/service/clientPet', {
+      fetch('/service/clientPet', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
+          
         },
         body: JSON.stringify({ cpf }),
       }).then(async (res) => {
@@ -87,6 +91,7 @@ class ServiceRegisterForm extends React.Component {
   render() {
     return (
       <main>
+          <Redirect to={this.state.redirect}/>
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Novo Serviço</h1>

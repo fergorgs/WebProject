@@ -3,6 +3,9 @@ const ClientPet = require('../models/clientPet')
 const Client = require('../models/client')
 const router = express.Router()
 const fs = require('fs')
+const authMiddleware = require('../middleware/auth')
+router.use(authMiddleware)
+
 router.post('/add', async (req, res) => {
   try {
     const { petName, sex, breed, age, ownerId } = req.body

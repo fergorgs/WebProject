@@ -14,7 +14,7 @@ class AdoptionScreen extends React.Component {
   removePetHandler = (id, photo) => {
     const ownerId = JSON.parse(localStorage.getItem('client')).client._id
     const data = { ownerId, petId: id, photo }
-    fetch('http://localhost:5000/pet/remove', {
+    fetch('/pet/remove', {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',

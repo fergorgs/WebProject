@@ -4,6 +4,18 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
 //const mailer = require('../../modules/mailer')
+const cookieParser = require('cookie-parser')
+const jwt = require('jsonwebtoken')
+const authConfig = require('../../config/auth.json')
+
+router.use(cookieParser())
+
+function generateToken(params = {}) {
+  const token = jwt.sign(params, authConfig.secret, {
+    expiresIn: 86400,
+  })
+  return token
+}
 
 function validarCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, '')
@@ -86,9 +98,11 @@ router.post('/registerClient', async (req, res) => {
     const data = { email, name, cpf, address, phone, password }
     const client = await Client.create(data)
     client.password = undefined
-
+    const token = generateToken({ id: client.id })
+    res.cookie('token', token, { httpOnly: true, sameSite: true })
     return res.send({
-      id:client.id
+      client: client,
+      token: token,
     })
   } catch (err) {
     console.log(err)
@@ -107,10 +121,11 @@ router.post('/authenticate', async (req, res) => {
     return res.status(400).send({ error: 'Invalid password!' })
 
   client.password = undefined
-
-  res.send({
-    client,
-    //token: generateToken({ id: client.id }),
+  const token = generateToken({ id: client.id })
+  res.cookie('token', token, { httpOnly: true, sameSite: true })
+  return res.send({
+    client: client,
+    token: token,
   })
 })
 
