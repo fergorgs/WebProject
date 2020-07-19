@@ -1,5 +1,5 @@
 const mongoose = require('../../database')
-const Pet = new mongoose.Schema({
+const AnimalSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Preecha o nome!'],
@@ -19,7 +19,7 @@ const Pet = new mongoose.Schema({
     type: String,
     required: [true, 'Preencha o sexo!'],
   },
-  especies:{
+  specie:{
       type:String,
       required:[true, 'Preencha a espécie!']
   },
@@ -30,8 +30,11 @@ const Pet = new mongoose.Schema({
   price:{
       type:Number,
       default:0.0
+  },
+  photo:{
+    type:String
   }
 })
 
-const Pet = mongoose.model('Pet', Pet)
+const Pet = mongoose.model('Animal', AnimalSchema)
 module.exports = Pet

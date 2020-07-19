@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Client = require('../models/client')
 const ClientPet = require('../models/clientPet')
+const Animal = require('../models/animal')
 const Product = require('../models/product')
 const Admin = require('../models/admin')
 const express = require('express')
@@ -85,6 +86,23 @@ router.post('/product', uploadImage.single('image'), async (req, res)=>{
     })
     if (!product)
       return res.status(400).send({ error: 'Produto não encontrado!' })
+
+    return res.sendStatus(200)
+  } catch (err) {
+    return res.status(400).send({ error: `Error uploading file ${err}` })
+  }
+})
+
+router.post('/animal', uploadImage.single('image'), async (req, res)=>{
+  try {
+    if (req.file === undefined) {
+      return res.status(400).send({ error: 'Selecione uma imagem!' })
+    }
+    const animal = await Animal.findByIdAndUpdate(req.body.id, {
+      photo: req.file.filename,
+    })
+    if (!animal)
+      return res.status(400).send({ error: 'Animal não encontrado!' })
 
     return res.sendStatus(200)
   } catch (err) {

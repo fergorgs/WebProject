@@ -2,10 +2,8 @@ import React from 'react';
 import Footer from './main/Footer'
 import './style.css'
 import {
-    BrowserRouter,
     Switch,
     Route,
-    Link,
     Redirect,
   } from "react-router-dom";
   import AdminHeader from './administrador/AdminHeader'

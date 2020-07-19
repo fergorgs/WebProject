@@ -1,8 +1,5 @@
 import React from 'react'
 import '../style.css'
-import range from 'lodash/range'
-import placeHolder from './images/golden.jpg'
-import placeHolder2 from './images/racaogato.jpeg'
 import ProductCard from './ProductCard'
 
 class ProductDetailsScreen extends React.Component {

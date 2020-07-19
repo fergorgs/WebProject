@@ -28,6 +28,7 @@ class AdminHeader extends React.Component {
                             <Link to={`${this.props.match.path}/registro/admins`}>Administradores</Link>
                             <Link to={`${this.props.match.path}/registro/produtos`}>Produtos</Link>
                             <Link to={`${this.props.match.path}/registro/servicos`}>Serviços</Link>
+                            <Link to={`${this.props.match.path}/registro/animais`}>Animais</Link>
                         </div>
                     </li>
                     <li><Link to={`${this.props.match.path}/servicos`}>Administração de serviços</Link></li>

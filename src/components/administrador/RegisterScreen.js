@@ -11,6 +11,7 @@ import {
   import AdminRegisterForm from './AdminRegisterForm'
   import ProductRegisterForm from './ProductRegisterForm'
   import ServiceRegisterForm from './ServiceRegisterForm'
+import RegisterAnimal from './RegisterAnimal';
 
 
 
@@ -25,6 +26,7 @@ class RegisterScreen extends React.Component {
                   <Route path={`${this.props.match.path}/admins`} component={AdminRegisterForm}/>
                   <Route path={`${this.props.match.path}/produtos`} component={ProductRegisterForm}/>
                   <Route path={`${this.props.match.path}/servicos`} component={ServiceRegisterForm}/>
+                  <Route path={`${this.props.match.path}/animais`} component={RegisterAnimal}/>
                   {/*<Route path={`${this.props.match.path}/carrinho`} component={ShopCartScreen}/>
                   <Route path={`${this.props.match.path}/banho`} component={ShowerBookingScreen}/>
                   <Route path={`${this.props.match.path}/consulta`} component={AppointmentBookingScreen}/> */}
