@@ -2,6 +2,13 @@ import React from 'react'
 import '../style.css'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import {
+  Checkbox,
+  FormLabel,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+} from '@material-ui/core'
 class ProductRegisterForm extends React.Component {
   constructor(props) {
     super(props)
@@ -14,6 +21,7 @@ class ProductRegisterForm extends React.Component {
       type: 'Ração Gato',
       newId: '',
       redirect: '/admin/registro/produtos',
+      sale: false,
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -28,25 +36,25 @@ class ProductRegisterForm extends React.Component {
     })
   }
 
-  uploadImage(){
-      const fd = new FormData()
-      fd.set('id', this.state.newId)
-      fd.append('image', this.state.photo)
-      axios
-        .post('http://localhost:5000/upload/product', fd, {
-          headers: {
-            'Content-Type': `multipart/form-data; boundary=${fd._boundary}`,
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            alert('Produto registrado com sucesso!')
-            
-            this.setState({ redirect: '/admin' })
-          } else {
-            alert('Falha no upload de foto!')
-          }
-        })
+  uploadImage() {
+    const fd = new FormData()
+    fd.set('id', this.state.newId)
+    fd.append('image', this.state.photo)
+    axios
+      .post('http://localhost:5000/upload/product', fd, {
+        headers: {
+          'Content-Type': `multipart/form-data; boundary=${fd._boundary}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          alert('Produto registrado com sucesso!')
+
+          this.setState({ redirect: '/admin' })
+        } else {
+          alert('Falha no upload de foto!')
+        }
+      })
   }
 
   submitHandler() {
@@ -56,6 +64,7 @@ class ProductRegisterForm extends React.Component {
       description: this.state.description,
       quantity: this.state.quantity,
       type: this.state.type,
+      sale:this.state.sale
     }
     fetch('/product/add', {
       method: 'POST',
@@ -80,7 +89,7 @@ class ProductRegisterForm extends React.Component {
   render() {
     return (
       <main>
-          <Redirect to={this.state.redirect}/>
+        <Redirect to={this.state.redirect} />
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Novo Produto </h1>
@@ -132,13 +141,26 @@ class ProductRegisterForm extends React.Component {
                 <option>Petiscos</option>
               </select>
             </div>
+            <FormGroup row style={{paddingLeft:'2.2em'}}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={this.state.sale}
+                    value={this.state.sale}
+                    onChange={() => {
+                      this.setState({ sale: !this.state.sale })
+                    }}
+                  />
+                }
+                label='Promoção'
+              ></FormControlLabel>
+            </FormGroup>
             <input
               type='file'
               accept='image/*'
               class='fileInput'
               onChange={this.photoHandler}
             />
-
             <button type='submit' onClick={this.submitHandler.bind(this)}>
               Confirmar
             </button>

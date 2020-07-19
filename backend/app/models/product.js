@@ -22,6 +22,9 @@ const ProductSchema = new mongoose.Schema({
     },
     photo:{
         type:String
+    },
+    sale:{
+        type:Boolean,
     }
 })
 

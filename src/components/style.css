@@ -349,6 +349,7 @@ li.dropdown {
   justify-content: center;
   width: 100%;
   margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 .formAgendar {
@@ -771,8 +772,10 @@ span {
 .fileInput {
   width: 80%;
   height: 1em;
-  padding: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1.5em;
   margin-top: 1em;
+  float: left;
   font-size: 1.3em;
   border: 0em;
 }

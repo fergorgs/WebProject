@@ -45,6 +45,8 @@ class StockScreen extends React.Component {
                     type:this.typeToNumber(product.type),
                     name:product.name,
                     quantity:product.quantity,
+                    price:product.price,
+                    sale:product.sale,
                     id:product._id
                 }
             })

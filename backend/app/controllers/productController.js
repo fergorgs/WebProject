@@ -6,7 +6,7 @@ router.use(authMiddleware)
 
 router.post('/add', async (req, res) => {
   try {
-    const { name, description, price, quantity, type } = req.body
+    const { name, description, price, quantity, types } = req.body
     if (
       name === '' ||
       description === '' ||
@@ -15,11 +15,11 @@ router.post('/add', async (req, res) => {
     )
       return res.status(400).send({ error: 'Preencha todos os campos!' })
 
-    const service = await Product.create(req.body)
-    if (!service)
+    const product = await Product.create(req.body)
+    if (!product)
       return res.status(400).send({ error: 'Erro ao criar produto!' })
 
-    return res.send({ _id: service._id })
+    return res.send({ _id: product._id })
   } catch (err) {
     console.log(err)
     return res.status(400).send({ error: 'Erro ao cadastrar produto!' })
@@ -40,8 +40,8 @@ router.get('/get', async (req, res) => {
 
 router.post('/updateStock', async (req, res) => {
   try {
-    const { id, quantity } = req.body
-    const product = await Product.findByIdAndUpdate(id, { quantity })
+    const { id, quantity, price , sale} = req.body
+    const product = await Product.findByIdAndUpdate(id, { quantity, price, sale })
     if (!product)
       return res.status(400).send({ error: 'Produto não encontrado!' })
     return res.sendStatus(200)
