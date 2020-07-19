@@ -1,5 +1,6 @@
 const express = require('express')
 const Client = require('../models/client')
+const Admin = require('../models/client')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const multer = require('multer')
@@ -94,6 +95,23 @@ router.post('/authenticate', async (req, res) => {
     client: client,
   })
 })
+
+router.post('/authenticate_admin', async (req, res) => {
+  const { cpf, password } = req.body
+
+  const admin = await Admin.findOne({ cpf }).select('+password')
+
+  if (!admin) return res.status(400).send({ error: 'admin not found!' })
+
+  if (!(await bcrypt.compare(password, admin.password)))
+    return res.status(400).send({ error: 'Invalid password!' })
+
+  admin.password = undefined
+  const token = generateToken({ id: admin.id })
+  res.cookie('token', token, { httpOnly: true, sameSite: true })
+  return res.sendStatus(200)
+})
+
 
 /*
 router.post('/forgot_password', async (req, res) => {

@@ -17,7 +17,7 @@ class AdminLoginScreen extends React.Component {
     render() {
 
         return (
-            <AdminLoginForm/>
+            <AdminLoginForm history={this.props.history}/>
         );
     }
 }

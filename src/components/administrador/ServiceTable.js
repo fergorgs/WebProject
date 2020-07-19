@@ -39,8 +39,10 @@ export default function ServiceTable(props) {
       ],
       data: temp.map((service) => {
         const date = new Date(service.date)
+        let minutes = date.getMinutes()
+        minutes = minutes == '0' ? '00' : minutes
         return {
-          date: `${date.getHours()}:${date.getMinutes()}`,
+          date: `${date.getHours()}:${minutes}`,
           serviceType: service.serviceType,
           clientCpf: service.clientCpf,
           clientPetName: service.clientPetName,

@@ -35,7 +35,7 @@ class ClientLoginForm extends React.Component {
         sessionStorage.setItem('client', JSON.stringify({client:response.client}))
         this.props.history.push('/client')
       } else {
-        alert('Usuário ou senha incorretos!')
+        alert('Email ou senha incorretos!')
       }
     })
   }

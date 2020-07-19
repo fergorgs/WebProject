@@ -84,7 +84,7 @@ function dataFormatada(date) {
     mes = (data.getMonth() + 1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
     ano = data.getFullYear(),
     diaSemana = data.getDay()
-
+  
   return `${getDiaSemana(diaSemana)}, ${dia} de ${getNomeMes(mes)} de ${ano}`
 }
 
@@ -113,8 +113,10 @@ class ServicesScreen extends React.Component {
       },
       body: JSON.stringify({ date }),
     }).then(async (res) => {
-      const services = await res.json()
-      this.setState({ services })
+      if (res.ok) {
+        const services = await res.json()
+        this.setState({ services })
+      }
     })
   }
   render() {
