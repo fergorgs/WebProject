@@ -80,7 +80,7 @@ router.post('/product', uploadImage.single('image'), async (req, res)=>{
     if (req.file === undefined) {
       return res.status(400).send({ error: 'Selecione uma imagem!' })
     }
-    const product = await Product.findOneAndUpdate(req.body.id, {
+    const product = await Product.findByIdAndUpdate(req.body.id, {
       photo: req.file.filename,
     })
     if (!product)

@@ -38,10 +38,28 @@ router.get('/get', async (req, res) => {
   }
 })
 
+router.get('/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    console.log(id)
+    const product = await Product.findById(id)
+    if (!product)
+      return res.status(400).send({ error: 'Nenhum produto cadastrado!' })
+
+    return res.send({ product })
+  } catch (err) {
+    return res.status(400).send({ error: 'Erro resgatar produto!' + err })
+  }
+})
+
 router.post('/updateStock', async (req, res) => {
   try {
-    const { id, quantity, price , sale} = req.body
-    const product = await Product.findByIdAndUpdate(id, { quantity, price, sale })
+    const { id, quantity, price, sale } = req.body
+    const product = await Product.findByIdAndUpdate(id, {
+      quantity,
+      price,
+      sale,
+    })
     if (!product)
       return res.status(400).send({ error: 'Produto não encontrado!' })
     return res.sendStatus(200)
