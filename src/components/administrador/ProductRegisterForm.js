@@ -4,8 +4,6 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import {
   Checkbox,
-  FormLabel,
-  FormControl,
   FormControlLabel,
   FormGroup,
 } from '@material-ui/core'

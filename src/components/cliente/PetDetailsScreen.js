@@ -1,15 +1,6 @@
 import React from 'react';
 import '../style.css'
-import range from 'lodash/range';
-import {
-    BrowserRouter,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-  } from "react-router-dom";
 import dogPlaceHolder from './images/dog.jpg'
-import placeHolder2 from './images/racaogato.jpeg'
 import PetDetailsCard from './PetDetailsCard'
 
 

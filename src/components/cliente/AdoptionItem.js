@@ -1,12 +1,5 @@
 import React from 'react';
 import '../style.css'
-import {
-    BrowserRouter,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-  } from "react-router-dom";
 
 
 class AdoptionItem extends React.Component {

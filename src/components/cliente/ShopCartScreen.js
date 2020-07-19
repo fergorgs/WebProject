@@ -1,68 +1,57 @@
-import React from 'react';
+import React from 'react'
 import '../style.css'
-import {
-    BrowserRouter,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-  } from "react-router-dom";
-  import ProfileCard from './ProfileCard'
-  import OwnedPetsPanel from './OwnedPetsPanel'
-  import profilePlaceHolder from './images/coffinGuy.jpg'
-  import placeHolder from './images/golden.jpg'
-import PetCard from './PetCard';
-import ShopCartPanel from './ShopCartPanel';
+import placeHolder from './images/golden.jpg'
+import ShopCartPanel from './ShopCartPanel'
 import CartItem from './CartItem'
 
-
-
 class ShopCartScreen extends React.Component {
+  fetchItemsFromServer() {
+    //fetch fetch fetch
 
-    fetchItemsFromServer(userId){
+    return [
+      { id: 120, imgSrc: placeHolder, name: 'Ração do Cão', price: '63.00' },
+      { id: 121, imgSrc: placeHolder, name: 'Ração do Gato', price: '73.00' },
+      { id: 122, imgSrc: placeHolder, name: 'Ração do Rato', price: '83.00' },
+    ]
+  }
 
-        //fetch fetch fetch
+  componentWillMount() {
+    this.setState({ itemsData: this.fetchItemsFromServer() })
+  }
 
-        return [{id: 120, imgSrc: placeHolder, name: "Ração do Cão" , price: "63.00"},
-                {id: 121, imgSrc: placeHolder, name: "Ração do Gato", price: "73.00"},
-                {id: 122, imgSrc: placeHolder, name: "Ração do Rato", price: "83.00"},]
-
+  buyHandler = () => {
+    for (let {} in this.state.itemsData) {
+      //finds on stock the product with the equivalent ID
+      //and subtracts 1 from the total amount
     }
 
-    componentWillMount(){
-        this.setState({itemsData: this.fetchItemsFromServer()})
-    }
+    alert('Compra concluida!')
+  }
 
-    buyHandler = () => {
+  render() {
+    let totalCost = 0
 
-        for(let i in this.state.itemsData){
-            //finds on stock the product with the equivalent ID
-            //and subtracts 1 from the total amount
-        }
+    let shops = this.state.itemsData.map((item) => {
+      totalCost += Number(item.price)
 
-        alert("Compra concluida!")
-    }
+      return (
+        <CartItem
+          id={item.id}
+          imgSrc={placeHolder}
+          name={item.name}
+          price={item.price}
+        />
+      )
+    })
 
-    render() {
-
-        let totalCost = 0
-
-        let shops = this.state.itemsData.map((item) => {
-
-            totalCost += Number(item.price)
-
-            return <CartItem
-                    id={item.id}
-                    imgSrc={placeHolder} 
-                    name={item.name}
-                    price={item.price}
-                    />
-        })
-
-        return (
-            <ShopCartPanel items={shops} totalCost={totalCost} buyHandler={this.buyHandler}/>
-        );
-    }
+    return (
+      <ShopCartPanel
+        items={shops}
+        totalCost={totalCost}
+        buyHandler={this.buyHandler}
+      />
+    )
+  }
 }
 
-export default ShopCartScreen;
+export default ShopCartScreen

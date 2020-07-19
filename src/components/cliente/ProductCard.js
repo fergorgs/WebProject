@@ -1,20 +1,5 @@
 import React from 'react';
 import '../style.css'
-import Carousel from './Carousel';
-import range from 'lodash/range';
-import {
-    BrowserRouter,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-  } from "react-router-dom";
-  import ProductItem from './ProductItem'
-import ProductSlider from './ProductSlider';
-import placeHolder from './images/golden.jpg'
-import placeHolder2 from './images/racaogato.jpeg'
-import ServiceRegisterForm from '../administrador/ServiceRegisterForm';
-import ProducSlider from './ProductSlider';
 
 
 class ProductCard extends React.Component {
@@ -27,7 +12,7 @@ class ProductCard extends React.Component {
         this.setState({quantity: event.target.value})
     }
 
-    buyHandler = (event) => {
+    buyHandler = () => {
         alert("Item adicionado ao carrinho!")
     }
 

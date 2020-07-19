@@ -41,7 +41,6 @@ router.get('/get', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const id = req.params.id
-    console.log(id)
     const product = await Product.findById(id)
     if (!product)
       return res.status(400).send({ error: 'Nenhum produto cadastrado!' })

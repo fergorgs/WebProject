@@ -1,11 +1,8 @@
 import React from 'react';
 import '../style.css'
 import {
-    BrowserRouter,
     Switch,
     Route,
-    Link,
-    Redirect,
   } from "react-router-dom";
   import ClientRegisterForm from './ClientRegisterForm'
   import AdminRegisterForm from './AdminRegisterForm'
@@ -27,9 +24,7 @@ class RegisterScreen extends React.Component {
                   <Route path={`${this.props.match.path}/produtos`} component={ProductRegisterForm}/>
                   <Route path={`${this.props.match.path}/servicos`} component={ServiceRegisterForm}/>
                   <Route path={`${this.props.match.path}/animais`} component={RegisterAnimal}/>
-                  {/*<Route path={`${this.props.match.path}/carrinho`} component={ShopCartScreen}/>
-                  <Route path={`${this.props.match.path}/banho`} component={ShowerBookingScreen}/>
-                  <Route path={`${this.props.match.path}/consulta`} component={AppointmentBookingScreen}/> */}
+                  
             </Switch>
         );
     }

@@ -1,9 +1,6 @@
 import React from 'react'
 import '../style.css'
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
 import StockPanel from './StockPanel'
-import StockItem from './StockItem'
-import placeHolder from './images/racaogato.jpeg'
 
 class StockScreen extends React.Component {
 

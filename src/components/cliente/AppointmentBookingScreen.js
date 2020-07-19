@@ -1,6 +1,5 @@
 import React from 'react'
 import '../style.css'
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
 
 class AppointmentBookingScreen extends React.Component {
   componentWillMount() {

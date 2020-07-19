@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ReactInputMask from 'react-input-mask'
 
 class AdminLoginForm extends React.Component {

@@ -1,14 +1,10 @@
 import React from 'react';
-import Header from './main/Header'
-import Content from './main/Content'
 import Footer from './main/Footer'
 import ClientHeader from './cliente/ClientHeader'
 import './style.css'
 import {
-    BrowserRouter,
     Switch,
     Route,
-    Link,
     Redirect,
   } from "react-router-dom";
 import ProductsScreen from './cliente/ProductsScreen';
@@ -17,7 +13,6 @@ import AdoptionScreen from './cliente/AdoptionScreen'
 import ProfileScreen from './cliente/ProfileScreen'
 import ShopCartScreen from './cliente/ShopCartScreen';
 import ShowerBookingScreen from './cliente/ShowerBookingScreen';
-import AppointmentBookingScreen from './cliente/AppointmentBookingScreen';
 import PetDetailsScreen from './cliente/PetDetailsScreen';
 import AddPetScreen from './cliente/AddPetScreen';
 
