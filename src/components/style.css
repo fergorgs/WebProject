@@ -1,798 +1,799 @@
 /*Daniel Sá Barretto Prado Garcia 10374344
   Fernando Gorgulho Fayet 10734407
   Laura Genari de Jesus 10801180*/
- 
-  html, body{
-    height: 100%;
-  }
-  body {
-    background-image: url('bg.svg');
-    background-repeat: repeat;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 4em;
-    background-color: #ffccbc;
-    width: 100%;
-    height: 3.5em;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-    letter-spacing: 0.05em;
-    vertical-align: middle;
-  }
-  
-  .title_small {
-    height: 2.5em;
-  }
-  
-  .title h1 {
-    font-weight: normal;
-    font-family: Chewy, cursive;
-  }
-  
-  .sub {
-    background-color: rgba(203, 155, 140, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Chewy, cursive;
-    font-size: 3em;
-    padding: 0.3em 0 0.3em 0;
-  }
-  .sub h2 {
-    font-weight: normal;
-  }
-  
-  .select {
-    background-color: #ffccbc;
-    padding: 0.5em;
-    /* font-family: 'Oxygen', sans-serif; */
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    width: 10em;
-    height: 3em;
-    font-size: 2em;
-    margin: 0 2em 0 2em;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  /*
-  main{
-    flex:1 0 auto;
-  }*/
-  
-  .footer {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-style: normal;
-    font-weight: normal;
-    text-align: center;
-    font-size: 1em;
-    padding: 1em;
-    height: 5em;
-    background-color: #ffccbc;
-    width: 100%;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-    letter-spacing: 0.05em;
-  }
-  
-  
-  /*HEADER COM MENU PRINCIPAL------------------------------------*/
-  /*-------------------------------------------------------------*/
-  .menu {
-    background-color: rgba(203, 155, 140, 1);
-    /*display: flex;*/
-    font-size: 3em;
-  }
-  .menu.menuClient ul {
-    display: grid;
-    grid-template-columns: repeat(5, auto);
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    /* overflow: hidden; */
-    background-color: #333;
-    width: 100%;
-  }
-  
-  .menu.menuAdmin ul {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    /* overflow: hidden; */
-    background-color: #333;
-    width: 100%;
-  }
-  .menu li {
-    /*float: left;*/
-    font-family: 'Oxygen', sans-serif;
-    font-weight: normal;
-    font-size: 0.5em;
-    width: auto;
-    background-color: rgba(203, 155, 140, 1);
-  }
-  .menu a,
-  .dropbtn {
-    display: inline-block;
-    color: black;
-    text-align: center;
-    /* padding: 14px 16px; */
-    text-decoration: none;
-    width: 100%;
-    padding: 0.5em 0em;
-  }
-  .menu a:hover,
-  .dropdown:hover .dropbtn {
-    background-color: #6a4f4b;
-    border-radius: 10px;
-  }
-  
-  li.dropdown {
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: rgba(203, 155, 140, 1);
-    width: 20.5%;
-    border-radius: 0 0 10px 10px;
-  }
-  
-  .dropdown-content.admin {
-    width: 26.75%;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: rgba(106, 79, 75, 1);
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  /*LISTAGEM DE PRODUTOS--------------------------------------*/
-  /*pag cliente_produtos--------------------------------------*/
-  
-  .container {
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-  }
-  
-  .rightArrow {
-    cursor: pointer;
-    position: sticky;
-    left: 100%;
-    z-index: 100;
-  }
-  
-  .leftArrow {
-    transform: rotate(180deg);
-    cursor: pointer;
-    position: sticky;
-    left: 0px;
-    z-index: 100;
-  }
-  
-  .leftArrow:not(:hover) + .rightArrow:hover ~ .productSlider {
-    animation: slide-right 10s forwards;
-    -webkit-animation: slide-right 10s forwards;
-  }
-  
-  .leftArrow:hover + .rightArrow:not(:hover) ~ .productSlider {
-    animation: slide-left 10s forwards;
-    -webkit-animation: slide-left 10s forwards;
-  }
-  
-  .leftArrow:not(:hover) + .rightArrow:not(:hover) ~ .productSlider {
-    animation: slide-left 10s forwards paused;
-    -webkit-animation: slide-left 10s forwards paused;
-    animation: slide-left 10s forwards paused;
-    -webkit-animation: slide-left 10s forwards paused;
-  }
-  
-  @keyframes slide-left {
-    100% {
-      transform: translateX(42em);
-    }
-  }
-  @-webkit-keyframes slide-left {
-    100% {
-      transform: translateX(42em);
-    }
-  }
-  
-  @keyframes slide-right {
-    100% {
-      transform: translateX(-42em);
-    }
-  }
-  @-webkit-keyframes slide-right {
-    100% {
-      transform: translateX(-42em);
-    }
-  }
-  
-  .productSliderHolder {
-    font-weight: normal;
-    background-color: white;
-    padding: 1em;
-    height: 20em;
-    margin: 3em 0em 3em;
-  }
-  
-  .productSlider {
-    display: flex;
-    align-items: center;
-    animation: slide-right 10s forwards paused;
-    -webkit-animation: slide-right 10s forwards paused;
-    animation: slide-left 10s forwards paused;
-    -webkit-animation: slide-left 10s forwards paused;
-  }
 
-  #productCardHolder {
-    display: flex; 
-    justify-content: center;
-  }
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  background-image: url('bg.svg');
+  background-repeat: repeat;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Oxygen', sans-serif;
+}
 
-  #productCard {
-    margin:4em 0em;
-    background-color: white;
-    padding: 2em 2em 2em;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    width: 50em;
-    text-align: left;
-  }
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 4em;
+  background-color: #ffccbc;
+  width: 100%;
+  height: 3.5em;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
 
-  #productCard img {
-    width: 20em;
-    height: 20em;
-  }
+.title_small {
+  height: 2.5em;
+}
 
-  #productCard h2 {
-    color: gray;
-    font-size: 2.3em;
-    margin-bottom: 0.5em;
-  }
+.title h1 {
+  font-weight: normal;
+  font-family: Chewy, cursive;
+}
 
-  #productCard h3 {
-    margin-bottom: 0.5em;
-  }
+.sub {
+  background-color: rgba(203, 155, 140, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Chewy, cursive;
+  font-size: 3em;
+  padding: 0.3em 0 0.3em 0;
+}
+.sub h2 {
+  font-weight: normal;
+}
 
-  .productDescription {
-    font-size: 1.3em;
-    margin-bottom: 1.5em;
-  }
+.select {
+  background-color: #ffccbc;
+  padding: 0.5em;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  width: 10em;
+  height: 3em;
+  font-size: 2em;
+  margin: 0 2em 0 2em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
-  #productCard input {
-    width: 3em;
-    height: 1.5em;
-    margin-left: 0.7em;
-  }
+main {
+  flex: 1 0 auto;
+}
 
-  #productCard button {
-    padding: 0.7em 1.5em 0.7em;
-    height: 3em;
-    /* margin-top: 1em; */
-    margin-left: 2em;
-    font-size: 1em;
-    background-color: rgba(203, 155, 140, 1);
-    border: 0;
-    border-radius: 10px;
-    color: black;
-  }
-  
-  .productItemHolder {
-    width: 13em;
-    height: 13em;
-    padding: 1em 0.3em 1em;
-    transition: all 0.2s;
-  }
-  .productItem {
-    align-content: center;
-    text-align: center;
-    color: gray;
-  }
-  .productItem img {
-    width: 10em;
-    height: 10em;
-  }
-  .productItemHolder:hover {
-    width: 14em;
-    height: 14em;
-  
-    border-right: 0.05em solid lightgray;
-    border-left: 0.05em solid lightgray;
-  
-    box-shadow: 0 16px 12px -12px gray;
-  
-    padding: 2em 0.3em 1.5em;
-    transition: all 0.2s;
-  }
-  
-  .btnHolder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10em;
-  }
-  
-  /*AGENDAMENTO BANHO/TOSA------------------------------------*/
-  /*pag cliente_agendamento-----------------------------------*/
-  
-  .formAgendarHolder {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 3em;
-  }
-  
-  .formAgendar {
-    /* margin: 2em; */
-    background-color: white;
-    width: 30em;
-    padding: 1em;
-    text-align: center;
-    position: relative;
-  }
-  .formAgendar select {
-    /* height: 3em; */
-    margin: 1em 2em 1em;
-    padding: 0.3em;
-    margin-top: 1em;
-    font-size: 1.1em;
-    background-color: rgba(0, 0, 0, 0);
-    border: 0;
-    border-bottom: 0.1em solid rgba(203, 155, 140, 1);
-    color: gray;
-  }
-  .formAgendar button {
-    margin: 1em 2em 1em;
-    padding: 0.7em 1.5em 0.7em;
-    margin-top: 1em;
-    font-size: 1.3em;
-    background-color: rgba(203, 155, 140, 1);
-    border: 0;
-    border-radius: 10px;
-    color: black;
-  }
-  .formAgendar button:hover {
-    background-color: rgba(106, 79, 75, 1);
-  }
-  
-  .nameInput {
-    width: 80%;
-    height: 1em;
-    padding: 0.5em;
-    margin-top: 1em;
-    font-size: 1.3em;
-    border: 0em;
-    border-bottom: 0.1em solid rgba(203, 155, 140, 1);
-  }
-  
-  .timeInput {
-    height: 1em;
-    margin-top: 1.3em;
-    margin-left: 2em;
-    font-size: 1.2em;
-    padding: 0.5em;
-    color: gray;
-    border: 0em;
-    border-bottom: 0.1em solid rgba(203, 155, 140, 1);
-  }
-  
-  /*INFORMAÇÕE DE PERFIL--------------------------------------*/
-  /*pag cliente_perfil----------------------------------------*/
-  
-  #profileHolder{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .perfilHolder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    /* padding-left: 10%; */
-  }
-  .perfilInfoBox {
-    background-color: white;
-    width: 20em;
-    padding: 0.75em 0.5em 1em 1.5em;
-    text-align: center;
-    font-size: 1.2em;
-    margin: 50px 20px 60px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  
-  .image {
-    height: 5em;
-    width: 5em;
-    border-radius: 2.5em;
-  }
-  
-  #photoAndName {
-    vertical-align: middle;
-    margin: 2em 0.5em 0;
-    display: flex;
-  }
-  
-  #photoAndName p {
-    margin-left: 1.2em;
-    vertical-align: middle;
-    text-align: center;
-    padding-top: 1em;
-    color: rgba(203, 155, 140, 1);
-  }
-  
-  #perfilInfo {
-    padding-top: 0.8em;
-    display: flex;
-  }
-  #perfilInfo p {
-    margin-top: 0.9em;
-  }
-  
-  #perfilInfoLabels {
-    width: 30%;
-    text-align: right;
-    color: rgba(203, 155, 140, 1);
-    margin-right: 1em;
-  }
-  
-  #perfilInfoContent {
-    text-align: left;
-    color: gray;
-  }
-  
-  #petBox {
-    margin-top: 50px;
-    margin-left: 10px;
-    background-color: white;
-    padding: 1em;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-  }
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  font-size: 1em;
+  padding: 1em;
+  height: 5em;
+  background-color: #ffccbc;
+  width: 100%;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.05em;
+}
 
-  #petBox button{
-    padding: 0.5em 2em;
-    background-color: rgba(203, 155, 140, 1);
-    border: 0;
-    font-size: 1.5em;
-    border-radius: 10px;
-    color: black;
-    margin-left: 1em;
-  }
-  
-  #perfilPets {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    width:47em;
-    text-align: center;
-    font-size: 1.2em;
-    padding: 1em;
-  }
-  
-  .petCard {
-    display: flex;
-    padding: 0.5em;
-  }
-  
-  .petName {
-    color: rgba(203, 155, 140, 1);
-    text-align: left;
-    padding-left: 2em;
-  }
-  
-  .petInfoHolder {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    font-size: 0.8em;
-    padding: 1em;
-  }
-  
-  .petInfoLabels {
-    width: 30%;
-    text-align: right;
-    color: rgba(203, 155, 140, 1);
-    margin-right: 1em;
-  }
-  
-  .petInfoContent {
-    text-align: left;
-    color: gray;
-    /* width: 100% */
-  }
-  
-  /*INFORMAÇÕE DE PERFIL--------------------------------------*/
-  /*pag cliente_perfil----------------------------------------*/
-  
-  #boxCart {
-    margin:4em 0em;
-    background-color: white;
-    padding: 1em;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    width: 60em;
-    text-align: center;
-  }
-  #center{
-    display:flex;
-    align-self: center;
-  }
-  
-  #displayCart {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    width: fit-content;
-    text-align: center;
-    font-size: 1.2em;
-    padding-top: 2em;
-  }
-  
-  .cardCart {
-    display: flex;
-    padding: 0.5em;
-  }
-  
-  .cardCart img {
-    width: 160px;
-    height: 175px;
-    border-radius: 10px;
-  }
-  
-  .cardCart h3 {
-    margin-top: 1em;
-    color: rgba(203, 155, 140, 1);
-  }
-  
-  .cardCart input {
-    height: 5px;
-    width: 35px;
-  }
-  
-  .infos {
-    display: block;
-    text-align: left;
-    margin-left: 2em;
-  }
-  
-  .infos p,
-  span {
-    font-size: 0.85em;
-  }
-  
-  .infos input {
-    height: 2em;
-    width: 2.3em;
-    font-size: 0.8em;
-  }
-  
-  #totalCart {
-    padding: 1em;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    width: 180px;
-    height: 100px;
-    margin-left: 25%;
-    vertical-align: top;
-  }
-  
-  #totalCart button {
-    padding: 0.7em 1.5em 0.7em;
-    margin-top: 1em;
-    font-size: 1em;
-    background-color: rgba(203, 155, 140, 1);
-    border: 0;
-    border-radius: 10px;
-    color: black;
-  }
-  
-  /*INFORMAÇÕE DE VENDA/ADOÇÃO--------------------------------*/
-  /*pag cliente_adocao----------------------------------------*/
-  
-  #displayPanelHolder {
-    background-color: white;
-    width: 92%;
-    padding: 1.5em 2em 1.5em;
-    /* font-size: 1.2em; */
-    margin: 2em;
-    color: gray;
-  }
-  #displayPanelHolder h2 {
-    border: 0;
-    border-bottom: 0.1em solid rgba(203, 155, 140, 1);
-  }
-  
-  #filtros {
-    display: flex;
-    font-size: 1.1em;
-    padding-top: 1em;
-    vertical-align: middle;
-  }
-  #filtros input {
-    margin-top: 0.4em;
-    margin-left: 1em;
-    margin-right: 0.5em;
-    width: 1.2em;
-    height: 1.2em;
-  }
-  
-  .displayPanel {
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-  
-    margin-top: 1.5em;
-  }
-  
-  .testClass {
-    width: 20em;
-  }
+/*HEADER COM MENU PRINCIPAL------------------------------------*/
+/*-------------------------------------------------------------*/
+.menu {
+  background-color: rgba(203, 155, 140, 1);
+  /*display: flex;*/
+  font-size: 3em;
+}
+.menu.menuClient ul {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+  background-color: #333;
+  width: 100%;
+}
 
-  .displayCard {
-    margin: 1em 0.5em 1em;
-  }
-  .displayCard img {
-    width: 100%;
-    border-radius: 5%;
-  }
-  .displayCard button {
-    padding: 0.25em 1em;
-    background-color: rgba(203, 155, 140, 1);
-    border: 0;
-    font-size: 1.25em;
-    border-radius: 10px;
-    color: black;
-    margin-left: 1em;
-    margin-bottom: 0.25em;
-  }
-  
-  .displayName {
-    font-size: 1.5em;
-    color: rgba(203, 155, 140, 1);
-    margin: 0.2em 0 0.3em;
-  }
-  
-  .raceAndAge {
-    display: grid;
-    grid-template-columns: 20% 33% 22% 25%;
-  }
-  .raceLabel {
-    color: rgba(203, 155, 140, 1);
-  }
-  .ageLabel {
-    color: rgba(203, 155, 140, 1);
-  }
-  
-  /*-----------ADMIN------------------------------*/
-  .calendar {
-    padding: 2em;
-    height: 100%;
-    width: 21em;
-    margin: 5em 2em;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  .calendarCell {
-    height: 3em;
-    width: 3em;
-    background-color: transparent;
-    font-size: 1em;
-    border-width: 0;
-    border-radius: 10em;
-  }
+.menu.menuAdmin ul {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+  background-color: #333;
+  width: 100%;
+}
+.menu li {
+  /*float: left;*/
+  font-family: 'Oxygen', sans-serif;
+  font-weight: normal;
+  font-size: 0.5em;
+  width: auto;
+  background-color: rgba(203, 155, 140, 1);
+}
+.menu a,
+.dropbtn {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  /* padding: 14px 16px; */
+  text-decoration: none;
+  width: 100%;
+  padding: 0.5em 0em;
+}
+.menu a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #6a4f4b;
+  border-radius: 10px;
+}
 
-  .calendarCell:hover {
-    background-color: rgba(203, 155, 140, 1);
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(203, 155, 140, 1);
+  width: 20.5%;
+  border-radius: 0 0 10px 10px;
+}
+
+.dropdown-content.admin {
+  width: 26.75%;
+}
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(106, 79, 75, 1);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*LISTAGEM DE PRODUTOS--------------------------------------*/
+/*pag cliente_produtos--------------------------------------*/
+
+.container {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.rightArrow {
+  cursor: pointer;
+  position: sticky;
+  left: 100%;
+  z-index: 100;
+}
+
+.leftArrow {
+  transform: rotate(180deg);
+  cursor: pointer;
+  position: sticky;
+  left: 0px;
+  z-index: 100;
+}
+
+.leftArrow:not(:hover) + .rightArrow:hover ~ .productSlider {
+  animation: slide-right 10s forwards;
+  -webkit-animation: slide-right 10s forwards;
+}
+
+.leftArrow:hover + .rightArrow:not(:hover) ~ .productSlider {
+  animation: slide-left 10s forwards;
+  -webkit-animation: slide-left 10s forwards;
+}
+
+.leftArrow:not(:hover) + .rightArrow:not(:hover) ~ .productSlider {
+  animation: slide-left 10s forwards paused;
+  -webkit-animation: slide-left 10s forwards paused;
+  animation: slide-left 10s forwards paused;
+  -webkit-animation: slide-left 10s forwards paused;
+}
+
+@keyframes slide-left {
+  100% {
+    transform: translateX(42em);
   }
-  #head {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    margin-bottom: 1em;
+}
+@-webkit-keyframes slide-left {
+  100% {
+    transform: translateX(42em);
   }
-  
-  .row ul {
-    display: grid;
-    row-gap: 2em;
-    text-align: center;
-  
-    grid-template-columns: repeat(7, 1fr);
+}
+
+@keyframes slide-right {
+  100% {
+    transform: translateX(-42em);
   }
-  
-  .row li {
-    margin-bottom: 1.7em;
-    list-style-type: none;
+}
+@-webkit-keyframes slide-right {
+  100% {
+    transform: translateX(-42em);
   }
-  
-  #days {
-    color: rgba(0, 0, 0, 0.543337);
-  }
-  
-  .row li:not(#days):hover {
-    width: 1.5em;
-    height: 1.5em;
-    display: block;
-    border-radius: 50%;
-    background-color: #ffccbc;
-  }
-  
-  #mainAdmin {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    align-items: center
-  }
-  
-  .agenda {
-    padding: 1em;
-    height: 40em;
-    width: 50em;
-    margin: 5em 2em;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  
-  .shadow {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-  }
-  
-  .fileInput {
-    width: 80%;
-    height: 1em;
-    padding: 0.5em;
-    margin-top: 1em;
-    font-size: 1.3em;
-    border: 0em;
-  }
-  
-  .edit {
-    width: 25px;
-    height: 25px;
-    margin-inline-start: 90%;
-  }
-  
-  .estoque button {
-    padding: 0.25em 1em;
-    background-color: rgba(203, 155, 140, 1);
-    border: 0;
-    font-size: 0.75em;
-    border-radius: 10px;
-    color: black;
-    margin-left: 1em;
-    margin-bottom: 0.25em;
-  }
-  
-  .estoque {
-    margin-inline-start: 70%;
-  }
-  
+}
+
+.productSliderHolder {
+  font-weight: normal;
+  background-color: white;
+  padding: 1em;
+  height: 20em;
+  margin: 3em 0em 3em;
+}
+
+.productSlider {
+  display: flex;
+  align-items: center;
+  animation: slide-right 10s forwards paused;
+  -webkit-animation: slide-right 10s forwards paused;
+  animation: slide-left 10s forwards paused;
+  -webkit-animation: slide-left 10s forwards paused;
+}
+
+#productCardHolder {
+  display: flex;
+  justify-content: center;
+}
+
+#productCard {
+  margin: 4em 0em;
+  background-color: white;
+  padding: 2em 2em 2em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 50em;
+  text-align: left;
+}
+
+#productCard img {
+  width: 20em;
+  height: 20em;
+}
+
+#productCard h2 {
+  color: gray;
+  font-size: 2.3em;
+  margin-bottom: 0.5em;
+}
+
+#productCard h3 {
+  margin-bottom: 0.5em;
+}
+
+.productDescription {
+  font-size: 1.3em;
+  margin-bottom: 1.5em;
+}
+
+#productCard input {
+  width: 3em;
+  height: 1.5em;
+  margin-left: 0.7em;
+}
+
+#productCard button {
+  padding: 0.7em 1.5em 0.7em;
+  height: 3em;
+  /* margin-top: 1em; */
+  margin-left: 2em;
+  font-size: 1em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  border-radius: 10px;
+  color: black;
+}
+
+.productItemHolder {
+  width: 13em;
+  height: 13em;
+  padding: 1em 0.3em 1em;
+  transition: all 0.2s;
+}
+.productItem {
+  align-content: center;
+  text-align: center;
+  color: gray;
+}
+.productItem img {
+  width: 10em;
+  height: 10em;
+}
+.productItemHolder:hover {
+  width: 14em;
+  height: 14em;
+
+  border-right: 0.05em solid lightgray;
+  border-left: 0.05em solid lightgray;
+
+  box-shadow: 0 16px 12px -12px gray;
+
+  padding: 2em 0.3em 1.5em;
+  transition: all 0.2s;
+}
+
+.btnHolder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10em;
+}
+
+/*AGENDAMENTO BANHO/TOSA------------------------------------*/
+/*pag cliente_agendamento-----------------------------------*/
+
+.formAgendarHolder {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3em;
+}
+
+.formAgendar {
+  /* margin: 2em; */
+  background-color: white;
+  width: 30em;
+  padding: 1em;
+  text-align: center;
+  position: relative;
+}
+.formAgendar select {
+  /* height: 3em; */
+  margin: 1em 2em 1em;
+  padding: 0.3em;
+  margin-top: 1em;
+  font-size: 1.1em;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  border-bottom: 0.1em solid rgba(203, 155, 140, 1);
+  color: gray;
+}
+.formAgendar button {
+  margin: 1em 2em 1em;
+  padding: 0.7em 1.5em 0.7em;
+  margin-top: 1em;
+  font-size: 1.3em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  border-radius: 10px;
+  color: black;
+}
+.formAgendar button:hover {
+  background-color: rgba(106, 79, 75, 1);
+}
+
+.nameInput {
+  width: 80%;
+  height: 1em;
+  padding: 0.5em;
+  margin-top: 1em;
+  font-size: 1.3em;
+  border: 0em;
+  border-bottom: 0.1em solid rgba(203, 155, 140, 1);
+}
+
+.timeInput {
+  height: 1em;
+  margin-top: 1.3em;
+  margin-left: 2em;
+  font-size: 1.2em;
+  padding: 0.5em;
+  color: gray;
+  border: 0em;
+  border-bottom: 0.1em solid rgba(203, 155, 140, 1);
+}
+
+/*INFORMAÇÕE DE PERFIL--------------------------------------*/
+/*pag cliente_perfil----------------------------------------*/
+
+#profileHolder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.perfilHolder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* padding-left: 10%; */
+}
+.perfilInfoBox {
+  background-color: white;
+  width: 20em;
+  padding: 0.75em 0.5em 1em 1.5em;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 50px 20px 60px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.image {
+  height: 5em;
+  width: 5em;
+  border-radius: 2.5em;
+}
+
+#photoAndName {
+  vertical-align: middle;
+  margin: 2em 0.5em 0;
+  display: flex;
+}
+
+#photoAndName p {
+  margin-left: 1.2em;
+  vertical-align: middle;
+  text-align: center;
+  padding-top: 1em;
+  color: rgba(203, 155, 140, 1);
+}
+
+#perfilInfo {
+  padding-top: 0.8em;
+  display: flex;
+}
+#perfilInfo p {
+  margin-top: 0.9em;
+}
+
+#perfilInfoLabels {
+  width: 30%;
+  text-align: right;
+  color: rgba(203, 155, 140, 1);
+  margin-right: 1em;
+}
+
+#perfilInfoContent {
+  text-align: left;
+  color: gray;
+}
+
+#petBox {
+  margin-top: 50px;
+  margin-left: 10px;
+  background-color: white;
+  padding: 1em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+#petBox button {
+  padding: 0.5em 2em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  font-size: 1.5em;
+  border-radius: 10px;
+  color: black;
+  margin-left: 1em;
+}
+
+#perfilPets {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 47em;
+  text-align: center;
+  font-size: 1.2em;
+  padding: 1em;
+}
+
+.petCard {
+  display: flex;
+  padding: 0.5em;
+}
+
+.petName {
+  color: rgba(203, 155, 140, 1);
+  text-align: left;
+  padding-left: 2em;
+}
+
+.petInfoHolder {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  font-size: 0.8em;
+  padding: 1em;
+}
+
+.petInfoLabels {
+  width: 30%;
+  text-align: right;
+  color: rgba(203, 155, 140, 1);
+  margin-right: 1em;
+}
+
+.petInfoContent {
+  text-align: left;
+  color: gray;
+  /* width: 100% */
+}
+
+/*INFORMAÇÕE DE PERFIL--------------------------------------*/
+/*pag cliente_perfil----------------------------------------*/
+
+#boxCart {
+  margin: 4em 0em;
+  background-color: white;
+  padding: 1em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 60em;
+  text-align: center;
+}
+#center {
+  display: flex;
+  align-self: center;
+}
+
+#displayCart {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: fit-content;
+  text-align: center;
+  font-size: 1.2em;
+  padding-top: 2em;
+}
+
+.cardCart {
+  display: flex;
+  padding: 0.5em;
+}
+
+.cardCart img {
+  width: 160px;
+  height: 175px;
+  border-radius: 10px;
+}
+
+.cardCart h3 {
+  margin-top: 1em;
+  color: rgba(203, 155, 140, 1);
+}
+
+.cardCart input {
+  height: 5px;
+  width: 35px;
+}
+
+.infos {
+  display: block;
+  text-align: left;
+  margin-left: 2em;
+}
+
+.infos p,
+span {
+  font-size: 0.85em;
+}
+
+.infos input {
+  height: 2em;
+  width: 2.3em;
+  font-size: 0.8em;
+}
+
+#totalCart {
+  padding: 1em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 180px;
+  height: 100px;
+  margin-left: 25%;
+  vertical-align: top;
+}
+
+#totalCart button {
+  padding: 0.7em 1.5em 0.7em;
+  margin-top: 1em;
+  font-size: 1em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  border-radius: 10px;
+  color: black;
+}
+
+/*INFORMAÇÕE DE VENDA/ADOÇÃO--------------------------------*/
+/*pag cliente_adocao----------------------------------------*/
+
+#displayPanelHolder {
+  background-color: white;
+  width: 92%;
+  padding: 1.5em 2em 1.5em;
+  /* font-size: 1.2em; */
+  margin: 2em;
+  color: gray;
+}
+#displayPanelHolder h2 {
+  border: 0;
+  border-bottom: 0.1em solid rgba(203, 155, 140, 1);
+}
+
+#filtros {
+  display: flex;
+  font-size: 1.1em;
+  padding-top: 1em;
+  vertical-align: middle;
+}
+#filtros input {
+  margin-top: 0.4em;
+  margin-left: 1em;
+  margin-right: 0.5em;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.displayPanel {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+
+  margin-top: 1.5em;
+}
+
+.testClass {
+  width: 20em;
+}
+
+.displayCard {
+  margin: 1em 0.5em 1em;
+}
+.displayCard img {
+  width: 100%;
+  border-radius: 5%;
+}
+.displayCard button {
+  padding: 0.25em 1em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  font-size: 1.25em;
+  border-radius: 10px;
+  color: black;
+  margin-left: 1em;
+  margin-bottom: 0.25em;
+}
+
+.displayName {
+  font-size: 1.5em;
+  color: rgba(203, 155, 140, 1);
+  margin: 0.2em 0 0.3em;
+}
+
+.raceAndAge {
+  display: grid;
+  grid-template-columns: 20% 33% 22% 25%;
+}
+.raceLabel {
+  color: rgba(203, 155, 140, 1);
+}
+.ageLabel {
+  color: rgba(203, 155, 140, 1);
+}
+
+/*-----------ADMIN------------------------------*/
+.calendar {
+  padding: 2em;
+  height: 100%;
+  width: 21em;
+  margin: 5em 2em;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.calendarCell {
+  height: 3em;
+  width: 3em;
+  background-color: transparent;
+  font-size: 1em;
+  border-width: 0;
+  border-radius: 10em;
+}
+
+.calendarCell:hover {
+  background-color: rgba(203, 155, 140, 1);
+}
+#head {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-bottom: 1em;
+}
+
+.row ul {
+  display: grid;
+  row-gap: 2em;
+  text-align: center;
+
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.row li {
+  margin-bottom: 1.7em;
+  list-style-type: none;
+}
+
+#days {
+  color: rgba(0, 0, 0, 0.543337);
+}
+
+.row li:not(#days):hover {
+  width: 1.5em;
+  height: 1.5em;
+  display: block;
+  border-radius: 50%;
+  background-color: #ffccbc;
+}
+
+#mainAdmin {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.agenda {
+  padding: 1em;
+  height: 40em;
+  width: 50em;
+  margin: 5em 2em;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.shadow {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.fileInput {
+  width: 80%;
+  height: 1em;
+  padding: 0.5em;
+  margin-top: 1em;
+  font-size: 1.3em;
+  border: 0em;
+}
+
+.edit {
+  width: 25px;
+  height: 25px;
+  margin-inline-start: 90%;
+}
+
+.estoque button {
+  padding: 0.25em 1em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  font-size: 0.75em;
+  border-radius: 10px;
+  color: black;
+  margin-left: 1em;
+  margin-bottom: 0.25em;
+}
+
+.estoque {
+  margin-inline-start: 70%;
+}

@@ -4,6 +4,7 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
+import ReactInputMask from 'react-input-mask';
 
 
 class AdminLoginForm extends React.Component {
@@ -34,7 +35,8 @@ class AdminLoginForm extends React.Component {
                     <div class="formAgendarHolder">
                         <div class="formAgendar  shadow">
                             <h1>Login Admin </h1>
-                            <input 
+                            <ReactInputMask
+                                mask="999.999.999-99" 
                                 type="text" 
                                 placeholder="CPF" 
                                 class="nameInput"
@@ -59,7 +61,7 @@ class AdminLoginForm extends React.Component {
 
                     <div class="formAgendarHolder">
                         <div class="formAgendar  shadow">
-                            <Link to="/login/client">
+                            <Link to="/login">
                                 <button type="submit">Logar como Cliente</button>
                             </Link>
                         </div>

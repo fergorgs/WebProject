@@ -31,21 +31,23 @@ class PetCard extends React.Component {
             <div style={{ display: 'flex' }}>
               <div class='petInfoLabels'>
                 <p>ID</p>
-                <p>Raça</p>
+                <p style={{ marginTop: '2.3em' }}>Raça</p>
               </div>
               <div class='petInfoContent'>
-                <p style={{wordBreak:'break-all'}}>{this.props.id}</p>
+                <p style={{ display: 'flex', wordBreak: 'break-word' }}>
+                  {this.props.id}
+                </p>
                 <p>{this.props.race}</p>
               </div>
             </div>
             <div style={{ display: 'flex' }}>
               <div class='petInfoLabels'>
                 <p>Sexo</p>
-                <p>Idade</p>
+                <p style={{ marginTop: '2.3em' }}>Idade</p>
               </div>
               <div class='petInfoContent'>
                 <p>{this.props.sex}</p>
-                <p>{this.props.age + ' anos'}</p>
+                <p style={{ marginTop: '2.3em' }}>{this.props.age + ' anos'}</p>
               </div>
             </div>
           </div>

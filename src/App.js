@@ -1,48 +1,30 @@
-import React from "react";
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch,
-  Redirect
-} from "react-router-dom";
-import MainPage from "./components/MainPage";
-import ClientScreen from "./components/ClientScreen";
+import React from 'react'
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import ClientScreen from './components/ClientScreen'
 import AdminScreen from './components/AdminScreen'
+import AdminLoginScreen from './components/main/AdminLoginScreen'
+import ClientLoginScreen from './components/main/ClientLoginScreen'
+import ClientCreateScreen from './components/main/ClientCreateScreen'
 
-export default function App() {
-  
+function App() {
   //const { path, url } = useRouteMatch()
-  
+
   return (
-
-    <BrowserRouter>
-      <div>
-        {/* A <Switch> looks through its children <Route>s and
+    <div>
+      {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          <Route exact path="/">
-            <Redirect to={"/login"}/>
-          </Route>
-          <Route path="/admin" component={AdminScreen}/>
-          <Route path="/client" component={ClientScreen}/>
-          <Route path="/login" component={MainPage}/>
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+      <Switch>
+        <Route exact path='/'>
+          <Redirect to={'/login/client'} />
+        </Route>
+        <Route path='/admin' component={AdminScreen} />
+        <Route path='/client' component={ClientScreen} />
+        <Route path={`/login/admin`} component={AdminLoginScreen} />
+        <Route path={`/login/client`} component={ClientLoginScreen} />
+        <Route path={`/login/create`} component={ClientCreateScreen} />
+      </Switch>
+    </div>
+  )
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
+export default withRouter(App)

@@ -18,5 +18,5 @@ let storage = multer.diskStorage({
   },
 })
 
-var uploadImage = multer({ storage: storage, fileFilter: imageFilter })
+const uploadImage = multer({ storage: storage, fileFilter: imageFilter })
 module.exports = uploadImage

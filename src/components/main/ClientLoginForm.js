@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class ClientLoginForm extends React.Component {
   componentWillMount() {
@@ -33,8 +33,7 @@ class ClientLoginForm extends React.Component {
       if (res.ok) {
         const response = await res.json()
         sessionStorage.setItem('client', JSON.stringify({client:response.client}))
-        this.setState({redirect:'/client/perfil'})
-        //window.location.replace('http://localhost:3000/client')
+        this.props.history.push('/client')
       } else {
         alert('Usuário ou senha incorretos!')
       }
@@ -44,7 +43,7 @@ class ClientLoginForm extends React.Component {
   render() {
     return (
       <main>
-        <Redirect to={this.state.redirect} />
+        
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Login Cliente </h1>
