@@ -18,7 +18,7 @@ class ShopCartPanel extends React.Component {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
+              alignItems: 'baseline',
             }}
           >
             <div style={{ padding: 2 + 'em' }}>{this.props.items}</div>

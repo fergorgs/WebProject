@@ -41,7 +41,7 @@ class ProductsScreen extends React.Component {
         }).map(item => { return item })
 
         const outros = items.filter((item) => {
-          return promo.indexOf(item) === -1 && racao.indexOf(item) === -1
+          return racao.indexOf(item) === -1
         }).map(item=> { return item })
 
         this.setState({

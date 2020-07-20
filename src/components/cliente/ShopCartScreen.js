@@ -57,8 +57,6 @@ class ShopCartScreen extends React.Component {
   }
 
   render() {
-    let totalCost = 0
-
     let shops = this.state.itemsData.map((item) => {
       return (
         <CartItem

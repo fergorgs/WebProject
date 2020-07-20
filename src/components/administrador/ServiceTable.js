@@ -74,6 +74,11 @@ export default function ServiceTable(props) {
             emptyDataSourceMessage: 'Não há serviços neste dia',
             editTooltip: 'Editar',
             deleteTooltip: 'Remover',
+            editRow:{
+              deleteText:'Certeza de que quer remover?',
+              saveTooltip:'Salvar',
+              cancelTooltip:'Cancelar'
+            }
           },
         }}
         editable={{
