@@ -24,7 +24,6 @@ class AdoptionScreen extends React.Component {
     }).then(async (res) => {
       if (res.ok) {
         res.json().then((result) => {
-          sessionStorage.setItem('client', JSON.stringify({ client: result }))
           let num = this.state.rerender + 1
           this.setState({ rerender: num })
           alert('Pet removido com sucesso!')

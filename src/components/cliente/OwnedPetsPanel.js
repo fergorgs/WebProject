@@ -16,14 +16,15 @@ class OwnedPetsPanel extends React.Component {
     }
   }
   componentDidMount() {
-    let pets = JSON.parse(sessionStorage.getItem('client')).client.pets
+    let clientId = JSON.parse(sessionStorage.getItem('client')).client._id
+    let pets = []
     fetch('/pet/getClientPets', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ petsId: pets }),
+      body: JSON.stringify({ clientId }),
     }).then(async (res) => {
       if (res.ok) {
         pets = await res.json()

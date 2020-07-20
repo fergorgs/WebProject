@@ -26,10 +26,12 @@ router.post('/add', async (req, res) => {
 
 router.post('/getClientPets', async (req, res) => {
   try {
-    const { petsId } = req.body
+    const { clientId } = req.body
+
+    const client = await Client.findById(clientId)
 
     const pets = await ClientPet.find({
-      _id: { $in: petsId },
+      _id: { $in: client.pets },
     })
     if (pets.length > 0) return res.send(pets)
     else return res.status(400).send({ error: 'Você não tem nenhum pet!' })
