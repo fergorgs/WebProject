@@ -11,7 +11,7 @@ class CartItem extends React.Component {
                 <div class="infos">
                     <button
                       type='submit'
-                      onClick={() => this.props.deleteProductHandler(this.props.id)}
+                      onClick={() => this.props.deleteProductHandler(this.props.id, this.props.quantity, this.props.price)}
                     >
                       Remover
                     </button>

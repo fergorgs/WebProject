@@ -1,7 +1,6 @@
 import React from 'react'
 import '../style.css'
 
-
 class ShopCartPanel extends React.Component {
   render() {
     return (
@@ -21,7 +20,11 @@ class ShopCartPanel extends React.Component {
               alignItems: 'baseline',
             }}
           >
-            <div style={{ padding: 2 + 'em' }}>{this.props.items}</div>
+            <div style={{ padding: 2 + 'em' }}>
+              {this.props.items.length > 0
+                ? this.props.items
+                : 'Seu carrinho está vazio!'}
+            </div>
             <div id='totalCart'>
               <h3>Total : R$ {Number(this.props.totalCost).toFixed(2)}</h3>
               <button onClick={this.props.buyHandler}> Comprar </button>

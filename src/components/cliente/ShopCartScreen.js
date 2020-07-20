@@ -10,6 +10,7 @@ class ShopCartScreen extends React.Component {
     this.state = {
       totalPrice: 0,
       itemsData: [],
+      cartId: '',
     }
   }
 
@@ -28,17 +29,17 @@ class ShopCartScreen extends React.Component {
       if (res.ok) {
         let cart = await res.json()
         cart = cart.cart
-        this.setState({ totalPrice: cart.totalPrice })
+        this.setState({ totalPrice: cart.totalPrice, cartId: cart.cartId })
         const items = cart.products.map((prod) => {
           return {
             id: prod.id,
             imgSrc: prod.photo,
             name: prod.name,
             price: prod.price,
-            quantity:prod.quantity
+            quantity: prod.quantity,
           }
         })
-        this.setState({itemsData:items})
+        this.setState({ itemsData: items })
       }
     })
   }
@@ -48,13 +49,54 @@ class ShopCartScreen extends React.Component {
   }
 
   changeQuantityHandler = (value, id) => {
-
-    alert("product id: " + id + " has new value of: " + value)
+    fetch('/cart/updateQtd', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prodId: id,
+        cartId: this.state.cartId,
+        quantity: value,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        alert('product id: ' + id + ' has new value of: ' + value)
+      }
+    })
   }
 
-  deleteProductHandler = (id) => {
-
-    alert("product id: " + id + " deleted")
+  deleteProductHandler = (id, quantity, price) => {
+    fetch('/cart/removeProd', {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prodId: id,
+        cartId: this.state.cartId,
+        quantity,
+        price
+      }),
+    }).then(async (res) => {
+      if (res.ok) {
+        let cart = await res.json()
+        cart = cart.cart
+        this.setState({ totalPrice: cart.totalPrice, cartId: cart.cartId })
+        const items = cart.products.map((prod) => {
+          return {
+            id: prod.id,
+            imgSrc: prod.photo,
+            name: prod.name,
+            price: prod.price,
+            quantity: prod.quantity,
+          }
+        })
+        this.setState({ itemsData: items })
+      }
+    })
   }
 
   buyHandler = () => {
