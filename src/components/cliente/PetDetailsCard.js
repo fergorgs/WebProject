@@ -22,7 +22,8 @@ class PetDetailsCard extends React.Component {
             <div style={{ display: 'flex' }}>
               <img src={this.props.imgSrc} id='productImage' />
               <div style={{ display: 'unset', marginLeft: '2em' }}>
-                <h2>{this.props.race}</h2>
+                <h2>{this.props.name}</h2>
+                <p class='productDescription'>Especie: {this.props.specie}</p>
                 <p class='productDescription'>Idade: {this.props.age}</p>
                 <p class='productDescription'>Sexo: {this.props.sex}</p>
                 <h3>Animal para adoção</h3>
@@ -45,7 +46,8 @@ class PetDetailsCard extends React.Component {
           <div style={{ display: 'flex' }}>
             <img src={this.props.imgSrc} id='productImage' />
             <div style={{ display: 'unset', marginLeft: '2em' }}>
-              <h2>{this.props.species}</h2>
+              <h2>{this.props.name}</h2>
+              <p class='productDescription'>Especie: {this.props.specie}</p>
               <p class='productDescription'>Idade: {this.props.age}</p>
               <p class='productDescription'>Sexo: {this.props.sex}</p>
               <h3>Preço: R${this.props.price}</h3>
