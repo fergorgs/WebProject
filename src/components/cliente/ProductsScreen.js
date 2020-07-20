@@ -52,7 +52,7 @@ class ProductsScreen extends React.Component {
           ],
         })
       } else {
-        alert('Erro ao resgatar produtos')
+        // alert('Erro ao resgatar produtos')
       }
     })
     

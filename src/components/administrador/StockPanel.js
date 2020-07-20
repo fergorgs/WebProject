@@ -18,10 +18,10 @@ export default function StockPanel(props) {
       //type 3 = areiaGato
       //type 4 = petiscos
       if (
-        (item.type == 1 && racaoGato) ||
-        (item.type == 2 && racaoCao) ||
-        (item.type == 3 && areiaGato) ||
-        (item.type == 4 && petiscos)
+        (item.type === 1 && racaoGato) ||
+        (item.type === 2 && racaoCao) ||
+        (item.type === 3 && areiaGato) ||
+        (item.type === 4 && petiscos)
       )
         return (
           <StockItem

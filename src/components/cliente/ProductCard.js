@@ -38,7 +38,7 @@ class ProductCard extends React.Component {
           <Redirect to={this.state.redirect} />
         <div id='productCard'>
           <div style={{ display: 'flex' }}>
-            <img src={this.props.imgSrc} id='productImage' />
+            <img alt={this.props.name} src={this.props.imgSrc} id='productImage' />
             <div style={{ display: 'unset' }}>
               <h2>{this.props.name}</h2>
               <p class='productDescription'>{this.props.description}</p>

@@ -56,11 +56,11 @@ class ShowerBookingScreen extends React.Component {
   serviceHandler = (event) => {
     let val = event.target.value
     this.setState({service:val})
-    if (val == 'Serviço') this.setState({ cost: '0,00' })
-    else if (val == 'Só banho') this.setState({ cost: '20,00' })
-    else if (val == 'Só tosa') this.setState({ cost: '35,00' })
-    else if (val == 'Banho e tosa') this.setState({ cost: '55,00' })
-    else if (val == 'Consulta') this.setState({ cost: '45,00' })
+    if (val === 'Serviço') this.setState({ cost: '0,00' })
+    else if (val === 'Só banho') this.setState({ cost: '20,00' })
+    else if (val === 'Só tosa') this.setState({ cost: '35,00' })
+    else if (val === 'Banho e tosa') this.setState({ cost: '55,00' })
+    else if (val === 'Consulta') this.setState({ cost: '45,00' })
   }
   agendarHandler = (event) => {
     const date = new Date(`${this.state.date}:${this.state.hour}`)

@@ -12,7 +12,7 @@ class AdminHeader extends React.Component {
         <div class='menu menuAdmin'>
           <ul>
             <li class='dropdown'>
-              <a href='javascript:void(0)' class='dropbtn'>
+              <a href='#' class='dropbtn'>
                 Registrar
               </a>
               <div class='dropdown-content admin'>

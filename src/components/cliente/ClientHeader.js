@@ -6,10 +6,10 @@ class ClientHeader extends React.Component {
   render() {
     return (
       <header>
-        <div class='title title_small'>
+        <div className='title title_small'>
           <h1>Petz</h1>
         </div>
-        <div class='menu menuClient'>
+        <div className='menu menuClient'>
           <ul>
             <li>
               <Link to={`${this.props.match.path}/agendamentos`}>Agendamentos</Link>

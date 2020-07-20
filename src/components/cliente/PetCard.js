@@ -22,7 +22,7 @@ class PetCard extends React.Component {
   render() {
     return (
       <div class='petCard'>
-        <img class='image' src={`http://localhost:5000/${this.props.imgSrc}`} />
+        <img class='image' alt={this.props.name} src={`http://localhost:5000/${this.props.imgSrc}`} />
         <div>
           {this.renderRemoveButton()}
           <p class='petName'>{this.props.name}</p>

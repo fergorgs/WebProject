@@ -26,6 +26,8 @@ class StockScreen extends React.Component {
       case 'Petiscos':
         number = 4
         break
+      default:
+        break
     }
     return number
   }

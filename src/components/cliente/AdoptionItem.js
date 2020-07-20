@@ -5,7 +5,7 @@ class AdoptionItem extends React.Component {
   render() {
     return (
       <div class='displayCard'>
-        <img src={this.props.imgSrc} />
+        <img alt={this.props.name} src={this.props.imgSrc} />
         <p class='displayName'>{this.props.name}</p>
         <div class='raceAndAge'>
           <p class='raceLabel'>Espécie: </p>

@@ -33,7 +33,7 @@ class StockItem extends React.Component {
           >
             Remover
           </button>
-          <img src={this.props.imgSrc} />
+          <img alt={this.props.name} src={this.props.imgSrc} />
           <div class='item'>
             <p class='itemLabel'>{this.props.name}</p>
             <p>
@@ -83,7 +83,7 @@ class StockItem extends React.Component {
 
     return (
       <div class='displayCard'>
-        <img src={this.props.imgSrc} />
+        <img alt={this.props.name} src={this.props.imgSrc} />
         <div class='item'>
           <p class='itemLabel'>{this.props.name}</p>
           <p>Quantidade: {this.state.quantity} uni.</p>

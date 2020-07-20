@@ -21,7 +21,7 @@ function Carousel(props) {
 
     let getSliderPage = () => {
 
-        if(pageEnd == children.length)
+        if(pageEnd === children.length)
             return 'sliderLastPage'
         else
             return 'sliderMiddlePage'
@@ -31,11 +31,11 @@ function Carousel(props) {
         <div className="wrapper">
             <h1>{props.name}</h1>
             <div className="sliderHolder">
-                <span onClick={left}> <img src={require("./images/arrow.svg")} class="leftPointer" id="left1"/> </span>
+                <span onClick={left}> <img alt="<" src={require("./images/arrow.svg")} class="leftPointer" id="left1"/> </span>
                 <div className={getSliderPage()}>
                     { children.slice(pageBegin, pageEnd) }
                 </div>
-                <span onClick={right}> <img src={require("./images/arrow.svg")} class="rightPointer" id="rigth1"/> </span>
+                <span onClick={right}> <img alt=">" src={require("./images/arrow.svg")} class="rightPointer" id="rigth1"/> </span>
             </div>
         </div>
     )

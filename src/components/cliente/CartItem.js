@@ -2,10 +2,12 @@ import React from 'react'
 import '../style.css'
 
 class CartItem extends React.Component {
+
   constructor(props) {
     super(props)
     this.state = {
       quantity: this.props.quantity,
+
     }
     this.handleChange = this.handleChange.bind(this)
   }
