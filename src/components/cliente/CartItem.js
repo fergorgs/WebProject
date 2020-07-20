@@ -10,6 +10,7 @@ class CartItem extends React.Component {
                 <img src={this.props.imgSrc}/>
                 <div class="infos">
                     <h3>{this.props.name}</h3><br/>
+                    <p>{this.props.quantity} un</p><br/>
                     <p>R$ {(Number(this.props.price)).toFixed(2)}</p>
                 </div>
             </div>

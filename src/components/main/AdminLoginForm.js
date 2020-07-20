@@ -5,11 +5,11 @@ import ReactInputMask from 'react-input-mask'
 
 class AdminLoginForm extends React.Component {
   componentWillMount() {
-    this.setState({ cpf: '', password: '', logedin: false })
+    this.setState({ email: '', password: '', logedin: false })
   }
 
-  cpfHandler = (event) => {
-    this.setState({ cpf: event.target.value })
+  emailHandler = (event) => {
+    this.setState({ email: event.target.value })
   }
   passwordHandler = (event) => {
     this.setState({ password: event.target.value })
@@ -22,14 +22,14 @@ class AdminLoginForm extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        cpf: this.state.cpf,
+        email: this.state.email,
         password: this.state.password,
       }),
     }).then((res) => {
       if (res.ok) {
         this.props.history.push('/admin')
       } else {
-        alert('CPF ou senha incorretos!')
+        alert('Email ou senha incorretos!')
       }
     })
   }
@@ -40,13 +40,12 @@ class AdminLoginForm extends React.Component {
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Login Admin </h1>
-            <ReactInputMask
-              mask='999.999.999-99'
+            <input
               type='text'
-              placeholder='CPF'
+              placeholder='Email'
               class='nameInput'
-              value={this.state.cpf}
-              onChange={this.cpfHandler}
+              value={this.state.email}
+              onChange={this.emailHandler}
             />
             <input
               type='password'

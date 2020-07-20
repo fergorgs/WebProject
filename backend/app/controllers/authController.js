@@ -3,7 +3,6 @@ const Client = require('../models/client')
 const Admin = require('../models/client')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
-const multer = require('multer')
 //const mailer = require('../../modules/mailer')
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken')
@@ -97,9 +96,9 @@ router.post('/authenticate', async (req, res) => {
 })
 
 router.post('/authenticate_admin', async (req, res) => {
-  const { cpf, password } = req.body
+  const { email, password } = req.body
 
-  const admin = await Admin.findOne({ cpf }).select('+password')
+  const admin = await Admin.findOne({ email }).select('+password')
 
   if (!admin) return res.status(400).send({ error: 'admin not found!' })
 

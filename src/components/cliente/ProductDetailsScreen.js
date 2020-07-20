@@ -40,6 +40,7 @@ class ProductDetailsScreen extends React.Component {
             imgSrc={`http://localhost:5000/${this.state.item.photo}`}
             description={this.state.item.description}
             price={this.state.item.price}
+            id={this.props.match.params.id}
           />
         </main>
       </div>

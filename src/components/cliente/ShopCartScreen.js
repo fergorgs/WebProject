@@ -5,18 +5,46 @@ import ShopCartPanel from './ShopCartPanel'
 import CartItem from './CartItem'
 
 class ShopCartScreen extends React.Component {
-  fetchItemsFromServer() {
-    //fetch fetch fetch
-
-    return [
-      { id: 120, imgSrc: placeHolder, name: 'Ração do Cão', price: '63.00' },
-      { id: 121, imgSrc: placeHolder, name: 'Ração do Gato', price: '73.00' },
-      { id: 122, imgSrc: placeHolder, name: 'Ração do Rato', price: '83.00' },
-    ]
+  constructor(props) {
+    super(props)
+    this.state = {
+      totalPrice: 0,
+      itemsData: [],
+    }
   }
 
-  componentWillMount() {
-    this.setState({ itemsData: this.fetchItemsFromServer() })
+  fetchItemsFromServer() {
+    //fetch fetch fetch
+    fetch('/cart/get', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        clientId: JSON.parse(sessionStorage.getItem('client')).client._id,
+      }),
+    }).then(async (res) => {
+      if (res.ok) {
+        let cart = await res.json()
+        cart = cart.cart
+        this.setState({ totalPrice: cart.totalPrice })
+        const items = cart.products.map((prod) => {
+          return {
+            id: prod.id,
+            imgSrc: prod.photo,
+            name: prod.name,
+            price: prod.price,
+            quantity:prod.quantity
+          }
+        })
+        this.setState({itemsData:items})
+      }
+    })
+  }
+
+  componentDidMount() {
+    this.fetchItemsFromServer()
   }
 
   buyHandler = () => {
@@ -32,13 +60,12 @@ class ShopCartScreen extends React.Component {
     let totalCost = 0
 
     let shops = this.state.itemsData.map((item) => {
-      totalCost += Number(item.price)
-
       return (
         <CartItem
           id={item.id}
-          imgSrc={placeHolder}
+          imgSrc={`http://localhost:5000/${item.imgSrc}`}
           name={item.name}
+          quantity={item.quantity}
           price={item.price}
         />
       )
@@ -47,7 +74,7 @@ class ShopCartScreen extends React.Component {
     return (
       <ShopCartPanel
         items={shops}
-        totalCost={totalCost}
+        totalCost={this.state.totalPrice}
         buyHandler={this.buyHandler}
       />
     )
