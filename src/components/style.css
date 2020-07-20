@@ -360,7 +360,7 @@ wrapper
 }
 
 .formAgendar {
-  /* margin: 2em; */
+  margin-right: 5em;
   background-color: white;
   width: 30em;
   padding: 1em;
@@ -732,6 +732,18 @@ span {
   font-size: 1em;
   border-width: 0;
   border-radius: 10em;
+}
+.calendarCellOccupied {
+  height: 3em;
+  width: 3em;
+  background-color: lightgray;
+  font-size: 1em;
+  border-width: 0;
+  border-radius: 10em;
+}
+
+.calendarCellOccupied:hover {
+  background-color: rgba(203, 155, 140, 1);
 }
 
 .calendarCell:hover {

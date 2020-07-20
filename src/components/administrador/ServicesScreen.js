@@ -98,6 +98,8 @@ class ServicesScreen extends React.Component {
       date: new Date(),
       formattedDate: '',
       services: [],
+      tileContent: ({ date, view }) => view === 'month' && date.getDay() === 0 ? "calendarCellOccupied" : "calendarCell",
+
     }
   }
 
@@ -122,12 +124,21 @@ class ServicesScreen extends React.Component {
       }
     })
   }
+
+  setTileContent = ({date, view}) => {
+
+    if(date.getDate() === 0)
+      return '*'
+  }
+
+  // const tileContent = ({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>Sunday!</p> : null;
+
   render() {
     return (
       <main id='mainAdmin'>
         <Calendar
           className='calendar'
-          tileClassName='calendarCell'
+          tileClassName={this.state.tileContent}
           onChange={this.onChange}
           value={this.state.date}
           showNavigation={true}
