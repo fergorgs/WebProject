@@ -9,8 +9,19 @@ class CartItem extends React.Component {
             <div class="cardCart">
                 <img src={this.props.imgSrc}/>
                 <div class="infos">
+                    <button
+                      type='submit'
+                      onClick={() => this.props.deleteProductHandler(this.props.id)}
+                    >
+                      Remover
+                    </button>
                     <h3>{this.props.name}</h3><br/>
-                    <p>{this.props.quantity} un</p><br/>
+                    <input 
+                        type="number"
+                        onChange={(event) => this.props.changeQuantityHandler(event.target.value, this.props.id)}
+                        placeholder={this.props.quantity}
+                    >
+                    </input>
                     <p>R$ {(Number(this.props.price)).toFixed(2)}</p>
                 </div>
             </div>

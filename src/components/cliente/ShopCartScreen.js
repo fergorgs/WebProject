@@ -47,6 +47,16 @@ class ShopCartScreen extends React.Component {
     this.fetchItemsFromServer()
   }
 
+  changeQuantityHandler = (value, id) => {
+
+    alert("product id: " + id + " has new value of: " + value)
+  }
+
+  deleteProductHandler = (id) => {
+
+    alert("product id: " + id + " deleted")
+  }
+
   buyHandler = () => {
     for (let {} in this.state.itemsData) {
       //finds on stock the product with the equivalent ID
@@ -64,6 +74,8 @@ class ShopCartScreen extends React.Component {
           imgSrc={`http://localhost:5000/${item.imgSrc}`}
           name={item.name}
           quantity={item.quantity}
+          deleteProductHandler={this.deleteProductHandler}
+          changeQuantityHandler={this.changeQuantityHandler}
           price={item.price}
         />
       )
