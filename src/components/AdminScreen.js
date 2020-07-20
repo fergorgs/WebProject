@@ -17,7 +17,8 @@ class AdminScreen extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="wrapper-sticky">
+              <div className="header-content">
                 <AdminHeader match={this.props.match}/>
                 
                 <Switch>
@@ -29,7 +30,8 @@ class AdminScreen extends React.Component {
                   <Route path={`${this.props.match.path}/registro`} component={RegisterScreen}/>
                   <Route path={`${this.props.match.path}/vendas`} component={SalesScreen}/>
                 </Switch>
-                <Footer/>
+              </div>
+              <Footer/>
             </div>
         );
     }

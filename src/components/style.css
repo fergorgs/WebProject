@@ -16,6 +16,13 @@ body {
   font-family: 'Oxygen', sans-serif;
 }
 
+div.wrapper-sticky {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 .title {
   display: flex;
   align-items: center;
@@ -179,7 +186,7 @@ li.dropdown {
   align-items: center;
   background-color: transparent;
 }
-
+wrapper
 .rightArrow {
   cursor: pointer;
   position: sticky;

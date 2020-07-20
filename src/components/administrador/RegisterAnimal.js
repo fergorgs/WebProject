@@ -121,7 +121,7 @@ export default function RegisterAnimal(props) {
             <option>Adoção</option>
             <option>Venda</option>
           </select>
-          {adoptionMethod == 'Venda' ? (
+          {adoptionMethod === 'Venda' ? (
             <input
               type='number'
               placeholder='Preço'

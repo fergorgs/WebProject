@@ -3,8 +3,6 @@ import '../style.css'
 import { Link } from 'react-router-dom'
 import AdoptionPanel from './AdoptionPanel'
 import AdoptionItem from './AdoptionItem'
-import dogPlaceHolder from './images/dog.jpg'
-import catPlaceHolder from './images/gato_site.png'
 
 class AdoptionScreen extends React.Component {
   constructor(props) {
@@ -38,8 +36,8 @@ class AdoptionScreen extends React.Component {
 
     const petsRendered = this.state.pets.map((pet) => {
       let add = false
-      if (this.state.adopt == true && pet.adoptionMethod == 'Adoção') add = true
-      else if (this.state.sell == true && pet.adoptionMethod == 'Venda') add = true
+      if (this.state.adopt === true && pet.adoptionMethod === 'Adoção') add = true
+      else if (this.state.sell === true && pet.adoptionMethod === 'Venda') add = true
       if (add)
         return (
           <Link

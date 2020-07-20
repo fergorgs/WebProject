@@ -6,7 +6,7 @@ class ProductItem extends React.Component {
     return (
       <div class='productItemHolder'>
         <div class='productItem'>
-          <img src={this.props.imgSrc} />
+          <img alt={this.props.name} src={this.props.imgSrc} />
           <div
             style={{
               display: 'flex',

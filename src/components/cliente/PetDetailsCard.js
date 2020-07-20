@@ -15,12 +15,12 @@ class PetDetailsCard extends React.Component {
   }
 
   render() {
-    if (this.props.adoptionMethod == 'Adoção') {
+    if (this.props.adoptionMethod === 'Adoção') {
       return (
         <div id='productCardHolder'>
           <div id='productCard'>
             <div style={{ display: 'flex' }}>
-              <img src={this.props.imgSrc} id='productImage' />
+              <img alt={this.props.race} src={this.props.imgSrc} id='productImage' />
               <div style={{ display: 'unset', marginLeft: '2em' }}>
                 <h2>{this.props.race}</h2>
                 <p class='productDescription'>Idade: {this.props.age}</p>
@@ -43,7 +43,7 @@ class PetDetailsCard extends React.Component {
       <div id='productCardHolder'>
         <div id='productCard'>
           <div style={{ display: 'flex' }}>
-            <img src={this.props.imgSrc} id='productImage' />
+            <img alt={this.props.species} src={this.props.imgSrc} id='productImage' />
             <div style={{ display: 'unset', marginLeft: '2em' }}>
               <h2>{this.props.species}</h2>
               <p class='productDescription'>Idade: {this.props.age}</p>

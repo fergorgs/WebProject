@@ -1,6 +1,5 @@
 import React from 'react'
 import '../style.css'
-import placeHolder from './images/golden.jpg'
 import ShopCartPanel from './ShopCartPanel'
 import CartItem from './CartItem'
 

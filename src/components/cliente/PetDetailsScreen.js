@@ -1,6 +1,5 @@
 import React from 'react'
 import '../style.css'
-import dogPlaceHolder from './images/dog.jpg'
 import PetDetailsCard from './PetDetailsCard'
 
 class PetDetailsScreen extends React.Component {

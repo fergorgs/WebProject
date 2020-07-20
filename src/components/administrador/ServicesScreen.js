@@ -30,6 +30,8 @@ function getDiaSemana(dia) {
     case 7:
       diaSemana = 'Domingo'
       break
+    default:
+      break
   }
   return diaSemana
 }
@@ -73,6 +75,8 @@ function getNomeMes(mes) {
     case 11:
       nomeMes = 'Dezembro'
       break
+    default:
+        break
   }
   return nomeMes
 }

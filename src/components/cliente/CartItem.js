@@ -7,7 +7,7 @@ class CartItem extends React.Component {
     render() {
         return (
             <div class="cardCart">
-                <img src={this.props.imgSrc}/>
+                <img alt={this.props.name} src={this.props.imgSrc}/>
                 <div class="infos">
                     <h3>{this.props.name}</h3><br/>
                     <p>{this.props.quantity} un</p><br/>

@@ -21,7 +21,8 @@ class ClientScreen extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="wrapper-sticky">
+              <div className="header-content">
                 <ClientHeader match={this.props.match}/>
                 
                 <Switch>
@@ -37,7 +38,8 @@ class ClientScreen extends React.Component {
                   <Route path={`${this.props.match.path}/carrinho`} component={ShopCartScreen}/>
                   <Route path={`${this.props.match.path}/agendamentos`} component={ShowerBookingScreen}/>
                 </Switch>
-                <Footer/>
+              </div>
+              <Footer/>
             </div>
         );
     }

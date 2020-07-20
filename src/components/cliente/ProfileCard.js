@@ -45,13 +45,14 @@ class ProfileCard extends React.Component {
       return (
         <div class='perfilInfoBox'>
           <img
+            alt={this.state.name}
             src={this.state.pic}
             class='edit'
             onClick={this.editModeHandler}
           />
           <h3>Dados do cliente</h3>
           <div id='photoAndName'>
-            <img class='image' src={profilePlaceHolder} />
+            <img alt={this.state.name} class='image' src={profilePlaceHolder} />
             <input
               type='text'
               value={this.state.name}
@@ -112,13 +113,14 @@ class ProfileCard extends React.Component {
     return (
       <div class='perfilInfoBox'>
         <img
+          alt={this.state.name}
           src={require('../images/mode_edit.png')}
           class='edit'
           onClick={this.editModeHandler}
         />
         <h3>Dados do cliente</h3>
         <div id='photoAndName'>
-          <img class='image' src={this.state.imgSrc} />
+          <img alt={this.state.name} class='image' src={this.state.imgSrc} />
           <p>{this.state.name}</p>
         </div>
         <div id='perfilInfo'>
