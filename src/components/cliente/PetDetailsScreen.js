@@ -1,44 +1,49 @@
-import React from 'react';
+import React from 'react'
 import '../style.css'
 import dogPlaceHolder from './images/dog.jpg'
 import PetDetailsCard from './PetDetailsCard'
 
-
 class PetDetailsScreen extends React.Component {
-
-    fetchPetDetailsFromServer(id){
-
-        //fetch fetch fetch
-
-        return {id: id,
-                type: 'sell',
-                race: 'Beagle',
-                imgSrc: dogPlaceHolder,
-                age: '2',
-                price: '24,90',
-                sex: 'macho',
-                }
+  constructor(props) {
+    super(props)
+    this.state = {
+      animal: {},
     }
+  }
 
-    render() {
+  fetchPetDetailsFromServer() {
+    const url = `/animal/${this.props.match.params.id}`
+    console.log(url)
+    fetch(url, { method: 'GET' }).then(async (res) => {
+      if (res.ok) {
+        let animal = await res.json()
+        animal = animal.animal
+        this.setState({ animal: animal })
+      }
+    })
+  }
 
-        const petInfo = this.fetchPetDetailsFromServer(this.props.match.params.id)
+  componentDidMount() {
+    this.fetchPetDetailsFromServer()
+  }
 
-        return (
-            <div>
-                <main>
-                    <PetDetailsCard 
-                        imgSrc={petInfo.imgSrc}
-                        type={petInfo.type}
-                        price={petInfo.price}
-                        age={petInfo.age}
-                        race={petInfo.race}
-                        sex={petInfo.sex}
-                    />
-                </main>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <main>
+          <PetDetailsCard
+            imgSrc={`http://localhost:5000/${this.state.animal.photo}`}
+            adoptionMethod={this.state.animal.adoptionMethod}
+            price={this.state.animal.price}
+            age={this.state.animal.age}
+            race={this.state.animal.race}
+            sex={this.state.animal.gender}
+            name={this.state.animal.name}
+          />
+        </main>
+      </div>
+    )
+  }
 }
 
-export default PetDetailsScreen;
+export default PetDetailsScreen
