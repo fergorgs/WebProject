@@ -91,7 +91,7 @@ export default function StockPanel(props) {
         </h2>
 
         <span id='filtros'>
-          <p>Filtrar:</p>
+          Filtrar:
           <input
             type='checkbox'
             id='gatos'
