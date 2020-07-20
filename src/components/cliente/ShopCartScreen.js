@@ -48,7 +48,7 @@ class ShopCartScreen extends React.Component {
     this.fetchItemsFromServer()
   }
 
-  changeQuantityHandler = (value, id) => {
+  changeQuantityHandler = (value, id, price) => {
     fetch('/cart/updateQtd', {
       method: 'POST',
       headers: {
@@ -59,10 +59,12 @@ class ShopCartScreen extends React.Component {
         prodId: id,
         cartId: this.state.cartId,
         quantity: value,
+        price:price
       }),
-    }).then((res) => {
+    }).then(async (res) => {
       if (res.ok) {
-        alert('product id: ' + id + ' has new value of: ' + value)
+        const total = await res.json()
+        this.setState({totalPrice:total.totalPrice})
       }
     })
   }

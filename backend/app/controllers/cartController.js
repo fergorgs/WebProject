@@ -60,16 +60,21 @@ router.post('/get', async (req, res) => {
 
 router.post('/updateQtd', async (req, res) => {
   try {
-    const { prodId, cartId, quantity } = req.body
+    const { prodId, cartId, quantity, price } = req.body
 
-    const cart = await Cart.update(
+    const cart = await Cart.findOneAndUpdate(
       { _id: cartId, 'products.prodId': prodId },
-      { $set: { 'products.$.quantity': quantity } }
+      {
+        $set: { 'products.$.quantity': quantity },
+        $set: {
+          totalPrice: quantity * price,
+        },
+      },
+      { new: true }
     )
     if (!cart)
       return res.status(400).send({ error: 'Carrinho não encontrado!' })
-
-    return res.sendStatus(200)
+    return res.send({ totalPrice: cart.totalPrice })
   } catch (err) {
     return res
       .status(400)
@@ -81,14 +86,17 @@ router.delete('/removeProd', async (req, res) => {
   try {
     const { cartId, prodId, price, quantity } = req.body
 
-    const cart = await Cart.findByIdAndUpdate(cartId, {
-      $pull: { products: { prodId: prodId } },
-      $inc: {totalPrice: -(price*quantity)}
-    }, {new:true})
+    const cart = await Cart.findByIdAndUpdate(
+      cartId,
+      {
+        $pull: { products: { prodId: prodId } },
+        $inc: { totalPrice: -(price * quantity) },
+      },
+      { new: true }
+    )
     if (!cart)
       return res.status(400).send({ error: 'Carrinho não encontrado!' })
 
-    
     return res.send({ cart })
   } catch (err) {
     return res.status(400).send({ error: 'Erro ao remover produto ' + err })

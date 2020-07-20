@@ -47,6 +47,7 @@ class ProductCard extends React.Component {
                 <p>Quantidade:</p>
                 <input
                   type='number'
+                  min='1'
                   value={this.state.quantity}
                   onChange={this.changeQuantityHandler}
                 />
