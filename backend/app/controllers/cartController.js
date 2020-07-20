@@ -60,14 +60,14 @@ router.post('/get', async (req, res) => {
 
 router.post('/updateQtd', async (req, res) => {
   try {
-    const { prodId, cartId, quantity, price } = req.body
+    const { prodId, cartId, delta, quantity, price } = req.body
 
     const cart = await Cart.findOneAndUpdate(
       { _id: cartId, 'products.prodId': prodId },
       {
         $set: { 'products.$.quantity': quantity },
         $inc: {
-          totalPrice: quantity * price,
+          totalPrice: delta * price,
         },
       },
       { new: true }

@@ -47,7 +47,7 @@ class ShopCartScreen extends React.Component {
     this.fetchItemsFromServer()
   }
 
-  changeQuantityHandler = (value, id, price) => {
+  changeQuantityHandler = (value, id, price, delta) => {
     fetch('/cart/updateQtd', {
       method: 'POST',
       headers: {
@@ -58,6 +58,7 @@ class ShopCartScreen extends React.Component {
         prodId: id,
         cartId: this.state.cartId,
         quantity: value,
+        delta:delta,
         price:price
       }),
     }).then(async (res) => {

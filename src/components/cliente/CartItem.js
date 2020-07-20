@@ -21,9 +21,10 @@ class CartItem extends React.Component {
       },
       () => {
         this.props.changeQuantityHandler(
-          delta,
+          value,
           this.props.id,
-          this.props.price
+          this.props.price,
+          delta
         )
       }
     )
