@@ -43,6 +43,11 @@ class AdminHeader extends React.Component {
                 Administração de estoques
               </Link>
             </li>
+            <li>
+              <Link to={`${this.props.match.path}/vendas`}>
+                Vendas realizadas
+              </Link>
+            </li>
           </ul>
         </div>
       </header>

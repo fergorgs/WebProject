@@ -10,6 +10,7 @@ import {
   import ServicesScreen from './administrador/ServicesScreen'
   import StockScreen from './administrador/StockScreen'
   import RegisterScreen from './administrador/RegisterScreen'
+  import SalesScreen from './administrador/SalesScreen'
 
 
 class AdminScreen extends React.Component {
@@ -26,6 +27,7 @@ class AdminScreen extends React.Component {
                   <Route path={`${this.props.match.path}/servicos`} component={ServicesScreen}/>
                   <Route path={`${this.props.match.path}/estoque`} component={StockScreen}/>
                   <Route path={`${this.props.match.path}/registro`} component={RegisterScreen}/>
+                  <Route path={`${this.props.match.path}/vendas`} component={SalesScreen}/>
                 </Switch>
                 <Footer/>
             </div>

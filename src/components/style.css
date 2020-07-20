@@ -108,7 +108,7 @@ main {
 
 .menu.menuAdmin ul {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -153,7 +153,7 @@ li.dropdown {
 }
 
 .dropdown-content.admin {
-  width: 26.75%;
+  width: 20%;
 }
 
 .dropdown-content a {
@@ -799,4 +799,13 @@ span {
 
 .estoque {
   margin-inline-start: 70%;
+}
+
+
+.salesTable {
+
+  width: 60em;
+  padding: 1em;
+
+  
 }
