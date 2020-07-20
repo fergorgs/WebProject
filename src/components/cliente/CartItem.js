@@ -1,21 +1,65 @@
-import React from 'react';
+import React from 'react'
 import '../style.css'
-
 
 class CartItem extends React.Component {
 
-    render() {
-        return (
-            <div class="cardCart">
-                <img alt={this.props.name} src={this.props.imgSrc}/>
-                <div class="infos">
-                    <h3>{this.props.name}</h3><br/>
-                    <p>{this.props.quantity} un</p><br/>
-                    <p>R$ {(Number(this.props.price)).toFixed(2)}</p>
-                </div>
-            </div>
-        );
+  constructor(props) {
+    super(props)
+    this.state = {
+      quantity: this.props.quantity,
+
     }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        this.props.changeQuantityHandler(
+          this.state.quantity,
+          this.props.id,
+          this.props.price
+        )
+      }
+    )
+  }
+
+  render() {
+    return (
+      <div class='cardCart'>
+        <img src={this.props.imgSrc} />
+        <div class='infos'>
+          <button
+            type='submit'
+            onClick={() =>
+              this.props.deleteProductHandler(
+                this.props.id,
+                this.state.quantity,
+                this.props.price
+              )
+            }
+          >
+            Remover
+          </button>
+          <h3>{this.props.name}</h3>
+          <br />
+          <input
+            type='number'
+            min='1'
+            name='quantity'
+            value={this.state.quantity}
+            onChange={this.handleChange}
+            placeholder={this.state.quantity}
+          ></input>
+          <p>R$ {Number(this.props.price).toFixed(2)}</p>
+        </div>
+      </div>
+    )
+  }
 }
 
-export default CartItem;
+export default CartItem

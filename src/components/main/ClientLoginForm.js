@@ -32,7 +32,16 @@ class ClientLoginForm extends React.Component {
     }).then(async (res) => {
       if (res.ok) {
         const response = await res.json()
-        sessionStorage.setItem('client', JSON.stringify({client:response.client}))
+        const client = {
+          cpf: response.client.cpf,
+          _id: response.client._id,
+          name: response.client.name,
+          address: response.client.address,
+          email: response.client.email,
+          phone: response.client.phone,
+          photo: response.client.photo,
+        }
+        sessionStorage.setItem('client', JSON.stringify({ client: client }))
         this.props.history.push('/client')
       } else {
         alert('Email ou senha incorretos!')
@@ -43,7 +52,6 @@ class ClientLoginForm extends React.Component {
   render() {
     return (
       <main>
-        
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Login Cliente </h1>

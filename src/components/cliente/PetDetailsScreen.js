@@ -38,6 +38,7 @@ class PetDetailsScreen extends React.Component {
             race={this.state.animal.race}
             sex={this.state.animal.gender}
             name={this.state.animal.name}
+            specie={this.state.animal.specie}
           />
         </main>
       </div>

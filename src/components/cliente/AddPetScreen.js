@@ -40,8 +40,6 @@ class AddPetScreen extends React.Component {
       .then((res) => {
         if (res.status === 200) {
           alert('Pet registrado com sucesso!')
-          const client = { client: res.data }
-          sessionStorage.setItem('client', JSON.stringify(client))
           this.setState({ redirect: '/client/perfil' })
         } else {
           alert('Falha no upload de foto!')

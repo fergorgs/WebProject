@@ -593,6 +593,21 @@ wrapper
   margin-left: 2em;
 }
 
+.infos button {
+  padding: 0.25em 1em;
+  background-color: rgba(203, 155, 140, 1);
+  border: 0;
+  font-size: 0.75em;
+  border-radius: 10px;
+  color: black;
+  margin-bottom: 0.25em;
+}
+
+.infos input {
+  padding: 0.2em;
+  font-size: 1.5em;
+}
+
 .infos p,
 span {
   font-size: 0.85em;
@@ -813,6 +828,4 @@ span {
 
   width: 60em;
   padding: 1em;
-
-  
 }
