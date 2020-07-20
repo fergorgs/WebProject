@@ -66,7 +66,7 @@ router.post('/updateQtd', async (req, res) => {
       { _id: cartId, 'products.prodId': prodId },
       {
         $set: { 'products.$.quantity': quantity },
-        $set: {
+        $inc: {
           totalPrice: quantity * price,
         },
       },

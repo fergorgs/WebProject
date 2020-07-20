@@ -14,13 +14,14 @@ class CartItem extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target
+    const delta = value - this.state.quantity
     this.setState(
       {
         [name]: value,
       },
       () => {
         this.props.changeQuantityHandler(
-          this.state.quantity,
+          delta,
           this.props.id,
           this.props.price
         )

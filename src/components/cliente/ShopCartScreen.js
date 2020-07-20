@@ -81,21 +81,9 @@ class ShopCartScreen extends React.Component {
         quantity,
         price
       }),
-    }).then(async (res) => {
+    }).then((res) => {
       if (res.ok) {
-        let cart = await res.json()
-        cart = cart.cart
-        this.setState({ totalPrice: cart.totalPrice, cartId: cart.cartId })
-        const items = cart.products.map((prod) => {
-          return {
-            id: prod.id,
-            imgSrc: prod.photo,
-            name: prod.name,
-            price: prod.price,
-            quantity: prod.quantity,
-          }
-        })
-        this.setState({ itemsData: items })
+        this.fetchItemsFromServer()
       }
     })
   }
