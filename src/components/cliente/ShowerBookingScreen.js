@@ -1,9 +1,6 @@
 import React from 'react'
 import '../style.css'
 import { Redirect } from 'react-router-dom'
-import ServiceTable from '../administrador/ServiceTable'
-import MaterialTable from 'material-table'
-import { RadioGroup, Radio } from '@material-ui/core'
 import BookingTable from './BookinTable'
 
 
@@ -92,7 +89,7 @@ class ShowerBookingScreen extends React.Component {
     else if (val === 'Banho e tosa') this.setState({ cost: '55,00' })
     else if (val === 'Consulta') this.setState({ cost: '45,00' })
   }
-  agendarHandler = (event) => {
+  agendarHandler = () => {
     const date = new Date(this.state.date)
     date.setHours(this.state.selected, 0, 0)
     console.log(date)
@@ -102,6 +99,7 @@ class ShowerBookingScreen extends React.Component {
         serviceType: this.state.service,
         clientCpf: this.state.cpf,
         clientPetName: this.state.animalName,
+        value:this.state.cost
       }
       fetch('/service/add', {
         method: 'POST',

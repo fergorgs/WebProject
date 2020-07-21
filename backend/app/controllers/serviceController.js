@@ -2,13 +2,14 @@ const express = require('express')
 const Service = require('../models/service')
 const Client = require('../models/client')
 const ClientPet = require('../models/clientPet')
+const Earning = require('../models/earning')
 const router = express.Router()
 const authMiddleware = require('../middleware/auth')
 router.use(authMiddleware)
 
 router.post('/add', async (req, res) => {
   try {
-    const { clientCpf, clientPetName, date, serviceType } = req.body
+    const { clientCpf, clientPetName, date, serviceType, value } = req.body
     if (
       date === null ||
       serviceType === '' ||
@@ -21,6 +22,15 @@ router.post('/add', async (req, res) => {
     if (!service)
       return res.status(400).send({ error: 'Erro ao criar serviço!' })
 
+    const earning = await Earning.create({
+      originId:service.id,
+      type: 'Serviço',
+      name: serviceType,
+      quantity: 1,
+      value: parseFloat(value),
+    })
+    if (!earning)
+      return res.status(400).send({ error: 'Erro ao criar faturamento' })
     return res.sendStatus(200)
   } catch (err) {
     console.log(err)
@@ -80,7 +90,8 @@ router.post('/getFreeSlots', async (req, res) => {
         })
       else
         freeSlots.push({
-          hour:i, free:true
+          hour: i,
+          free: true,
         })
     }
     services.forEach((service) => {
