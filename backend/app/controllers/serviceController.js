@@ -63,6 +63,32 @@ router.post('/getByDate', async (req, res) => {
   }
 })
 
+router.post('/getFreeSlots', async (req, res) => {
+  try {
+    let { date } = req.body
+    date = new Date(date)
+    let dateEnd = new Date(date)
+    dateEnd.setHours(23, 59, 59)
+    const services = await Service.find({ date: { $gte: date, $lt: dateEnd } })
+    let freeSlots = []
+    for(let i=8; i<18; i++){
+      freeSlots.push({hour:i, free:true})
+    }
+    services.forEach(service=>{
+      
+      const time = new Date(service.date).getUTCHours()
+      console.log(service.date)
+      console.log(time)
+      if(time>=8 && time<=17){
+        freeSlots[time-8] = {hour:time, free:false}
+      }
+    })
+    return res.send({freeSlots})
+  } catch (err) {
+    return res.status(400).send({ error: 'Erro ao carregar horários ' + err })
+  }
+})
+
 router.delete('/remove', async (req, res) => {
   try {
     const { id } = req.body

@@ -2,6 +2,8 @@ import React from 'react'
 import '../style.css'
 import { Redirect } from 'react-router-dom'
 import ServiceTable from '../administrador/ServiceTable'
+import MaterialTable from 'material-table'
+import { RadioGroup, Radio } from '@material-ui/core'
 
 function getDiaSemana(dia) {
   let diaSemana
@@ -77,14 +79,13 @@ function getNomeMes(mes) {
   return nomeMes
 }
 
-
 function dataFormatada(date) {
   let data = date,
     dia = data.getDate().toString().padStart(2, '0'),
     mes = (data.getMonth() + 1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
     ano = data.getFullYear(),
     diaSemana = data.getDay()
-  
+
   return `${getDiaSemana(diaSemana)}, ${dia} de ${getNomeMes(mes)} de ${ano}`
 }
 
@@ -99,10 +100,11 @@ class ShowerBookingScreen extends React.Component {
       service: '',
       cost: '0,00',
       pets: [<option>Selecione um animal</option>],
-      redirect:'/client/agendamentos',
+      redirect: '/client/agendamentos',
       date: new Date(),
       formattedDate: '',
-      services: [],
+      freeSlots: [],
+      selected: null,
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -130,6 +132,7 @@ class ShowerBookingScreen extends React.Component {
           return <option>{name}</option>
         })
         this.setState({ pets: names })
+        this.getFreeSlots(new Date())
       } else {
         const error = await res.json()
         alert(error.error)
@@ -140,19 +143,22 @@ class ShowerBookingScreen extends React.Component {
     })
   }
 
-  onChange = (date) => {
-    this.setState({ date: date, formattedDate: dataFormatada(date) })
-    fetch('/service/getByDate', {
+  getFreeSlots = (date) => {
+    let val = null
+    if (!(date instanceof Date)) val = new Date(`${date}:0:0:0`)
+    else val = date
+    this.setState({ date: val, formattedDate: dataFormatada(val) })
+    fetch('/service/getFreeSlots', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ date }),
+      body: JSON.stringify({ date: this.state.date }),
     }).then(async (res) => {
       if (res.ok) {
-        const services = await res.json()
-        this.setState({ services })
+        const freeSlots = await res.json()
+        this.setState({ freeSlots: freeSlots.freeSlots })
       }
     })
   }
@@ -163,10 +169,10 @@ class ShowerBookingScreen extends React.Component {
       [name]: value,
     })
   }
-  
+
   serviceHandler = (event) => {
     let val = event.target.value
-    this.setState({service:val})
+    this.setState({ service: val })
     if (val === 'Serviço') this.setState({ cost: '0,00' })
     else if (val === 'Só banho') this.setState({ cost: '20,00' })
     else if (val === 'Só tosa') this.setState({ cost: '35,00' })
@@ -174,7 +180,10 @@ class ShowerBookingScreen extends React.Component {
     else if (val === 'Consulta') this.setState({ cost: '45,00' })
   }
   agendarHandler = (event) => {
-    const date = new Date(`${this.state.date}:${this.state.hour}`)
+    const date = new Date(this.state.date)
+    date.setHours(this.state.hour.split(':')[0])
+    date.setMinutes(this.state.hour.split(':')[1])
+    console.log(date)
     if (date > Date.now()) {
       const data = {
         date,
@@ -204,6 +213,10 @@ class ShowerBookingScreen extends React.Component {
   }
 
   render() {
+    const columns = [
+      { title: 'Hora', field: 'hour', type: 'time' },
+      { title: 'Disponível', field: 'free', type: 'boolean' },
+    ]
     return (
       <main>
         <Redirect to={this.state.redirect} />
@@ -223,7 +236,9 @@ class ShowerBookingScreen extends React.Component {
                 type='date'
                 class='timeInput'
                 name='date'
-                onChange={this.onChange}
+                onChange={(ev) => {
+                  this.getFreeSlots(ev.target.value)
+                }}
               />
               <input
                 type='time'
@@ -243,13 +258,66 @@ class ShowerBookingScreen extends React.Component {
             </div>
             <br />
             <h3>Custo: R$ {this.state.cost}</h3>
-            <button type='submit' onClick={this.agendarHandler.bind(this)}>Agendar</button>
+            <button type='submit' onClick={this.agendarHandler.bind(this)}>
+              Agendar
+            </button>
           </div>
-        
-        <ServiceTable
-          formattedDate={this.state.formattedDate}
-          services={this.state.services}
-        />
+          
+            <MaterialTable
+              columns={columns}
+              data={this.state.freeSlots}
+              title={this.state.formattedDate}
+              actions={[
+                {
+                  icon: 'save',
+                  tooltip: 'Selecionar',
+                  onClick: (event, rowData)=>{
+                    this.setState({selected:rowData.hour})
+                  }
+                },
+              ]}
+              components={{
+                Action: (props) => (
+                  <Radio
+                    checked={this.state.selected === props.data.hour}
+                    value={props.data.hour}
+                    disabled={!props.data.free}
+                    onClick={(ev)=>{
+                      props.action.onClick(ev, props.data)
+                    }}
+                  />
+                ),
+              }}
+              localization={{
+                pagination: {
+                  labelDisplayedRows: '{from}-{to} de {count}',
+                  firstTooltip: 'Primeira Página',
+                  lastAriaLabel: 'Última Página',
+                  nextTooltip: 'Próxima Página',
+                  previousTooltip: 'Página Anterior',
+                  labelRowsSelect: 'linhas',
+                  lastTooltip: 'Última Página',
+                },
+                header: {
+                  actions: 'Selecionar',
+                },
+                toolbar: {
+                  nRowsSelected: '{0} linhas selecionadas',
+                  searchTooltip: 'Pesquisar',
+                  searchPlaceholder: 'Pesquisar',
+                },
+                body: {
+                  emptyDataSourceMessage: 'Não há horários neste dia',
+                  editTooltip: 'Editar',
+                  deleteTooltip: 'Remover',
+                  editRow: {
+                    deleteText: 'Certeza de que quer remover?',
+                    saveTooltip: 'Salvar',
+                    cancelTooltip: 'Cancelar',
+                  },
+                },
+              }}
+            />
         </div>
       </main>
     )
