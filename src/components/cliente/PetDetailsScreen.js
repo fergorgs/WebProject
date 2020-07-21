@@ -39,6 +39,7 @@ class PetDetailsScreen extends React.Component {
             sex={this.state.animal.gender}
             name={this.state.animal.name}
             specie={this.state.animal.specie}
+            id={this.props.match.params.id}
           />
         </main>
       </div>

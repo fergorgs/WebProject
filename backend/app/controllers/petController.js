@@ -16,7 +16,7 @@ router.post('/add', async (req, res) => {
     const pet = await ClientPet.create(data)
     if (!pet) return res.status(400).send({ error: 'Erro ao criar pet!' })
 
-    Client.update({ _id: ownerId }, { $push: { pets: pet } })
+    Client.updateOne({ _id: ownerId }, { $push: { pets: pet } })
     return res.send(pet)
   } catch (err) {
     console.log(err)

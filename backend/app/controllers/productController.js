@@ -28,7 +28,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/get', async (req, res) => {
   try {
-    const products = await Product.find()
+    const products = await Product.find({quantity: {$gt: 0}})
     if (!products)
       return res.status(400).send({ error: 'Nenhum produto cadastrado!' })
 

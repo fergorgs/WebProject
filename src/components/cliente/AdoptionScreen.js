@@ -36,8 +36,10 @@ class AdoptionScreen extends React.Component {
 
     const petsRendered = this.state.pets.map((pet) => {
       let add = false
-      if (this.state.adopt === true && pet.adoptionMethod === 'Adoção') add = true
-      else if (this.state.sell === true && pet.adoptionMethod === 'Venda') add = true
+      if (this.state.adopt === true && pet.adoptionMethod === 'Adoção')
+        add = true
+      else if (this.state.sell === true && pet.adoptionMethod === 'Venda')
+        add = true
       if (add)
         return (
           <Link
@@ -79,7 +81,20 @@ class AdoptionScreen extends React.Component {
           />
           <label>Venda</label>
         </div>
-        <AdoptionPanel items={petsRendered} />
+        {petsRendered.length > 0 ? (
+          <AdoptionPanel items={petsRendered} />
+        ) : (
+          <div
+            style={{
+              marginTop: '3em',
+              height: '20em',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <h3>Nenhum animal disponível para venda ou adoção</h3>
+          </div>
+        )}
       </div>
     )
   }
