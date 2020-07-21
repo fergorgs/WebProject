@@ -45,7 +45,7 @@ class AdminHeader extends React.Component {
             </li>
             <li>
               <Link to={`${this.props.match.path}/vendas`}>
-                Vendas realizadas
+                Faturamento
               </Link>
             </li>
           </ul>

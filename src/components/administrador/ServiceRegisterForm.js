@@ -2,6 +2,7 @@ import React from 'react'
 import InputMask from 'react-input-mask'
 import '../style.css'
 import { Redirect } from 'react-router-dom'
+import BookingTable from '../cliente/BookinTable'
 
 class ServiceRegisterForm extends React.Component {
   constructor(props) {
@@ -9,18 +10,23 @@ class ServiceRegisterForm extends React.Component {
     this.state = {
       service: 'Tosa',
       date: null,
-      time: null,
       animalName: '',
       cpf: '',
       pets: [<option>Digite o CPF do cliente</option>],
       petsDisabled: true,
-      redirect:'/admin/registro/servicos'
+      redirect: '/admin/registro/servicos',
+      formattedDate: '',
+      freeSlots: [],
+      selected: null,
+      date:new Date()
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
   submitHandler = () => {
-    const date = new Date(`${this.state.date}:${this.state.time}`)
+    const date = new Date(this.state.date)
+    date.setHours(this.state.selected)
+    console.log(date)
     if (date > Date.now()) {
       const data = {
         date,
@@ -65,7 +71,6 @@ class ServiceRegisterForm extends React.Component {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          
         },
         body: JSON.stringify({ cpf }),
       }).then(async (res) => {
@@ -88,10 +93,31 @@ class ServiceRegisterForm extends React.Component {
     }
   }
 
+  getFreeSlots = (date) => {
+    this.setState({ date: date}, () => {
+      fetch('/service/getFreeSlots', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ date: this.state.date }),
+      }).then(async (res) => {
+        if (res.ok) {
+          const freeSlots = await res.json()
+          this.setState({ freeSlots: freeSlots.freeSlots })
+        }
+      })
+    })
+  }
+
+  componentDidMount(){
+    this.getFreeSlots(this.state.date)
+  }
   render() {
     return (
       <main>
-          <Redirect to={this.state.redirect}/>
+        <Redirect to={this.state.redirect} />
         <div class='formAgendarHolder'>
           <div class='formAgendar  shadow'>
             <h1>Novo Serviço</h1>
@@ -111,13 +137,9 @@ class ServiceRegisterForm extends React.Component {
                 type='date'
                 name='date'
                 class='timeInput'
-                onChange={this.handleChange}
-              />
-              <input
-                type='time'
-                name='time'
-                class='timeInput'
-                onChange={this.handleChange}
+                onChange={(ev)=>{
+                  this.getFreeSlots(new Date(`${ev.target.value}:0:0:0`))
+                }}
               />
             </div>
             <InputMask
@@ -125,7 +147,7 @@ class ServiceRegisterForm extends React.Component {
               type='text'
               name='cpf'
               onBlur={this.getPets.bind(this)}
-              placeholder='CPF'
+              placeholder='CPF do Cliente'
               class='nameInput'
               onChange={this.handleChange}
             />
@@ -144,6 +166,13 @@ class ServiceRegisterForm extends React.Component {
               Confirmar
             </button>
           </div>
+          <BookingTable
+            date={this.state.date}
+            freeSlots={this.state.freeSlots}
+            selectHour={(hour) => {
+              this.setState({ selected: hour })
+            }}
+          />
         </div>
       </main>
     )

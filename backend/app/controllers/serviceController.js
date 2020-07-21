@@ -71,19 +71,25 @@ router.post('/getFreeSlots', async (req, res) => {
     dateEnd.setHours(23, 59, 59)
     const services = await Service.find({ date: { $gte: date, $lt: dateEnd } })
     let freeSlots = []
-    for(let i=8; i<18; i++){
-      freeSlots.push({hour:i, free:true})
+    const now = new Date()
+    for (let i = 8; i < 18; i++) {
+      if (date.toDateString() === now.toDateString())
+        freeSlots.push({
+          hour: i,
+          free: now.getHours() < i,
+        })
+      else
+        freeSlots.push({
+          hour:i, free:true
+        })
     }
-    services.forEach(service=>{
-      
-      const time = new Date(service.date).getUTCHours()
-      console.log(service.date)
-      console.log(time)
-      if(time>=8 && time<=17){
-        freeSlots[time-8] = {hour:time, free:false}
+    services.forEach((service) => {
+      const time = new Date(service.date).getHours()
+      if (time >= 8 && time <= 17) {
+        freeSlots[time - 8] = { hour: time, free: false }
       }
     })
-    return res.send({freeSlots})
+    return res.send({ freeSlots })
   } catch (err) {
     return res.status(400).send({ error: 'Erro ao carregar horários ' + err })
   }
