@@ -1,16 +1,11 @@
 import React from 'react'
 import '../style.css'
+import ReactInputMask from 'react-input-mask'
 
 class ShopCartPanel extends React.Component {
   render() {
     return (
-      <main
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <div>
         <div id='boxCart'>
           <h1>Meu carrinho</h1>
           <div
@@ -25,13 +20,9 @@ class ShopCartPanel extends React.Component {
                 ? this.props.items
                 : 'Seu carrinho está vazio!'}
             </div>
-            <div id='totalCart'>
-              <h3>Total : R$ {Number(this.props.totalCost).toFixed(2)}</h3>
-              <button onClick={this.props.buyHandler}> Comprar </button>
-            </div>
           </div>
         </div>
-      </main>
+      </div>
     )
   }
 }

@@ -2,6 +2,8 @@ import React from 'react'
 import '../style.css'
 import ShopCartPanel from './ShopCartPanel'
 import CartItem from './CartItem'
+import ReactInputMask from 'react-input-mask'
+import creditCardType from 'credit-card-type'
 
 class ShopCartScreen extends React.Component {
   constructor(props) {
@@ -10,7 +12,12 @@ class ShopCartScreen extends React.Component {
       totalPrice: 0,
       itemsData: [],
       cartId: '',
+      name: '',
+      number: '',
+      expiry: '',
+      cvc: '',
     }
+    this.handleChange = this.handleChange.bind(this)
   }
 
   fetchItemsFromServer() {
@@ -58,13 +65,13 @@ class ShopCartScreen extends React.Component {
         prodId: id,
         cartId: this.state.cartId,
         quantity: value,
-        delta:delta,
-        price:price
+        delta: delta,
+        price: price,
       }),
     }).then(async (res) => {
       if (res.ok) {
         const total = await res.json()
-        this.setState({totalPrice:total.totalPrice})
+        this.setState({ totalPrice: total.totalPrice })
       }
     })
   }
@@ -80,7 +87,7 @@ class ShopCartScreen extends React.Component {
         prodId: id,
         cartId: this.state.cartId,
         quantity,
-        price
+        price,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -89,13 +96,24 @@ class ShopCartScreen extends React.Component {
     })
   }
 
-  buyHandler = () => {
-    for (let {} in this.state.itemsData) {
-      //finds on stock the product with the equivalent ID
-      //and subtracts 1 from the total amount
-    }
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value,
+    })
+  }
 
-    alert('Compra concluida!')
+  buyHandler = () => {
+    if (creditCardType(this.state.number).length > 0) {
+      fetch('/cart/purchase', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cartId: this.state.cartId }),
+      })
+    }
   }
 
   render() {
@@ -114,11 +132,58 @@ class ShopCartScreen extends React.Component {
     })
 
     return (
-      <ShopCartPanel
-        items={shops}
-        totalCost={this.state.totalPrice}
-        buyHandler={this.buyHandler}
-      />
+      <main
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'baseline',
+        }}
+      >
+        <ShopCartPanel items={shops} />
+        <div
+          className='formAgendar shadow'
+          style={{
+            height: '22em',
+            width: '20em',
+            marginLeft: '1em',
+            justifyContent: 'center',
+            paddingBottom: '3em',
+          }}
+        >
+          <input
+            className='nameInput'
+            placeholder='Número do cartão'
+            name='number'
+            value={this.state.number}
+            onChange={this.handleChange}
+          />
+          <input
+            className='nameInput'
+            placeholder='Nome Impresso no Cartão'
+            name='name'
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <ReactInputMask
+            mask='99/99'
+            className='nameInput'
+            placeholder='Válido até'
+            name='expiry'
+            value={this.state.expiry}
+            onChange={this.handleChange}
+          />
+          <ReactInputMask
+            mask='999'
+            className='nameInput'
+            placeholder='CVC'
+            name='cvc'
+            value={this.state.cvc}
+            onChange={this.handleChange}
+          />
+          <h3>Total : R$ {Number(this.state.totalPrice).toFixed(2)}</h3>
+          <button onClick={this.buyHandler}> Comprar </button>
+        </div>
+      </main>
     )
   }
 }

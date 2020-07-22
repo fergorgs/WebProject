@@ -37,6 +37,17 @@ router.get('/get', async (req, res) => {
     return res.status(400).send({ error: 'Erro resgatar produtos!' + err })
   }
 })
+router.get('/getStock', async (req, res) => {
+  try {
+    const products = await Product.find({})
+    if (!products)
+      return res.status(400).send({ error: 'Nenhum produto cadastrado!' })
+
+    return res.send({ products })
+  } catch (err) {
+    return res.status(400).send({ error: 'Erro resgatar produtos!' + err })
+  }
+})
 
 router.get('/:id', async (req, res) => {
   try {

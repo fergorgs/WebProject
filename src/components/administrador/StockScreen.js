@@ -33,7 +33,7 @@ class StockScreen extends React.Component {
   }
   
   fetchItemsFromServer() {
-    fetch('/product/get', {
+    fetch('/product/getStock', {
         method:'GET'
     }).then(async res=>{
         if(res.ok){

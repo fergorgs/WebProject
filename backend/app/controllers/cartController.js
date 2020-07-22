@@ -1,6 +1,7 @@
 const express = require('express')
 const Product = require('../models/product')
 const Cart = require('../models/cart')
+const Earning = require('../models/earning')
 const router = express.Router()
 const authMiddleware = require('../middleware/auth')
 router.use(authMiddleware)
@@ -14,11 +15,16 @@ router.post('/add', async (req, res) => {
     const product = await Product.findById(productId)
     if (!product) return res.send({ error: 'Erro ao buscar produto!' })
 
-    const cartProd = { prodId: productId, quantity }
-    await cart.update({
-      $push: { products: cartProd },
-      totalPrice: cart.totalPrice + quantity * product.price,
-    })
+    const itemIndex = cart.products.findIndex((p) => p.prodId == productId)
+    if (itemIndex > -1) {
+      let productInCart = cart.products[itemIndex]
+      productInCart.quantity += parseInt(quantity)
+      cart.products[itemIndex] = productInCart
+    } else {
+      cart.products.push({ prodId: productId, quantity })
+    }
+    cart.totalPrice += quantity * product.price
+    await cart.save()
 
     return res.sendStatus(200)
   } catch (err) {
@@ -100,6 +106,48 @@ router.delete('/removeProd', async (req, res) => {
     return res.send({ cart })
   } catch (err) {
     return res.status(400).send({ error: 'Erro ao remover produto ' + err })
+  }
+})
+
+router.post('/purchase', async (req, res) => {
+  try {
+    const { cartId } = req.body
+    const cart = await Cart.findById(cartId)
+    if (!cart)
+      return res.status(400).send({ error: 'Erro ao encontrar carrinho' })
+
+    for (prod of cart.products) {
+      console.log(prod)
+      const product = await Product.findByIdAndUpdate(
+        prod.prodId,
+        {
+          $inc: { quantity: -prod.quantity },
+        },
+        (err) => {
+          if (err)
+            return res.status(400).send({ error: 'Erro ao atulizar estoque' })
+        }
+      )
+      let prodEarning = await Earning.findOne({ originId: product.id })
+      console.log(prodEarning)
+      if (!prodEarning) {
+        prodEarning = await Earning.create({
+          originId: product.id,
+          quantity: prod.quantity,
+          value: product.price,
+          name: product.name,
+          type: 'Venda de Produto',
+        })
+      } else {
+        prodEarning.quantity += parseInt(prod.quantity)
+        prodEarning.value += parseFloat(prod.quantity) * product.price
+        await prodEarning.save()
+      }
+    }
+    await cart.deleteOne({_id:cartId})
+    return res.sendStatus(200)
+  } catch (err) {
+    return res.status(400).send({ error: 'Erro ao finalizar a compra ' + err })
   }
 })
 
