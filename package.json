@@ -21,8 +21,7 @@
     "react-items-carousel": "^2.8.0",
     "react-responsive-carousel": "^3.2.9",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-sticky-footer": "0.1.0-rc3"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

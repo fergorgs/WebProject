@@ -23,7 +23,7 @@ router.post('/add', async (req, res) => {
       return res.status(400).send({ error: 'Erro ao criar serviço!' })
 
     const earning = await Earning.create({
-      originId:service.id,
+      originId: service.id,
       type: 'Serviço',
       name: serviceType,
       quantity: 1,
@@ -87,19 +87,33 @@ router.post('/getFreeSlots', async (req, res) => {
         freeSlots.push({
           hour: i,
           free: now.getHours() < i,
+          petName: '-',
+          clientName: '-',
+          serviceType:'-'
         })
       else
         freeSlots.push({
           hour: i,
           free: true,
+          petName: '-',
+          clientName: '-',
+          serviceType: '-',
         })
     }
-    services.forEach((service) => {
+
+    for (service of services) {
       const time = new Date(service.date).getHours()
+      const client = await Client.findOne({ cpf: service.clientCpf })
       if (time >= 8 && time <= 17) {
-        freeSlots[time - 8] = { hour: time, free: false }
+        freeSlots[time - 8] = {
+          hour: time,
+          free: false,
+          petName: service.clientPetName,
+          clientName: client.name,
+          serviceType: service.serviceType,
+        }
       }
-    })
+    }
     return res.send({ freeSlots })
   } catch (err) {
     return res.status(400).send({ error: 'Erro ao carregar horários ' + err })

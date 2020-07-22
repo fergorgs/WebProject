@@ -2,7 +2,7 @@ import React from 'react'
 import '../style.css'
 import { Redirect } from 'react-router-dom'
 import BookingTable from './BookinTable'
-
+ 
 
 class ShowerBookingScreen extends React.Component {
   constructor(props) {
@@ -22,8 +22,6 @@ class ShowerBookingScreen extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
   }
-
-
 
   componentDidMount() {
     const cpf = JSON.parse(sessionStorage.getItem('client')).client.cpf
@@ -93,13 +91,13 @@ class ShowerBookingScreen extends React.Component {
     const date = new Date(this.state.date)
     date.setHours(this.state.selected, 0, 0)
     console.log(date)
-    if (date > Date.now() && this.state.selected!=='') {
+    if (date > Date.now() && this.state.selected !== '') {
       const data = {
         date,
         serviceType: this.state.service,
         clientCpf: this.state.cpf,
         clientPetName: this.state.animalName,
-        value:this.state.cost
+        value: this.state.cost,
       }
       fetch('/service/add', {
         method: 'POST',
@@ -123,7 +121,6 @@ class ShowerBookingScreen extends React.Component {
   }
 
   render() {
-    
     return (
       <main>
         <Redirect to={this.state.redirect} />
@@ -172,8 +169,8 @@ class ShowerBookingScreen extends React.Component {
             freeSlots={this.state.freeSlots}
             select={this.state.selected}
             date={this.state.date}
-            selectHour={(hour)=>{
-              this.setState({selected:hour})
+            selectHour={(hour) => {
+              this.setState({ selected: hour })
             }}
           />
         </div>

@@ -1,6 +1,25 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import MaterialTable from 'material-table'
 import { Radio } from '@material-ui/core'
+import banhoSvg from '../images/pets-bath.svg'
+import tosaSvg from '../images/pet-grooming.svg'
+import consultaSvg from '../images/stethoscope.svg'
+import banhoTosaSvg from '../images/pet-comb.svg'
+
+function serviceToSvg(service) {
+  switch (service) {
+    case 'Só banho':
+      return banhoSvg
+    case 'Só tosa':
+      return tosaSvg
+    case 'Banho e tosa':
+      return banhoTosaSvg
+    case 'Consulta':
+      return consultaSvg
+    default:
+      return ''
+  }
+}
 
 function getDiaSemana(dia) {
   let diaSemana
@@ -76,16 +95,23 @@ function getNomeMes(mes) {
   return nomeMes
 }
 
-
 export default function BookingTable(props) {
   const columns = [
     { title: 'Hora', field: 'hour', type: 'time' },
     { title: 'Disponível', field: 'free', type: 'boolean' },
+    {
+      title: 'Serviço',
+      render: (rowData) => (
+        <img  src={serviceToSvg(rowData.serviceType)} style={{ width: 50 }} />
+      ),
+    },
+    { title: 'Nome do Cliente', field: 'clientName', type: 'text' },
+    { title: 'Nome do Pet', field: 'petName', type: 'text' },
   ]
   const [selectedHour, setSelectedHour] = React.useState('')
   const [formattedDate, setFormattedDate] = React.useState('')
 
-  const dataFormatada = (date)=> {
+  const dataFormatada = (date) => {
     let data = new Date(date),
       dia = data.getDate().toString().padStart(2, '0'),
       mes = (data.getMonth() + 1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
@@ -95,7 +121,7 @@ export default function BookingTable(props) {
     return `${getDiaSemana(diaSemana)}, ${dia} de ${getNomeMes(mes)} de ${ano}`
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     setFormattedDate(dataFormatada(props.date))
     setSelectedHour('')
   }, [props.date])
