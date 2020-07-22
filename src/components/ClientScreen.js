@@ -15,6 +15,7 @@ import ShopCartScreen from './cliente/ShopCartScreen';
 import ShowerBookingScreen from './cliente/ShowerBookingScreen';
 import PetDetailsScreen from './cliente/PetDetailsScreen';
 import AddPetScreen from './cliente/AddPetScreen';
+import { PermissionContext } from './contexts/PermissionContext';
 
 
 class ClientScreen extends React.Component {
@@ -24,8 +25,7 @@ class ClientScreen extends React.Component {
             <div className="wrapper-sticky">
               <div className="header-content">
                 <ClientHeader match={this.props.match}/>
-                
-                <Switch>
+                {this.context.permission === 'Client' ? <Switch>
                   <Route exact path={this.props.match.path}>
                     <Redirect to={`${this.props.match.path}/produtos`}/>
                   </Route>
@@ -37,12 +37,14 @@ class ClientScreen extends React.Component {
                   <Route path={`${this.props.match.path}/perfil`} component={ProfileScreen}/>
                   <Route path={`${this.props.match.path}/carrinho`} component={ShopCartScreen}/>
                   <Route path={`${this.props.match.path}/agendamentos`} component={ShowerBookingScreen}/>
-                </Switch>
+                </Switch> : 
+                <Redirect to={'/'} />}
+                
               </div>
               <Footer/>
             </div>
         );
     }
 }
-
+ClientScreen.contextType = PermissionContext
 export default ClientScreen;

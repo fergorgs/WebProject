@@ -11,6 +11,7 @@ import {
   import StockScreen from './administrador/StockScreen'
   import RegisterScreen from './administrador/RegisterScreen'
   import SalesScreen from './administrador/SalesScreen'
+import { PermissionContext } from './contexts/PermissionContext';
 
 
 class AdminScreen extends React.Component {
@@ -20,8 +21,7 @@ class AdminScreen extends React.Component {
             <div className="wrapper-sticky">
               <div className="header-content">
                 <AdminHeader match={this.props.match}/>
-                
-                <Switch>
+                {this.context.permission === 'Admin' ? <Switch>
                   <Route exact path={this.props.match.path}>
                     <Redirect to={`${this.props.match.path}/servicos`}/>
                   </Route>
@@ -29,12 +29,13 @@ class AdminScreen extends React.Component {
                   <Route path={`${this.props.match.path}/estoque`} component={StockScreen}/>
                   <Route path={`${this.props.match.path}/registro`} component={RegisterScreen}/>
                   <Route path={`${this.props.match.path}/vendas`} component={SalesScreen}/>
-                </Switch>
+                </Switch> : <Redirect to={'/'} />}
+                
               </div>
               <Footer/>
             </div>
         );
     }
 }
-
+AdminScreen.contextType = PermissionContext
 export default AdminScreen;

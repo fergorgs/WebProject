@@ -1,27 +1,27 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import '../style.css'
 import { Link } from 'react-router-dom'
+import { PermissionContext } from '../contexts/PermissionContext'
 
-class ClientLoginForm extends React.Component {
-  componentWillMount() {
-    this.setState({
-      email: '',
-      password: '',
-      logedin: false,
-      redirect: '/login/client',
-    })
-    this.handleChange = this.handleChange.bind(this)
-  }
+export default function ClientLoginForm(props) {
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+    logedin: false,
+    redirect: '/login/client',
+  })
+  const {savePermission} = useContext(PermissionContext)
 
-  handleChange(event) {
+  const handleChange = (event) => {
     const { name, value } = event.target
-    this.setState({
+    setState({
+      ...state,
       [name]: value,
     })
   }
 
-  submitHandler = () => {
-    const data = { email: this.state.email, password: this.state.password }
+  const submitHandler = () => {
+    const data = { email: state.email, password: state.password }
     fetch('/auth/authenticate', {
       method: 'POST',
       headers: {
@@ -42,55 +42,52 @@ class ClientLoginForm extends React.Component {
           photo: response.client.photo,
         }
         sessionStorage.setItem('client', JSON.stringify({ client: client }))
-        this.props.history.push('/client')
+        savePermission('Client')
+        props.history.push('/client')
       } else {
         alert('Email ou senha incorretos!')
       }
     })
   }
 
-  render() {
-    return (
-      <main>
-        <div class='formAgendarHolder'>
-          <div class='formAgendar  shadow'>
-            <h1>Login Cliente </h1>
-            <input
-              type='email'
-              name='email'
-              placeholder='Email'
-              class='nameInput'
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-            <input
-              type='password'
-              name='password'
-              placeholder='Senha'
-              class='nameInput'
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
+  return (
+    <main>
+      <div class='formAgendarHolder'>
+        <div class='formAgendar  shadow'>
+          <h1>Login Cliente </h1>
+          <input
+            type='email'
+            name='email'
+            placeholder='Email'
+            class='nameInput'
+            value={state.email}
+            onChange={handleChange}
+          />
+          <input
+            type='password'
+            name='password'
+            placeholder='Senha'
+            class='nameInput'
+            value={state.password}
+            onChange={handleChange}
+          />
 
-            <button type='submit' onClick={this.submitHandler}>
-              Confirmar
-            </button>
-          </div>
+          <button type='submit' onClick={submitHandler}>
+            Confirmar
+          </button>
         </div>
+      </div>
 
-        <div class='formAgendarHolder'>
-          <div class='formAgendar  shadow'>
-            <Link to='/login/create'>
-              <button type='submit'>Novo cliente</button>
-            </Link>
-            <Link to='/login/admin'>
-              <button type='submit'>Logar como Admin</button>
-            </Link>
-          </div>
+      <div class='formAgendarHolder'>
+        <div class='formAgendar  shadow'>
+          <Link to='/login/create'>
+            <button type='submit'>Novo cliente</button>
+          </Link>
+          <Link to='/login/admin'>
+            <button type='submit'>Logar como Admin</button>
+          </Link>
         </div>
-      </main>
-    )
-  }
+      </div>
+    </main>
+  )
 }
-
-export default ClientLoginForm

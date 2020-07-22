@@ -5,14 +5,13 @@ import AdminScreen from './components/AdminScreen'
 import AdminLoginScreen from './components/main/AdminLoginScreen'
 import ClientLoginScreen from './components/main/ClientLoginScreen'
 import ClientCreateScreen from './components/main/ClientCreateScreen'
+import PermissionProvider from './components/contexts/PermissionContext'
 
 function App() {
   //const { path, url } = useRouteMatch()
 
   return (
-    <div>
-      {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+    <PermissionProvider>
       <Switch>
         <Route exact path='/'>
           <Redirect to={'/login/client'} />
@@ -23,7 +22,7 @@ function App() {
         <Route path={`/login/client`} component={ClientLoginScreen} />
         <Route path={`/login/create`} component={ClientCreateScreen} />
       </Switch>
-    </div>
+    </PermissionProvider>
   )
 }
 
