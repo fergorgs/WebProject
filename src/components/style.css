@@ -821,6 +821,7 @@ span {
   width: 25px;
   height: 25px;
   margin-inline-start: 90%;
+  cursor: pointer;
 }
 
 .estoque button {

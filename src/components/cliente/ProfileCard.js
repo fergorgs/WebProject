@@ -1,6 +1,6 @@
 import React from 'react'
 import '../style.css'
-import profilePlaceHolder from './images/coffinGuy.jpg'
+import { Icon } from '@material-ui/core'
 
 class ProfileCard extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class ProfileCard extends React.Component {
       phone: '',
       email: '',
       cpf: '',
-      imgSrc:''
+      imgSrc: '',
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -26,7 +26,7 @@ class ProfileCard extends React.Component {
       phone: client.phone,
       email: client.email,
       cpf: client.cpf,
-      imgSrc: `http://localhost:5000/${client.photo}`
+      imgSrc: `http://localhost:5000/${client.photo}`,
     })
   }
   handleChange(event) {
@@ -37,26 +37,59 @@ class ProfileCard extends React.Component {
   }
 
   editModeHandler = () => {
-    this.setState({ editMode: !this.state.editMode })
+    this.setState({ editMode: !this.state.editMode }, () => {
+      if (!this.state.editMode) {
+        fetch('/client/update', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: this.state.id,
+            name: this.state.name,
+            email: this.state.email,
+            address: this.state.address,
+            phone: this.state.phone,
+          }),
+        }).then(async (res) => {
+          if (res.ok) {
+            sessionStorage.setItem(
+              'client',
+              JSON.stringify({
+                id: this.state.id,
+                name: this.state.name,
+                email: this.state.email,
+                address: this.state.address,
+                phone: this.state.phone,
+                photo: this.state.imgSrc,
+                cpf: this.state.cpf,
+              })
+            )
+          } else {
+            const result = await res.json()
+            alert(result.error)
+          }
+        })
+      }
+    })
   }
 
   render() {
     if (this.state.editMode) {
       return (
         <div class='perfilInfoBox'>
-          <img
-            alt={this.state.name}
-            src={this.state.pic}
-            class='edit'
-            onClick={this.editModeHandler}
-          />
+          <Icon className='edit' onClick={this.editModeHandler}>
+            done
+          </Icon>
           <h3>Dados do cliente</h3>
           <div id='photoAndName'>
-            <img alt={this.state.name} class='image' src={profilePlaceHolder} />
+            <img alt={this.state.name} class='image' src={this.state.imgSrc} />
             <input
               type='text'
+              name='name'
               value={this.state.name}
-              onChange={this.changeNameHandler}
+              onChange={this.handleChange}
               style={{ height: '2em', marginLeft: '1em', marginTop: '2em' }}
             />
           </div>
@@ -69,13 +102,7 @@ class ProfileCard extends React.Component {
               <p>CPF</p>
             </div>
             <div id='perfilInfoContent'>
-              <input
-                type='text'
-                name='id'
-                value={this.state.id}
-                onChange={this.handleChange}
-                style={{ height: '2em', marginLeft: '0.5em', marginTop: '1em' }}
-              />
+              <p>{this.state.id}</p>
               <input
                 type='text'
                 name='address'
@@ -97,13 +124,7 @@ class ProfileCard extends React.Component {
                 onChange={this.handleChange}
                 style={{ height: '2em', marginLeft: '0.5em', marginTop: '1em' }}
               />
-              <input
-                type='text'
-                name='cpf'
-                value={this.state.cpf}
-                onChange={this.handleChange}
-                style={{ height: '2em', marginLeft: '0.5em', marginTop: '1em' }}
-              />
+              <p>{this.state.cpf}</p>
             </div>
           </div>
         </div>
@@ -112,12 +133,9 @@ class ProfileCard extends React.Component {
 
     return (
       <div class='perfilInfoBox'>
-        <img
-          alt={this.state.name}
-          src={require('../images/mode_edit.png')}
-          class='edit'
-          onClick={this.editModeHandler}
-        />
+        <Icon className='edit' onClick={this.editModeHandler}>
+          edit
+        </Icon>
         <h3>Dados do cliente</h3>
         <div id='photoAndName'>
           <img alt={this.state.name} class='image' src={this.state.imgSrc} />
