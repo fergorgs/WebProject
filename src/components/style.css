@@ -16,6 +16,10 @@ body {
   font-family: 'Oxygen', sans-serif;
 }
 
+button{
+  cursor: pointer;
+}
+
 div.wrapper-sticky {
   display: flex;
   flex-direction: column;
