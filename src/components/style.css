@@ -358,13 +358,12 @@ wrapper
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   margin-top: 3em;
   margin-bottom: 3em;
 }
 
 .formAgendar {
-  margin-right: 5em;
+  margin-right: 2em;
   background-color: white;
   width: 30em;
   padding: 1em;

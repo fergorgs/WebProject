@@ -10,7 +10,7 @@ class ServiceRegisterForm extends React.Component {
     this.state = {
       service: 'Tosa',
       date: null,
-      cost:'0.00',
+      cost: '0.00',
       animalName: '',
       cpf: '',
       pets: [<option>Digite o CPF do cliente</option>],
@@ -33,7 +33,7 @@ class ServiceRegisterForm extends React.Component {
         serviceType: this.state.service,
         clientCpf: this.state.cpf,
         clientPetName: this.state.animalName,
-        value:this.state.cost
+        value: this.state.cost,
       }
       fetch('/service/add', {
         method: 'POST',
@@ -44,7 +44,11 @@ class ServiceRegisterForm extends React.Component {
         body: JSON.stringify(data),
       }).then(async (res) => {
         if (res.ok) {
-          alert('Serviço registrado com sucesso!')
+          alert(
+            `Serviço registrado com sucesso!\nFavor cobrar R$${Number(
+              this.state.cost
+            ).toFixed(2)} no caixa`
+          )
           this.setState({ redirect: '/admin/servicos' })
         } else {
           const error = await res.json()
@@ -115,11 +119,11 @@ class ServiceRegisterForm extends React.Component {
   serviceHandler = (event) => {
     let val = event.target.value
     this.setState({ service: val })
-    if (val === 'Serviço') this.setState({ cost: '0,00' })
-    else if (val === 'Só banho') this.setState({ cost: '20,00' })
-    else if (val === 'Só tosa') this.setState({ cost: '35,00' })
-    else if (val === 'Banho e tosa') this.setState({ cost: '55,00' })
-    else if (val === 'Consulta') this.setState({ cost: '45,00' })
+    if (val === 'Serviço') this.setState({ cost: 0 })
+    else if (val === 'Só banho') this.setState({ cost: 20 })
+    else if (val === 'Só tosa') this.setState({ cost: 35 })
+    else if (val === 'Banho e tosa') this.setState({ cost: 55 })
+    else if (val === 'Consulta') this.setState({ cost: 45 })
   }
 
   componentDidMount() {
@@ -174,6 +178,7 @@ class ServiceRegisterForm extends React.Component {
                 {this.state.pets}
               </select>
             </div>
+              <h3>Custo: R${Number(this.state.cost).toFixed(2)}</h3>
             <button type='submit' onClick={this.submitHandler}>
               Confirmar
             </button>

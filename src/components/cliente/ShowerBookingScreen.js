@@ -2,7 +2,8 @@ import React from 'react'
 import '../style.css'
 import { Redirect } from 'react-router-dom'
 import BookingTable from './BookinTable'
- 
+import ReactInputMask from 'react-input-mask'
+import creditCardType from 'credit-card-type'
 
 class ShowerBookingScreen extends React.Component {
   constructor(props) {
@@ -19,6 +20,10 @@ class ShowerBookingScreen extends React.Component {
       formattedDate: '',
       freeSlots: [],
       selected: null,
+      number: '',
+      expiry: '',
+      name: '',
+      cvc: '',
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -88,35 +93,48 @@ class ShowerBookingScreen extends React.Component {
     else if (val === 'Consulta') this.setState({ cost: '45,00' })
   }
   agendarHandler = () => {
-    const date = new Date(this.state.date)
-    date.setHours(this.state.selected, 0, 0)
-    console.log(date)
-    if (date > Date.now() && this.state.selected !== '') {
-      const data = {
-        date,
-        serviceType: this.state.service,
-        clientCpf: this.state.cpf,
-        clientPetName: this.state.animalName,
-        value: this.state.cost,
-      }
-      fetch('/service/add', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then(async (res) => {
-        if (res.ok) {
-          alert('Serviço registrado com sucesso!')
-          this.setState({ redirect: '/client/produtos' })
-        } else {
-          const error = await res.json()
-          alert(error.error)
-        }
-      })
+    if (
+      this.state.name === '' ||
+      this.state.number === '' ||
+      this.state.expiry === '' ||
+      this.state.cvc === ''
+    ) {
+      alert('Preencha todos os campos')
     } else {
-      alert('Tempo ou data inválidos!')
+      if(creditCardType(this.state.number).length === 0){
+        alert('Número de cartão inválido')
+        return
+      } 
+      const date = new Date(this.state.date)
+      date.setHours(this.state.selected, 0, 0)
+      console.log(date)
+      if (date > Date.now() && this.state.selected !== '') {
+        const data = {
+          date,
+          serviceType: this.state.service,
+          clientCpf: this.state.cpf,
+          clientPetName: this.state.animalName,
+          value: this.state.cost,
+        }
+        fetch('/service/add', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }).then(async (res) => {
+          if (res.ok) {
+            alert('Serviço registrado com sucesso!')
+            this.setState({ redirect: '/client/produtos' })
+          } else {
+            const error = await res.json()
+            alert(error.error)
+          }
+        })
+      } else {
+        alert('Tempo ou data inválidos!')
+      }
     }
   }
 
@@ -125,7 +143,7 @@ class ShowerBookingScreen extends React.Component {
       <main>
         <Redirect to={this.state.redirect} />
         <div class='formAgendarHolder'>
-          <div class='formAgendar'>
+          <div class='formAgendar shadow'>
             <h1>Agendamento de Serviços</h1>
             <div>
               <select
@@ -160,9 +178,6 @@ class ShowerBookingScreen extends React.Component {
             </div>
             <br />
             <h3>Custo: R$ {this.state.cost}</h3>
-            <button type='submit' onClick={this.agendarHandler.bind(this)}>
-              Agendar
-            </button>
           </div>
 
           <BookingTable
@@ -173,6 +188,48 @@ class ShowerBookingScreen extends React.Component {
               this.setState({ selected: hour })
             }}
           />
+          <div
+            className='formAgendar shadow'
+            style={{
+              height: '22em',
+              width: '20em',
+              marginLeft: '2em',
+              justifyContent: 'center',
+              paddingBottom: '3em',
+            }}
+          >
+            <input
+              className='nameInput'
+              placeholder='Número do cartão'
+              name='number'
+              value={this.state.number}
+              onChange={this.handleChange}
+            />
+            <input
+              className='nameInput'
+              placeholder='Nome Impresso no Cartão'
+              name='name'
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+            <ReactInputMask
+              mask='99/99'
+              className='nameInput'
+              placeholder='Válido até'
+              name='expiry'
+              value={this.state.expiry}
+              onChange={this.handleChange}
+            />
+            <ReactInputMask
+              mask='999'
+              className='nameInput'
+              placeholder='CVC'
+              name='cvc'
+              value={this.state.cvc}
+              onChange={this.handleChange}
+            />
+            <button onClick={this.agendarHandler.bind(this)}> Agendar </button>
+          </div>
         </div>
       </main>
     )

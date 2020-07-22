@@ -97,7 +97,7 @@ function getNomeMes(mes) {
 
 export default function BookingTable(props) {
   const columns = [
-    { title: 'Hora', field: 'hour', type: 'time' },
+    { title: 'Hora', field: 'hour', type: 'time', render: rowData=>(`${rowData.hour}:00`) },
     { title: 'Disponível', field: 'free', type: 'boolean' },
     {
       title: 'Serviço',
