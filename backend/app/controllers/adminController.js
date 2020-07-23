@@ -46,7 +46,7 @@ router.post('/add', async (req, res) => {
       errors.forEach((err) => {
         message += `${err}\n`
       })
-      //return res.status(400).send({ error: message })
+      return res.status(400).send({ error: message })
     }
     //Caso não tenha nenhum erro, cadastra o usuário
 
