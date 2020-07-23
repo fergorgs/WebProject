@@ -4,6 +4,7 @@ import ShopCartPanel from './ShopCartPanel'
 import CartItem from './CartItem'
 import ReactInputMask from 'react-input-mask'
 import creditCardType from 'credit-card-type'
+import { Redirect } from 'react-router-dom'
 
 class ShopCartScreen extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class ShopCartScreen extends React.Component {
       number: '',
       expiry: '',
       cvc: '',
+      redirect:'/client/carrinho'
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -112,6 +114,14 @@ class ShopCartScreen extends React.Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ cartId: this.state.cartId }),
+      }).then(async res=>{
+        if(res.ok){
+          alert('Compra realizada com sucesso!')
+          this.setState({redirect:'/client/produtos'})
+        }else{
+          const err = await res.json()
+          alert('Erro ao finalizar a compra! '+ err.error)
+        }
       })
     }
   }
@@ -139,6 +149,7 @@ class ShopCartScreen extends React.Component {
           alignItems: 'baseline',
         }}
       >
+        <Redirect to={this.state.redirect} />
         <ShopCartPanel items={shops} />
         <div
           className='formAgendar shadow'

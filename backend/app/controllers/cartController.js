@@ -117,7 +117,6 @@ router.post('/purchase', async (req, res) => {
       return res.status(400).send({ error: 'Erro ao encontrar carrinho' })
 
     for (prod of cart.products) {
-      console.log(prod)
       const product = await Product.findByIdAndUpdate(
         prod.prodId,
         {
@@ -129,7 +128,6 @@ router.post('/purchase', async (req, res) => {
         }
       )
       let prodEarning = await Earning.findOne({ originId: product.id })
-      console.log(prodEarning)
       if (!prodEarning) {
         prodEarning = await Earning.create({
           originId: product.id,
@@ -144,7 +142,7 @@ router.post('/purchase', async (req, res) => {
         await prodEarning.save()
       }
     }
-    await cart.deleteOne({_id:cartId})
+    await cart.deleteOne({ _id: cartId })
     return res.sendStatus(200)
   } catch (err) {
     return res.status(400).send({ error: 'Erro ao finalizar a compra ' + err })
