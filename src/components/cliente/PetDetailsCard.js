@@ -52,7 +52,7 @@ class PetDetailsCard extends React.Component {
         if (res.ok) {
           alert(
             `${
-              event.target.name === 'adopt' ? 'Adoção' : 'Compra'
+              this.props.adoptionMethod === 'adopt' ? 'Adoção' : 'Compra'
             } realizada com sucesso!`
           )
           this.setState({ redirect: '/client/perfil' })
