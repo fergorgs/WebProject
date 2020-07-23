@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 export const PermissionContext = createContext()
 
 const PermissionProvider = ({ children }) => {
-  const [permission, setPermission] = useState('Client')
+  const [permission, setPermission] = useState('Not Logged')
 
   const savePermission = (perm) => {
     setPermission(perm)

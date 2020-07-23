@@ -46,7 +46,7 @@ router.post('/add', async (req, res) => {
       errors.forEach((err) => {
         message += `${err}\n`
       })
-      return res.status(400).send({ error: message })
+      //return res.status(400).send({ error: message })
     }
     //Caso não tenha nenhum erro, cadastra o usuário
 
@@ -62,7 +62,7 @@ router.post('/add', async (req, res) => {
     const token = generateToken({ id: admin.id })
     res.cookie('token', token, { httpOnly: true, sameSite: true })
     return res.send({
-      admin: admin,
+      id: admin.id,
     })
   } catch (err) {
     console.log(err)

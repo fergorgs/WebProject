@@ -10,14 +10,6 @@ const AdminSchema = new mongoose.Schema({
     required: [true, 'Preencha a senha!'],
     select: false,
   },
-  passwordResetToken: {
-    type: String,
-    select: false,
-  },
-  passwordResetExpires: {
-    type: Date,
-    select: false,
-  },
   cpf: {
     type: String,
     required: [true, 'Preencha o cpf!'],
