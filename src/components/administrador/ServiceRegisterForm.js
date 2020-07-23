@@ -154,7 +154,10 @@ class ServiceRegisterForm extends React.Component {
                 name='date'
                 class='timeInput'
                 onChange={(ev) => {
-                  this.getFreeSlots(new Date(`${ev.target.value}:0:0:0`))
+                  const data = new Date(ev.target.value)
+                  data.setDate(data.getDate()+1)
+                  data.setHours(0,0,0)
+                  this.getFreeSlots(data)
                 }}
               />
             </div>
