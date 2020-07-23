@@ -11,7 +11,7 @@ class ProductItem extends React.Component {
             style={{
               display: 'flex',
               marginTop: 1 + 'em',
-              fontSize: 1.2 + 'em',
+              fontSize: 0.85 + 'em',
             }}
           >
             <div style={{ width: '50%', textAlign: 'left' }}>
