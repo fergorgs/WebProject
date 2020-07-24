@@ -1,0 +1,144 @@
+{ 
+    "_id" : ObjectId("5f19dcffc1e598878276b8e6"), 
+    "price" : NumberInt(5000), 
+    "name" : "Firefox", 
+    "age" : NumberInt(5), 
+    "breed" : "-", 
+    "gender" : "macho", 
+    "adoptionMethod" : "Venda", 
+    "specie" : "Panda vermelho", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595530495149-01-exotic-pets-nationalgeographic_1150241.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19dd99c1e598878276b8e7"), 
+    "price" : NumberInt(0), 
+    "name" : "Belinha", 
+    "age" : NumberInt(1), 
+    "breed" : "vira-lata caramelo", 
+    "gender" : "fêmea", 
+    "adoptionMethod" : "Adoção", 
+    "specie" : "canino", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595530649451-135.png"
+}
+{ 
+    "_id" : ObjectId("5f19de16c1e598878276b8e9"), 
+    "price" : NumberInt(0), 
+    "name" : "Torresminho", 
+    "age" : NumberInt(1), 
+    "breed" : "porco", 
+    "gender" : "macho", 
+    "adoptionMethod" : "Adoção", 
+    "specie" : "suíno", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595530774086-4810_Web Images for Solutions Pages - Europe_Pig_0.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19de4fc1e598878276b8ea"), 
+    "price" : NumberInt(3998), 
+    "name" : "macaco do latino", 
+    "age" : NumberInt(1), 
+    "breed" : "-", 
+    "gender" : "macho", 
+    "adoptionMethod" : "Venda", 
+    "specie" : "macaco", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595530831796-1019522.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19de91c1e598878276b8eb"), 
+    "price" : NumberInt(0), 
+    "name" : "Letícia", 
+    "age" : NumberInt(3), 
+    "breed" : "vira-lata caramelo", 
+    "gender" : "Femea", 
+    "adoptionMethod" : "Adoção", 
+    "specie" : "canino", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595530897147-abandono-de-animais-1.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19e578c1e598878276b8f0"), 
+    "price" : NumberInt(0), 
+    "name" : "Valter", 
+    "age" : NumberInt(12), 
+    "breed" : "vira-lata", 
+    "gender" : "Macho", 
+    "adoptionMethod" : "Adoção", 
+    "specie" : "canino", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595532664169-animais-idosos-manejo.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19e5edc1e598878276b8f1"), 
+    "price" : NumberInt(350), 
+    "name" : "taturana", 
+    "age" : NumberInt(2), 
+    "breed" : "-", 
+    "gender" : "femea", 
+    "adoptionMethod" : "Venda", 
+    "specie" : "tatu", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595532781805-animal.jpeg"
+}
+{ 
+    "_id" : ObjectId("5f19e7e0c1e598878276b8f3"), 
+    "price" : NumberInt(0), 
+    "name" : "Beth", 
+    "age" : NumberInt(2), 
+    "breed" : "-", 
+    "gender" : "fêmea", 
+    "adoptionMethod" : "Adoção", 
+    "specie" : "ovelha", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595533280266-images.jpeg"
+}
+{ 
+    "_id" : ObjectId("5f19e807c1e598878276b8f4"), 
+    "price" : NumberInt(3500), 
+    "name" : "Beyoncé", 
+    "age" : NumberInt(35), 
+    "breed" : "-", 
+    "gender" : "fêmea", 
+    "adoptionMethod" : "Venda", 
+    "specie" : "papagaio", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595533319946-ims.jpeg"
+}
+{ 
+    "_id" : ObjectId("5f19e82ac1e598878276b8f5"), 
+    "price" : NumberInt(600), 
+    "name" : "Shakira", 
+    "age" : NumberInt(5), 
+    "breed" : "-", 
+    "gender" : "fêmea", 
+    "adoptionMethod" : "Venda", 
+    "specie" : "lontra", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595533354153-visons-1.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19e84cc1e598878276b8f6"), 
+    "price" : NumberInt(0), 
+    "name" : "Cleber", 
+    "age" : NumberInt(4), 
+    "breed" : "vira-lata caramelo", 
+    "gender" : "macho", 
+    "adoptionMethod" : "Adoção", 
+    "specie" : "canino", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595533388810-index.jpeg"
+}
+{ 
+    "_id" : ObjectId("5f1b20db7dcb5371be762f4a"), 
+    "price" : NumberInt(250), 
+    "name" : "Clara", 
+    "age" : NumberInt(5), 
+    "breed" : "-", 
+    "gender" : "fêmea", 
+    "adoptionMethod" : "Venda", 
+    "specie" : "tartaruga", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595613403855-humanidade-causa-cc3a2ncer-em-animais-selvagens.png"
+}

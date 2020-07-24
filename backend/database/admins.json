@@ -1,0 +1,28 @@
+{ 
+    "_id" : ObjectId("5f19ae141e6d5bb4822fccfe"), 
+    "email" : "admin", 
+    "name" : "admin", 
+    "cpf" : "111.111.111-11", 
+    "phone" : "(11)987564321", 
+    "password" : "$2a$15$a2QRMU4UhPQzzEJrgt9L5OdKgjY14G40EwgXDkOwyuC5welECL0py", 
+    "__v" : NumberInt(0), 
+    "photo" : "1595527517021-visons-1.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19c3356e966f7713b4773c"), 
+    "email" : "admin2@gmail.com", 
+    "name" : "admin2", 
+    "cpf" : "000.111.222-33", 
+    "phone" : "55556666", 
+    "password" : "$2a$15$.T7bcmSQJBOprp5U2nZ36.EAo7ziaBfY0JgP/NeFlwsGE.Qv9gOR.", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19d159c1e598878276b8d7"), 
+    "email" : "admin3@gmail.com", 
+    "name" : "admin3", 
+    "cpf" : "123.456.789-99", 
+    "phone" : "32653093", 
+    "password" : "$2a$15$Tve7TeXGmh2QZmbIUG3L3uwh02bHJAqrko7HCm2rCDijwF2t9s4e2", 
+    "__v" : NumberInt(0)
+}

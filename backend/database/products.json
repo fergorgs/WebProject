@@ -1,0 +1,132 @@
+{ 
+    "_id" : ObjectId("5f19c74f6e966f7713b47741"), 
+    "name" : "Ração cachorros pedigree filhote", 
+    "price" : NumberInt(50), 
+    "description" : "para dogs bonitos", 
+    "quantity" : NumberInt(46), 
+    "type" : "Ração Cão", 
+    "sale" : true, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595524943558-Ração_Pedigree_Junior_para_Cães_Filhotes_de_Raças_Médias_e_Grandes_15_Kg-3104813-2_1.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19d302c1e598878276b8d8"), 
+    "name" : "ração dog chow", 
+    "price" : NumberInt(40), 
+    "description" : "dogs gatos", 
+    "quantity" : NumberInt(50), 
+    "type" : "Ração Cão", 
+    "sale" : true, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595527938093-13666656518174.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19d35cc1e598878276b8d9"), 
+    "name" : "Xerife Original", 
+    "price" : NumberInt(60), 
+    "description" : "para dogs fortes", 
+    "quantity" : NumberInt(50), 
+    "type" : "Ração Cão", 
+    "sale" : false, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528028247-drnks-12.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19d39bc1e598878276b8da"), 
+    "name" : "Special cat", 
+    "price" : NumberInt(50), 
+    "description" : "para gatos especiais", 
+    "quantity" : NumberInt(50), 
+    "type" : "Ração Gato", 
+    "sale" : false, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528091822-images.jpeg"
+}
+{ 
+    "_id" : ObjectId("5f19d3d2c1e598878276b8db"), 
+    "name" : "Golden Gatos", 
+    "price" : NumberInt(40), 
+    "description" : "gatos de ouro", 
+    "quantity" : NumberInt(40), 
+    "type" : "Ração Gato", 
+    "sale" : true, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528146162-Ração_Golden_Gatos_Filhotes_Frango_-_10_Kg_1213600.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19d4d2c1e598878276b8dd"), 
+    "name" : "PremieR Gatos", 
+    "price" : NumberInt(50), 
+    "description" : "gatos premium", 
+    "quantity" : NumberInt(50), 
+    "type" : "Ração Gato", 
+    "sale" : false, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528403016-Ração_Premier_Pet_Gatos_Ambientes_Internos_Adultos_Frango_3107605_L_7_5.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19d4fcc1e598878276b8de"), 
+    "name" : "Whiskas", 
+    "price" : NumberInt(40), 
+    "description" : "para todo gato padrãozinho", 
+    "quantity" : NumberInt(44), 
+    "type" : "Ração Gato", 
+    "sale" : false, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528444952-Ração_Whiskas_Carne_para_Gatos_Adultos_-_10_1_Kg_31017729-4.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19d592c1e598878276b8e1"), 
+    "name" : "Ração Tutano ", 
+    "price" : NumberInt(200), 
+    "description" : "para gatos ricos", 
+    "quantity" : NumberInt(50), 
+    "type" : "Ração Gato", 
+    "sale" : true, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528594950-tutano-gatos-id-500x500.jpg"
+}
+{ 
+    "_id" : ObjectId("5f19d6f0c1e598878276b8e2"), 
+    "name" : "Areia Kets", 
+    "price" : NumberInt(15), 
+    "description" : "para cats", 
+    "quantity" : NumberInt(50), 
+    "type" : "Areia Gato", 
+    "sale" : false, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528944226-aaaa.jpeg"
+}
+{ 
+    "_id" : ObjectId("5f19d720c1e598878276b8e3"), 
+    "name" : "Areia pipicat", 
+    "price" : NumberInt(25), 
+    "description" : "areia de fazer pipi", 
+    "quantity" : NumberInt(50), 
+    "type" : "Areia Gato", 
+    "sale" : false, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595528993147-shopping.jpeg"
+}
+{ 
+    "_id" : ObjectId("5f19d79bc1e598878276b8e5"), 
+    "name" : "Petiscos whiskas", 
+    "price" : NumberInt(3), 
+    "description" : "para agradar seu gatinho", 
+    "quantity" : NumberInt(50), 
+    "type" : "Petiscos", 
+    "sale" : true, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595529115490-Whiskas_Petisco_Temptations_AntiBoladePelo_3100683.jpg"
+}
+{ 
+    "_id" : ObjectId("5f1b20317dcb5371be762f49"), 
+    "name" : "Golden Special Dos", 
+    "price" : NumberInt(50), 
+    "description" : "Ração pra dogs de ouro", 
+    "quantity" : NumberInt(50), 
+    "type" : "Ração Cão", 
+    "sale" : true, 
+    "__v" : NumberInt(0), 
+    "photo" : "1595613233712-Ração_Premier_Golden_Special_Cães_Adultos_Frango_e_Carne_-_20_Kg_1213491.jpg"
+}

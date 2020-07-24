@@ -1,0 +1,10 @@
+{ 
+    "_id" : ObjectId("5f1b21e37dcb5371be762f4b"), 
+    "totalPrice" : NumberInt(0), 
+    "clientId" : ObjectId("5f19c5c86e966f7713b4773e"), 
+    "products" : [
+
+    ], 
+    "purchaseDate" : ISODate("2020-07-24T18:01:07.781+0000"), 
+    "__v" : NumberInt(0)
+}

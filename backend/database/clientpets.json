@@ -1,0 +1,20 @@
+{ 
+    "_id" : ObjectId("5f19c7d06e966f7713b47742"), 
+    "photo" : "1595524760177-imag.jpeg", 
+    "name" : "Tijolo", 
+    "breed" : "-", 
+    "gender" : "macho", 
+    "age" : NumberInt(3), 
+    "clientId" : ObjectId("5f19c5c86e966f7713b4773e"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f1b0e99a721b65093eda844"), 
+    "photo" : "1595530676822-0834b8ad8e3dfec2f8b3aba276a96ebf-full-660x372.jpg", 
+    "name" : "capi", 
+    "breed" : "-", 
+    "gender" : "fêmea", 
+    "age" : NumberInt(2), 
+    "clientId" : ObjectId("5f19c5c86e966f7713b4773e"), 
+    "__v" : NumberInt(0)
+}

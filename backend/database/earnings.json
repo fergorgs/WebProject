@@ -1,0 +1,81 @@
+{ 
+    "_id" : ObjectId("5f19c0ad9df4ed7397040c9a"), 
+    "originId" : ObjectId("5f19c0ad9df4ed7397040c99"), 
+    "type" : "Venda de Pet", 
+    "name" : "Beyoncé", 
+    "quantity" : NumberInt(1), 
+    "value" : NumberInt(3400), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19c7d06e966f7713b47743"), 
+    "originId" : ObjectId("5f19c7d06e966f7713b47742"), 
+    "type" : "Venda de Pet", 
+    "name" : "Tijolo", 
+    "quantity" : NumberInt(1), 
+    "value" : NumberInt(3500), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19c8046e966f7713b47745"), 
+    "originId" : ObjectId("5f19c8036e966f7713b47744"), 
+    "type" : "Serviço", 
+    "name" : "Só banho", 
+    "quantity" : NumberInt(1), 
+    "value" : NumberInt(20), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19c9226d655b828313d3cc"), 
+    "originId" : ObjectId("5f19c9226d655b828313d3cb"), 
+    "type" : "Serviço", 
+    "name" : "Só tosa", 
+    "quantity" : NumberInt(1), 
+    "value" : NumberInt(35), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19cbda6d655b828313d3ce"), 
+    "originId" : ObjectId("5f19c74f6e966f7713b47741"), 
+    "quantity" : NumberInt(2), 
+    "value" : NumberInt(50), 
+    "name" : "Ração cachorros pedigree filhote", 
+    "type" : "Venda de Produto", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19e3b5c1e598878276b8ed"), 
+    "originId" : ObjectId("5f19e3b5c1e598878276b8ec"), 
+    "type" : "Serviço", 
+    "name" : "Consulta", 
+    "quantity" : NumberInt(1), 
+    "value" : NumberInt(45), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19e45fc1e598878276b8ef"), 
+    "originId" : ObjectId("5f19d4fcc1e598878276b8de"), 
+    "quantity" : NumberInt(3), 
+    "value" : NumberInt(40), 
+    "name" : "Whiskas", 
+    "type" : "Venda de Produto", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19e944c1e598878276b8f8"), 
+    "originId" : ObjectId("5f19e944c1e598878276b8f7"), 
+    "type" : "Serviço", 
+    "name" : "Banho e tosa", 
+    "quantity" : NumberInt(1), 
+    "value" : NumberInt(55), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19e974c1e598878276b8fa"), 
+    "originId" : ObjectId("5f19e974c1e598878276b8f9"), 
+    "type" : "Venda de Pet", 
+    "name" : "Clara", 
+    "quantity" : NumberInt(1), 
+    "value" : NumberInt(250), 
+    "__v" : NumberInt(0)
+}

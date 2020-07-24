@@ -1,0 +1,24 @@
+{ 
+    "_id" : ObjectId("5f19c8036e966f7713b47744"), 
+    "date" : ISODate("2020-07-23T18:00:00.000+0000"), 
+    "serviceType" : "Só banho", 
+    "clientCpf" : "489.547.048-24", 
+    "clientPetName" : "Tijolo", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19c9226d655b828313d3cb"), 
+    "date" : ISODate("2020-07-23T19:00:00.000+0000"), 
+    "serviceType" : "Só tosa", 
+    "clientCpf" : "489.547.048-24", 
+    "clientPetName" : "Tijolo", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5f19e944c1e598878276b8f7"), 
+    "date" : ISODate("2020-07-29T12:00:00.000+0000"), 
+    "serviceType" : "Banho e tosa", 
+    "clientCpf" : "489.547.048-24", 
+    "clientPetName" : "Varal", 
+    "__v" : NumberInt(0)
+}
