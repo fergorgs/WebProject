@@ -16,7 +16,9 @@ class ClientRegisterForm extends React.Component {
       phone: '',
       photo: null,
       newId: '',
-      redirect: '/login/create',
+      redirect: this.props.match !== undefined
+              ? this.props.match.path
+              : '/login/create',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleImgUpload = this.handleImgUpload.bind(this)
@@ -48,7 +50,11 @@ class ClientRegisterForm extends React.Component {
       .then((res) => {
         if (res.status === 200) {
           alert('Cliente registrado com sucesso!')
-          this.setState({redirect:'/login/client'})
+          this.setState({
+            redirect: this.props.match !== undefined
+              ? '/admin/servicos'
+              : '/login/client',
+          })
         } else {
           alert('Falha no upload de foto!')
         }
@@ -101,7 +107,7 @@ class ClientRegisterForm extends React.Component {
               onChange={this.handleChange}
             />
             <InputMask
-              mask="999.999.999-99"
+              mask='999.999.999-99'
               name='cpf'
               type='text'
               placeholder='CPF'
