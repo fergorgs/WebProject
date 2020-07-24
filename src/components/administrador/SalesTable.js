@@ -24,13 +24,21 @@ export default function ServiceTable(props) {
         { title: 'Tipo', field: 'type' },
         { title: 'Nome', field: 'name' },
         { title: 'Quantidade', field: 'quantity' },
-        { title: 'Valor R$', field: 'value'},
+        {
+          title: 'Valor R$',
+          field: 'value',
+          render: (rowData) => Number(rowData.value).toFixed(2),
+        },
       ],
       data: props.salesData,
     }
     setState(state)
   }, [props.salesData])
 
+  let total = 0.0
+  props.salesData.forEach((sale) => {
+    total += parseFloat(sale.value)
+  })
   return (
     <div
       style={{
@@ -40,11 +48,11 @@ export default function ServiceTable(props) {
       }}
     >
       <MaterialTable
-        style={{ width: '60em', padding: '1em', margin: '4em', zIndex:'0'}}
+        style={{ width: '60em', padding: '1em', margin: '4em', zIndex: '0' }}
         title='Faturamento'
         columns={state.columns}
         data={state.data}
-        options={{exportButton:true}}
+        options={{ exportButton: true }}
         localization={{
           pagination: {
             labelDisplayedRows: '{from}-{to} de {count}',
@@ -62,7 +70,7 @@ export default function ServiceTable(props) {
             nRowsSelected: '{0} linhas selecionadas',
             searchTooltip: 'Pesquisar',
             searchPlaceholder: 'Pesquisar',
-            exportTitle:'Exportar',
+            exportTitle: 'Exportar',
           },
           body: {
             emptyDataSourceMessage: 'Não há serviços neste dia',
@@ -75,8 +83,10 @@ export default function ServiceTable(props) {
             },
           },
         }}
-        
       />
+      <div className='shadow formAgendar' style={{ width: '10em' }}>
+        <h3>Total R${Number(total).toFixed(2)}</h3>
+      </div>
     </div>
   )
 }
