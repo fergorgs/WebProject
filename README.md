@@ -1,5 +1,5 @@
 # Petz
-## Projeto de pethsop para disciplina SCC0219 - Introdução ao Desenvolvimento Web - 2020
+## Projeto de sistema de petshop para disciplina SCC0219 - Introdução ao Desenvolvimento Web - 2020
 
 * Daniel Sá Barretto Prado Garcia 10374344
 * Fernando Gorgulho Fayet 10734407
