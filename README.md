@@ -1,26 +1,18 @@
 # Petz
-## Projeto de sistema de petshop para disciplina SCC0219 - Introdução ao Desenvolvimento Web - 2020
 
-* Daniel Sá Barretto Prado Garcia 10374344
-* Fernando Gorgulho Fayet 10734407
-* Laura Genari de Jesus 10801180
+This is a project made as final assigment for the Web Development classes. We created a fully functional petshop website. 
+Front was made in React, back was made in Node and MongoDB
 
-### Requisitos
-* MongoDB
-* npm
-* NodeJs
+### Instalation
 
-### Instalação
-
-Para instalar o programa completo com todas suas dependências, apenas execute o script `setup.sh` com os seguintes comandos no terminal:
-
+Run the `setup.sh` script running the following commands in the shell:
 ```
 chmod +x setup.sh
 ./setup.sh
 ```
-### Execução
 
-Para incializar o programa, execute o seguinte comando:
+### Running
+
 ```
 npm start
 ```
